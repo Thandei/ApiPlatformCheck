@@ -25,3 +25,8 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+###> other user defined ignored files & folders ###
+/.idea
+###< other user defined ignored files & folders ###
+
