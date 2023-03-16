@@ -1,5 +1,11 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals:
+        misc:
+            coming_soon:
+                year: 2023
+                month: 7
+                day: 1
 
 when@test:
     twig:
