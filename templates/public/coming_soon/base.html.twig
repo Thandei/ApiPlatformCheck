@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('coming_soon') }}
+    {% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+
+    <style>
+        body { background-color: #f3f3f3; }
+    </style>
+
+</head>
+
+<body>
+
+<div class="page-wrapper">
+    <div class="content-wrapper">
+        {% block body %}{% endblock %}
+    </div>
+    <!--end content-wrapper-->
+    <!--
+    <footer>
+        <div class="social-icons animate">
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-pinterest"></i></a>
+            <a href="#"><i class="fa fa-google-plus"></i></a>
+        </div>
+    </footer>
+    -->
+</div>
+<!--end page-wrapper-->
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('coming_soon') }}
+{% endblock %}
+
+</body>
