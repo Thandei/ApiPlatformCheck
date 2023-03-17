@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Service\GithubDocumentationSyncService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,8 +11,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class DocumentationController extends AbstractController
 {
     #[Route('/documentation', name: 'documentation')]
-    public function index(): Response
+    public function index(GithubDocumentationSyncService $githubDocumentationSyncService): Response
     {
-        return $this->render('admin/documentation/index.html.twig');
+
+        $myDocumentation = $githubDocumentationSyncService->getApplicationDocumentation("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", "sinansahinwm", "meehoudocs");
+        return $this->render('admin/documentation/index.html.twig', ["documentation" => $myDocumentation]);
+
     }
 }

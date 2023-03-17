@@ -8,12 +8,8 @@ use Github\Client;
 class GithubDocumentationSyncService
 {
 
-    public function getApplicationDocumentation(string $accessToken, string $username, string $repositoryName, string|null $path = null): false|null|array
+    public function getApplicationDocumentation(string $accessToken, string $username, string $repositoryName, string|null $path = null): null|array
     {
-
-        $applicationDocumentation = [];
-        $applicationDocumentation["files"] = [];
-        $applicationDocumentation["folders"] = [];
 
         $githubRepo = $this->getGithubRepository($accessToken, $username, $repositoryName);
 
