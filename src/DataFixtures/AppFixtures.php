@@ -8,9 +8,11 @@ use Doctrine\Persistence\ObjectManager;
 class AppFixtures extends Fixture
 {
 
-    const USERS_COUNT = 1000;
+    const USERS_COUNT = 5;
     const USERS_ROLE_TYPES = ["ROLE_USER", "ROLE_ADMIN"];
-    const USER_SKIP_HASH_PASSWORDS = TRUE;
+    const USER_SKIP_HASH_PASSWORDS = FALSE;
+
+    const USER_GENERATE_RANDOM_PASSWORD = "321";
 
     public function load(ObjectManager $manager): void
     {

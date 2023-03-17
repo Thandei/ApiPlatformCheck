@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- [Head] start -->
+
+<head>
+
+    <title>{% block title %}{% endblock %}</title>
+    {% include 'admin/partials/_head.html.twig' %}
+
+</head>
+<!-- [Head] end -->
+<!-- [Body] Start -->
+
+<body>
+<!-- [ Pre-loader ] start -->
+<div class="loader-bg">
+    <div class="loader-track">
+        <div class="loader-fill"></div>
+    </div>
+</div>
+<!-- [ Pre-loader ] End -->
+
+<div class="auth-main">
+    <div class="auth-wrapper v1">
+        <div class="auth-form">
+
+            {% block body %}{% endblock %}
+
+        </div>
+    </div>
+</div>
+<!-- [ Main Content ] end -->
+
+<!-- [Global Scripts] start -->
+{% block javascripts %}
+    {{ encore_entry_script_tags('admin') }}
+{% endblock %}
+<!-- [Global Scripts] end -->
+
+</body>
+<!-- [Body] end -->
+
+</html>

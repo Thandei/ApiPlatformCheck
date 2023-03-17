@@ -30,7 +30,7 @@ class UserFixtures extends Fixture
                 $myUser = new User();
 
                 // Prepare Data
-                $fakerUserPassword = $this->fakerFactory->password(8, 12);
+                $fakerUserPassword = (AppFixtures::USER_GENERATE_RANDOM_PASSWORD !== TRUE) ? AppFixtures::USER_GENERATE_RANDOM_PASSWORD : $this->fakerFactory->password(8, 12);
                 $userPassword = AppFixtures::USER_SKIP_HASH_PASSWORDS === TRUE ? $fakerUserPassword : $this->passwordHasher->hashPassword($myUser, $fakerUserPassword);
 
                 $accountName = $this->fakerFactory->firstName . " " . $this->fakerFactory->lastName;

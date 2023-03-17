@@ -1,0 +1,93 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Documentation{% endblock %}
+{% block bodyTitle %}Documentation{% endblock %}
+
+
+{% block body %}
+
+<div class="row">
+    <div class="col-lg-9">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Monthly Revenue</h5>
+            </div>
+            <div class="card-body">
+                body
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Content Navigator</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="#" class="btn btn-link-secondary">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0">
+                        <span class="p-1 d-block bg-warning rounded-circle">
+                          <span class="visually-hidden">New alerts</span>
+                        </span>
+                            </div>
+                            <div class="flex-grow-1 mx-2">
+                                <p class="mb-0 d-grid text-start">
+                                    <span class="text-truncate w-100">Horizontal Layout</span>
+                                </p>
+                            </div>
+                            <div class="badge bg-light-secondary f-12"><i class="ti ti-paperclip text-sm"></i> 2</div>
+                        </div>
+                    </a>
+                    <a href="#" class="btn btn-link-secondary">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0">
+                        <span class="p-1 d-block bg-warning rounded-circle">
+                          <span class="visually-hidden">New alerts</span>
+                        </span>
+                            </div>
+                            <div class="flex-grow-1 mx-2">
+                                <p class="mb-0 d-grid text-start">
+                                    <span class="text-truncate w-100">Invoice Generator</span>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="btn btn-link-secondary">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0">
+                        <span class="p-1 d-block bg-warning rounded-circle">
+                          <span class="visually-hidden">New alerts</span>
+                        </span>
+                            </div>
+                            <div class="flex-grow-1 mx-2">
+                                <p class="mb-0 d-grid text-start">
+                                    <span class="text-truncate w-100">Package Upgrades</span>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="btn btn-link-secondary">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0">
+                        <span class="p-1 d-block bg-success rounded-circle">
+                          <span class="visually-hidden">New alerts</span>
+                        </span>
+                            </div>
+                            <div class="flex-grow-1 mx-2">
+                                <p class="mb-0 d-grid text-start">
+                                    <span class="text-truncate w-100">Figma Auto Layout</span>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="d-grid mt-3">
+                    <button class="btn btn-primary d-flex align-items-center justify-content-center"><i class="ti ti-plus"></i> Add task</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

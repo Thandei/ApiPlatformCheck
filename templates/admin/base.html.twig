@@ -12,6 +12,7 @@
 <!-- [Body] Start -->
 
 <body>
+{% if is_granted("ROLE_USER") %}
 <!-- [ Pre-loader ] start -->
 {% include 'admin/partials/_preloader.html.twig' %}
 <!-- [ Pre-loader ] End -->
@@ -518,7 +519,7 @@
         <!-- [ breadcrumb ] end -->
 
         <!-- [ Main Content ] start -->
-        {% block body %}{% endblock %}
+            {% block body %}{% endblock %}
         <!-- [ Main Content ] end -->
 
     </div>
@@ -533,7 +534,9 @@
     {{ encore_entry_script_tags('admin') }}
 {% endblock %}
 <!-- [Global Scripts] end -->
-
+    {% else %}
+    {% include 'admin/partials/_unabletoaccess.html.twig' %}
+{% endif %}
 </body>
 <!-- [Body] end -->
 </html>

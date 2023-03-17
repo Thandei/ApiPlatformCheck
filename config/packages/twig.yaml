@@ -3,8 +3,11 @@ twig:
     globals:
         shared:
           appTitle: "MeeHou"
+          appBaseURL: "https://meehou.app"
+          appLogo: 'build/theme/ablepro/images/logo-dark.svg'
           developerTitle: "Reformsoft Teknoloji A.Ş."
           developerURL: "https://www.reformsoft.net/"
+
         admin:
             charset: "utf-8"
             favicon: 'build/theme/ablepro/images/favicon.svg'
@@ -15,22 +18,17 @@ twig:
               - header: "SUMMARY"
               - name: "Dashboard"
                 icon: "ti ti-home"
-                path: 'app_test'
-
-
+                path: 'app_admin_dashboard'
               - name: "sgdsdgsdg"
                 icon: "ti ti-home"
-                path: 'app_testa'
-              - name: "sgdsdgsdg"
-                icon: "ti ti-home"
-                path: 'app_testa'
+                path: 'app_admin_documentation'
                 items:
                   - name: "sdgsdg"
-                    path: "app_testa"
+                    path: "app_admin_documentation"
               - header: "Development Proccess"
               - name: "Documentation"
                 icon: "ti ti-flask"
-                path: 'app_testa'
+                path: 'app_admin_documentation'
         misc:
             coming_soon:
                 year: 2023

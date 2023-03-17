@@ -5,8 +5,8 @@
                 <img src="{{ asset('build/theme/ablepro/images/user/avatar-1.jpg') }}" alt="user-image" class="user-avtar wid-45 rounded-circle" />
             </div>
             <div class="flex-grow-1 ms-3 me-2">
-                <h6 class="mb-0">Jonh Smith</h6>
-                <small>Administrator</small>
+                <h6 class="mb-0">{{ app.user.accountname }}</h6>
+                <small>{{ app.user.nickname }}</small>
             </div>
             <a class="btn btn-icon btn-link-secondary avtar-s" data-bs-toggle="collapse" href="#pc_sidebar_userlink">
                 <i class="fa fa-gear"></i>
@@ -18,7 +18,7 @@
                     <i class="fa fa-user"></i>
                     <span>User Profile</span>
                 </a>
-                <a href="#!">
+                <a href="{{ path('app_admin_auth_signout') }}">
                     <i class="fa fa-sign-out"></i>
                     <span>Logout</span>
                 </a>
