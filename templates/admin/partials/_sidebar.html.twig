@@ -1,0 +1,68 @@
+<div class="card pc-user-card">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+                <img src="{{ asset('build/theme/ablepro/images/user/avatar-1.jpg') }}" alt="user-image" class="user-avtar wid-45 rounded-circle" />
+            </div>
+            <div class="flex-grow-1 ms-3 me-2">
+                <h6 class="mb-0">Jonh Smith</h6>
+                <small>Administrator</small>
+            </div>
+            <a class="btn btn-icon btn-link-secondary avtar-s" data-bs-toggle="collapse" href="#pc_sidebar_userlink">
+                <i class="fa fa-gear"></i>
+            </a>
+        </div>
+        <div class="collapse pc-user-links" id="pc_sidebar_userlink">
+            <div class="pt-3">
+                <a href="#!">
+                    <i class="fa fa-user"></i>
+                    <span>User Profile</span>
+                </a>
+                <a href="#!">
+                    <i class="fa fa-sign-out"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul class="pc-navbar">
+
+    {% for x in admin.sidebar %}
+
+        {% if x.header is defined %}
+            <li class="pc-item pc-caption">
+                <label>{{ x.header }}</label>
+            </li>
+        {% endif %}
+
+        {% if x.header is not defined %}
+            <li class="pc-item {% if x.items is defined %}pc-hasmenu{% endif %}">
+                <a href="{% if x.items is defined %}#!{% else %}{{ path(x.path) }}{% endif %}" class="pc-link">
+                    <div class="pc-micon">
+                        <i class="{{ x.icon }}"></i>
+                    </div>
+                    <span class="pc-mtext">{{ x.name }}</span>
+                    {% if x.items is defined %}
+                        <span class="pc-arrow">
+                            <i data-feather="chevron-right"></i>
+                        </span>
+                    {% endif %}
+                </a>
+                {% if x.items is defined %}
+                <ul class="pc-submenu">
+                    {% for y in x.items %}
+                    <li class="pc-item">
+                        <a class="pc-link" href="../elements/icon-feather.html">{{ y.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </li>
+        {% endif %}
+
+    {% endfor %}
+
+
+</ul>

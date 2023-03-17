@@ -1,0 +1,17 @@
+<!-- [Meta] -->
+<meta charset="{{ admin.charset }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+{% for m in admin.meta %}
+<meta name="{{ m.key }}" content="{{ m.value }}">
+{% endfor %}
+
+<!-- [Favicon] icon -->
+<link rel="icon" href="{{ asset(admin.favicon) }}" type="image/x-icon">
+
+<!-- [Global Stylesheets] start -->
+{% block stylesheets %}
+    {{ encore_entry_link_tags('admin') }}
+{% endblock %}
+<!-- [Global Stylesheets] end -->

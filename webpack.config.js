@@ -16,12 +16,16 @@ Encore
 
     /*
      * ENTRY CONFIG
-     *
-     * Each entry will result in one JavaScript file (e.g. app.js)
-     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
+
+    // App Global Javascipt File
     .addEntry('app', './assets/app.js')
+
+    // Coming Soon Template Javascipt File
     .addEntry('coming_soon', './assets/app/coming_soon.js')
+
+    // Admin Template Javascipt File
+    .addEntry('admin', './assets/app/admin.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -58,7 +62,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -72,6 +76,13 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     .autoProvidejQuery()
+
+     .copyFiles({
+         from: './assets/theme/ablepro/images',
+         to: 'theme/ablepro/images/[path][name].[ext]',
+         pattern: /\.(png|jpg|svg|jpeg|webm|woff|tff|woff2)$/
+     })
+
 ;
 
 module.exports = Encore.getWebpackConfig();

@@ -28,5 +28,6 @@ yarn-error.log
 
 ###> other user defined ignored files & folders ###
 /.idea
+/assets/theme/metronic/tools/node_modules
 ###< other user defined ignored files & folders ###
 

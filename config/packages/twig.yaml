@@ -1,6 +1,35 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
+        admin:
+            charset: "utf-8"
+            favicon: 'build/theme/ablepro/images/favicon.svg'
+            meta:
+                - key: "description"
+                  value: "Lorem ipsum dolor sit amet..."
+            sidebar:
+              - header: "SUMMARY"
+              - name: "Dashboard"
+                icon: "ti ti-home"
+                path: 'app_test'
+
+              - name: "sgdsdgsdg"
+                icon: "ti ti-home"
+                path: 'app_testa'
+              - name: "sgdsdgsdg"
+                icon: "ti ti-home"
+                path: 'app_testa'
+              - name: "sgdsdgsdg"
+                icon: "ti ti-home"
+                path: 'app_testa'
+                items:
+                  - name: "sdgsdg"
+                    path: "app_testa"
+
+              - header: "Navigation 2"
+              - header: "Navigation 3"
+              - header: "Navigation 4"
+              - header: "Navigation 5"
         misc:
             coming_soon:
                 year: 2023
