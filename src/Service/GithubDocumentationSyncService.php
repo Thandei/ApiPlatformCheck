@@ -8,20 +8,36 @@ use Github\Client;
 class GithubDocumentationSyncService
 {
 
-    public function getApplicationDocumentation(string $accessToken, string $username, string $repositoryName): false|null|array
+    public function getApplicationDocumentation(string $accessToken, string $username, string $repositoryName, string|null $path = null): null|array
     {
 
         $githubRepo = $this->getGithubRepository($accessToken, $username, $repositoryName);
 
         if (is_array($githubRepo)) {
 
-            $repositoryContents = $this->getContentsOf($accessToken, $username, $repositoryName, );
+            $repoContents = $this->getContentsOf($accessToken, $username, $repositoryName, $path);
 
-            return $repositoryContents;
+            foreach ($repoContents as $fileIndex => $repoContent) {
+                $contentType = $repoContent["type"];
+                $contentFilename = $repoContent["name"];
+                if ($contentType === "file") {
+                    if (str_ends_with(strtolower($contentFilename), ".md")) {
+                        $fileFullpath = $contentFilename;
+                        $repoContents[$fileIndex]["content"] = $this->downloadContentsOf($accessToken, $username, $repositoryName, $fileFullpath);
+                    }
+                }
+                if ($contentType === "dir") {
+                    $repoContents[$fileIndex]["content"] = $contentFilename;
+                }
+            }
+
+            return $repoContents;
+
         }
 
         return NULL;
     }
+
 
     /**
      * @param string $accessToken
@@ -29,7 +45,7 @@ class GithubDocumentationSyncService
      * @param string $repositoryName
      * @return array|false|null
      */
-    public function getGithubRepository(string $accessToken, string $username, string $repositoryName): array|null|false
+    private function getGithubRepository(string $accessToken, string $username, string $repositoryName): array|null|false
     {
         $client = $this->getGithubClient($accessToken);
 
@@ -65,6 +81,7 @@ class GithubDocumentationSyncService
      * @param string $accessToken
      * @param string $username
      * @param string $repositoryName
+     * @param string|null $contentPath
      * @return array|string
      */
     private function getContentsOf(string $accessToken, string $username, string $repositoryName, string|null $contentPath = NULL): string|array
@@ -74,5 +91,24 @@ class GithubDocumentationSyncService
         return $myRepo->contents()->show($username, $repositoryName, $contentPath);
     }
 
+
+    /**
+     * @param string $accessToken
+     * @param string $username
+     * @param string $repositoryName
+     * @param string|null $contentPath
+     * @return string|null
+     */
+    private function downloadContentsOf(string $accessToken, string $username, string $repositoryName, string|null $contentPath = NULL): null|string
+    {
+        try {
+            $myClient = $this->getGithubClient($accessToken);
+            $myRepo = new Repo($myClient);
+            return $myRepo->contents()->download($username, $repositoryName, $contentPath);
+        } catch (Exception) {
+            return NULL;
+        }
+
+    }
 
 }
