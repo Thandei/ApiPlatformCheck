@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Service\GithubDocumentationSyncService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -11,10 +12,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class DocumentationController extends AbstractController
 {
     #[Route('/documentation', name: 'documentation')]
-    public function index(GithubDocumentationSyncService $githubDocumentationSyncService): Response
+    public function index(Request $request, GithubDocumentationSyncService $githubDocumentationSyncService): Response
     {
-
-        $myDocumentation = $githubDocumentationSyncService->getApplicationDocumentation("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", "sinansahinwm", "meehoudocs");
+        $githubUsername = $this->getParameter('app.admin.documentation.githubUsername');
+        $githubToken = $this->getParameter('app.admin.documentation.githubToken');
+        $repositoryName = $this->getParameter('app.admin.documentation.repositoryName');
+        $myDocumentation = $githubDocumentationSyncService->getApplicationDocumentation($githubToken, $githubUsername, $repositoryName, $request->get("docpath"));
         return $this->render('admin/documentation/index.html.twig', ["documentation" => $myDocumentation]);
     }
 }

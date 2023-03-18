@@ -4,6 +4,9 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    app.admin.documentation.githubUsername: 'sinansahinwm'
+    app.admin.documentation.githubToken: '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'
+    app.admin.documentation.repositoryName: 'meehoudocs'
 
 services:
     # default configuration for services in *this* file
