@@ -9,6 +9,10 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item" href="{{ path("app_admin_documentation") }}">
+                    <i class="ti ti-home"></i> Main Directory
+                </a>
+                
                 {% for d in documentation %}
                 <a class="list-group-item list-group-item-action {% if loop.first %}active{% endif %}"
                    id="list-{{ d.sha }}-list"
@@ -17,16 +21,16 @@
                    {% if d.type is same as("dir") %}href="?docpath={{ d.name }}"{% endif %}
                    {% if d.type is same as("file") %}role="tab"{% endif %}
                    aria-controls="list-{{ d.sha }}">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between bg-sec">
                         <span>
                             {{ d.name }}
                         </span>
                         <span>
                             {% if d.type is same as("file") %}
-                                <i class="ti ti-markdown"></i>
+                                <i class="ti ti-file-text"></i>
                             {% endif %}
-                            {% if d.type is same as("folder") %}
-                                <i class="ti ti-chevron-right"></i>
+                            {% if d.type is same as("dir") %}
+                                <i class="ti ti-folders"></i>
                             {% endif %}
                         </span>
                     </div>
@@ -39,6 +43,12 @@
                 {% for d in documentation %}
                     {% if d.type is same as("file") %}
                     <div class="tab-pane fade show {% if loop.first %}active{% endif %}" id="list-{{ d.sha }}" role="tabpanel" aria-labelledby="list-{{ d.sha }}-list">
+                            {% if d.content is same as(null) %}
+                                <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                    <i class="ti ti-git-pull-request"></i>
+                                    <div> No content has been added for this file. Please check your github account. </div>
+                                </div>
+                            {% endif %}
                         {% apply markdown_to_html %}
                             {{ d.content|raw }}
                         {% endapply %}

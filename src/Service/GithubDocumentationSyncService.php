@@ -8,7 +8,7 @@ use Github\Client;
 class GithubDocumentationSyncService
 {
 
-    public function getApplicationDocumentation(string $accessToken, string $username, string $repositoryName, string|null $path = null): null|array
+    public function getApplicationDocumentation(string $accessToken, string $username, string $repositoryName, string|null $path = null, string|null $filenameContainsFilter = NULL): null|array
     {
 
         $githubRepo = $this->getGithubRepository($accessToken, $username, $repositoryName);
@@ -21,7 +21,7 @@ class GithubDocumentationSyncService
                 $contentType = $repoContent["type"];
                 $contentFilename = $repoContent["name"];
                 if ($contentType === "file") {
-                    if (str_ends_with(strtolower($contentFilename), ".md")) {
+                    if (str_ends_with(strtolower($contentFilename), $filenameContainsFilter) or $filenameContainsFilter === NULL) {
                         $fileFullpath = $contentFilename;
                         $repoContents[$fileIndex]["content"] = $this->downloadContentsOf($accessToken, $username, $repositoryName, $fileFullpath);
                     }
