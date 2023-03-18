@@ -18,6 +18,7 @@ class DocumentationController extends AbstractController
         $githubToken = $this->getParameter('app.admin.documentation.githubToken');
         $repositoryName = $this->getParameter('app.admin.documentation.repositoryName');
         $myDocumentation = $githubDocumentationSyncService->getApplicationDocumentation($githubToken, $githubUsername, $repositoryName, $request->get("docpath"));
+
         return $this->render('admin/documentation/index.html.twig', ["documentation" => $myDocumentation]);
     }
 }
