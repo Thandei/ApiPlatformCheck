@@ -83,6 +83,12 @@ Encore
          pattern: /\.(png|jpg|svg|jpeg|webm|woff|tff|woff2)$/
      })
 
+    .copyFiles({
+        from: './assets/media',
+        to: 'media/[path][name].[ext]',
+        pattern: /\.(png|jpg|svg|jpeg|webm|woff|tff|woff2)$/
+    })
+
 ;
 
 module.exports = Encore.getWebpackConfig();

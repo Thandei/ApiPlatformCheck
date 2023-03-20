@@ -6,17 +6,36 @@
     },
     "servers": [
         {
-            "url": "/api"
+            "url": "{{ shared.appBaseURL }}/api"
         }
     ],
     "paths": {
-        "/status": {
+        "/system/status": {
             "get": {
                 "tags": [
                     "Get System Status"
                 ],
                 "summary": "Checks if the API server is up and running.",
-                "operationId": "getsystemstatus"
+                "operationId": "getsystemstatus",
+                "responses": {
+                    "200": {
+                        "description": "A JSON with success,data&message keys"
+                    }
+                }
+            }
+        },
+        "/system/time": {
+            "get": {
+                "tags": [
+                    "Get System Time"
+                ],
+                "summary": "Returns the current time measured in the number of seconds since the Unix Epoch (January 1 1970 00:00:00 GMT).",
+                "operationId": "getsystemtime",
+                "responses": {
+                    "200": {
+                        "description": "A JSON with success,data&message keys"
+                    }
+                }
             }
         }
     }

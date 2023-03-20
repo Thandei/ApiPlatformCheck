@@ -50,6 +50,15 @@ class UserFixtures extends Fixture
 
         }
 
+        // CREATE RANDOM TEST ACCOUNT
+        $testUser = new User();
+        $testUser->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
+        $testUser->setNickname("system.admin");
+        $testUser->setAccountname("System Administrator");
+        $testUser->setEmail("sinansahinwm@gmail.com");
+        $testUser->setPassword($this->passwordHasher->hashPassword($testUser, "321"));
+        $manager->persist($testUser);
+
 
         $manager->flush();
 
