@@ -32,6 +32,7 @@
         "moment": "^2.29.4",
         "simplebar": "^6.2.1",
         "sketch-js": "^1.1.3",
+        "swagger-ui": "^4.18.1",
         "wnumb": "^1.2.0"
     }
 }

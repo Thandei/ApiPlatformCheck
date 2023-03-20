@@ -1,0 +1,23 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "{{ shared.appTitle }} API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ],
+    "paths": {
+        "/status": {
+            "get": {
+                "tags": [
+                    "Get System Status"
+                ],
+                "summary": "Checks if the API server is up and running.",
+                "operationId": "getsystemstatus"
+            }
+        }
+    }
+}
