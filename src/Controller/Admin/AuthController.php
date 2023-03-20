@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Controller\ApplicationBaseController;
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Security\GoogleSigninAuthenticator;
+use App\Security\LoginFormAuthenticator;
 use Google_Client;
 use Google_Service_Oauth2;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route(path: '/admin/auth', name: 'app_admin_auth_')]
@@ -26,7 +29,7 @@ class AuthController extends ApplicationBaseController
             return $this->redirectToRoute('app_admin_dashboard');
         }
 
-        // Push Latest Error & Last Username If Exists
+        // Push The Latest Error & Last Username If Exists
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
@@ -40,16 +43,15 @@ class AuthController extends ApplicationBaseController
             $token = $myGoogleClient->fetchAccessTokenWithAuthCode($googleClientCode);
             if (isset($token["access_token"])) {
                 $myGoogleClient->setAccessToken($token['access_token']);
-                // get profile info
                 $googleOAuth = new Google_Service_Oauth2($myGoogleClient);
                 $googleAccountInfo = $googleOAuth->userinfo->get();
                 $loggedEmail = $googleAccountInfo->getEmail();
                 $loggedUserEntity = $userRepository->findOneBy(["email" => $loggedEmail]);
                 if ($loggedUserEntity instanceof User) {
                     $security->login($loggedUserEntity);
-                    return $this->redirectToRoute('app_admin_dashboard');
+                    return $this->redirectToRoute(LoginFormAuthenticator::LOGIN_SUCCESS_ROUTE);
                 } else {
-                    $error = new  AuthenticationException("No account found for this email address.", 401);
+                    $error = new  UserNotFoundException("No account found for this email address.", 401);
                 }
             } else {
                 $error = new  AuthenticationException("Could not login to your Google account.", 400);

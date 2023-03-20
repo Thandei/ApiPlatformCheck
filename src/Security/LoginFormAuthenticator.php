@@ -20,6 +20,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_admin_auth_signin';
+    public const LOGIN_SUCCESS_ROUTE = 'app_admin_dashboard';
 
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
@@ -46,7 +47,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         //     return new RedirectResponse($targetPath);
         // }
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('app_admin_dashboard'));
+        return new RedirectResponse($this->urlGenerator->generate(self::LOGIN_SUCCESS_ROUTE));
     }
 
     protected function getLoginUrl(Request $request): string
