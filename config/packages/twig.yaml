@@ -10,7 +10,7 @@ twig:
 
         admin:
             charset: "utf-8"
-            favicon: 'build/theme/ablepro/images/favicon.svg'
+            favicon: 'build/media/favicon.ico'
             meta:
                 - key: "description"
                   value: "Lorem ipsum dolor sit amet..."

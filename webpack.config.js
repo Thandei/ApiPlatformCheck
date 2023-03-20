@@ -80,13 +80,13 @@ Encore
      .copyFiles({
          from: './assets/theme/ablepro/images',
          to: 'theme/ablepro/images/[path][name].[ext]',
-         pattern: /\.(png|jpg|svg|jpeg|webm|woff|tff|woff2)$/
+         pattern: /\.(png|jpg|svg|jpeg|webm|woff|tff|woff2|ico)$/
      })
 
     .copyFiles({
         from: './assets/media',
         to: 'media/[path][name].[ext]',
-        pattern: /\.(png|jpg|svg|jpeg|webm|woff|tff|woff2)$/
+        pattern: /\.(png|jpg|svg|jpeg|webm|woff|tff|woff2|ico)$/
     })
 
 ;
