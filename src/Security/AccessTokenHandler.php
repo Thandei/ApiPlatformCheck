@@ -18,12 +18,13 @@ class AccessTokenHandler implements AccessTokenHandlerInterface
         // Search Token
         $accessToken = $this->accessTokenRepository->findOneBy(["token" => $accessToken]);
 
+
         if (null === $accessToken || !$accessToken->isValid()) {
             throw new BadCredentialsException('Invalid credentials.');
         }
 
 
         // Authorize
-        return new UserBadge($accessToken->getUser()->getId());
+        return new UserBadge($accessToken->getUser()->getUserIdentifier());
     }
 }

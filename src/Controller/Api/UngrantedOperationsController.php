@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api;
 
+use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,7 +18,7 @@ class UngrantedOperationsController extends ApiBaseController
     #[Route('/system/time', name: 'system_time')]
     public function systemTime(): JsonResponse
     {
-        return $this->provide(time(), TRUE);
+        return $this->provide(new DateTimeImmutable(), TRUE);
     }
 
 

@@ -48,7 +48,7 @@ class AuthController extends ApplicationBaseController
                 $loggedEmail = $googleAccountInfo->getEmail();
                 $loggedUserEntity = $userRepository->findOneBy(["email" => $loggedEmail]);
                 if ($loggedUserEntity instanceof User) {
-                    $security->login($loggedUserEntity);
+                    $security->login($loggedUserEntity, LoginFormAuthenticator::class);
                     return $this->redirectToRoute(LoginFormAuthenticator::LOGIN_SUCCESS_ROUTE);
                 } else {
                     $error = new  UserNotFoundException("No account found for this email address.", 401);
