@@ -25,7 +25,7 @@ Encore
     .addEntry('coming_soon', './assets/app/coming_soon.js')
 
     // Admin Template Javascipt File
-    .addEntry('admin', './assets/app/admin.js')
+
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
