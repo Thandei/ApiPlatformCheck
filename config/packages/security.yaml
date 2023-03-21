@@ -35,9 +35,6 @@ security:
   # Easy way to control access for large sections of your site
   # Note: Only the *first* access control that matches will be used
   access_control:
-    # API ROUTES
-    - { path: ^/api/grantless, roles: [ ] }
-    - { path: ^/api/granted, roles: [ "ROLE_USER" ] }
     # ADMIN ROUTES
     - { path: ^/admin/auth, roles: [ ] }
     - { path: ^/admin, roles: ROLE_ADMIN }
