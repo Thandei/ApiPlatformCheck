@@ -4,6 +4,7 @@ twig:
         shared:
           appTitle: "MeeHou"
           appBaseURL: "https://meehou.app"
+          appApiBaseURL: "https://meehou.app/api"
           appLogo: 'build/media/logo.svg'
           developerTitle: "Reformsoft Teknoloji A.Ş."
           developerURL: "https://www.reformsoft.net/"

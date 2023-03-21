@@ -25,13 +25,7 @@ class DocumentationController extends AbstractController
     #[Route('/documentation/swagger', name: 'documentation_swagger')]
     public function documentationSwagger(Request $request): Response
     {
-        return $this->render('admin/documentation/swagger.html.twig');
-    }
-
-    #[Route('/documentation/swagger/json', name: 'documentation_swagger_json')]
-    public function documentationSwaggerJSON(Request $request): Response
-    {
-        return $this->render('admin/documentation/api.json.twig', []);
+        exit("redirect to swagger");
     }
 
 }
