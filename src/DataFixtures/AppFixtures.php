@@ -7,7 +7,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 class AppFixtures extends Fixture implements OrderedFixtureInterface
 {
@@ -22,6 +22,25 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
     const USER_DONT_USE_HASH = TRUE;
     const USER_PROFILE_IMAGE_WIDTH = 500;
     const USER_PROFILE_IMAGE_HEIGHT = 500;
+
+    // === LOCALE FIXTURES CONFIGURATION == //
+    const LOCALES = [
+        [
+            "code" => "en",
+            "name" => "app.locales.english",
+            "flag" => "/build/media/flag/en.svg",
+        ],
+        [
+            "code" => "tr",
+            "name" => "app.locales.turkish",
+            "flag" => "/build/media/flag/tr.svg",
+        ],
+        [
+            "code" => "es",
+            "name" => "app.locales.turkish",
+            "flag" => "/build/media/flag/es.svg",
+        ]
+    ];
 
     // === GLOBAL CONFIGURATION == //
     const BOOL_RAND_NULLABLE = [NULL, TRUE, FALSE];
