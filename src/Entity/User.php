@@ -10,7 +10,6 @@ use ApiPlatform\Metadata\Post;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
-use Google\Service\ShoppingContent\Resource\Pos;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -33,7 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ApiProperty(readable: false)]
+    #[ApiProperty(readable: false, writable: false)]
     #[ORM\Column]
     private array $roles = [];
 
@@ -50,18 +49,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, unique: true, nullable: true)]
     private ?string $nickname = null;
 
-    #[ApiProperty(readable: false)]
+    #[ApiProperty(readable: false, writable: false, readableLink: false)]
     #[ORM\Column]
     private ?DateTimeImmutable $created_at = null;
 
     #[ORM\Column(nullable: true)]
+    #[ApiProperty(readable: true, writable: false)]
     private ?bool $approvalbadge = null;
-
+    #[ApiProperty(readable: true, writable: false)]
     #[ORM\Column(nullable: true)]
     private ?bool $hasbusiness = null;
 
     #[ORM\OneToOne(targetEntity: MediaObject::class, cascade: ['persist', 'remove'])]
-    #[ApiProperty(readableLink: true, types: ['https://schema.org/image'])]
+    #[ApiProperty(writable: false, readableLink: true)]
     #[ORM\JoinColumn(nullable: true)]
     private ?MediaObject $image = null;
 
