@@ -17,6 +17,7 @@
         "google/apiclient": "^2.13",
         "knplabs/github-api": "^3.11",
         "league/commonmark": "^2.3",
+        "lexik/jwt-authentication-bundle": "^2.18",
         "nelmio/cors-bundle": "^2.3",
         "nyholm/psr7": "^1.5",
         "phpdocumentor/reflection-docblock": "^5.3",
