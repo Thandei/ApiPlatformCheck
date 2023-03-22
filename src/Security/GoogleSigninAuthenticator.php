@@ -47,7 +47,6 @@ class GoogleSigninAuthenticator extends AbstractAuthenticator
 
                 $googleClient = AuthController::getGoogleAPIClient($this->parameterBag->get('app.auth'));
                 $token = $googleClient->fetchAccessTokenWithAuthCode($googleToken);
-
                 if (isset($token["access_token"])) {
                     $googleClient->setAccessToken($token['access_token']);
                     $googleOAuth = new Google_Service_Oauth2($googleClient);

@@ -12,3 +12,8 @@ api_platform:
   # Set this to false if you want Webby to disappear.
   show_webby: false
 
+  swagger:
+    api_keys:
+      Bearer:
+        name: Authorization
+        type: header

@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Exception;
 
 class AccessTokenFixtures extends Fixture implements OrderedFixtureInterface
 {
@@ -25,11 +26,11 @@ class AccessTokenFixtures extends Fixture implements OrderedFixtureInterface
 
             for ($x = 0; $x < AppFixtures::ACCESS_TOKEN_PER_USER; $x++) {
 
-                $fakeAccessToken = bin2hex(random_bytes(60));
+                $fakeAccessToken = $this->generateAccessToken();
                 $isExist = $this->accessTokenRepository->findOneBy(["token" => $fakeAccessToken]);
 
                 while ($isExist instanceof AccessToken) {
-                    $fakeAccessToken = bin2hex(random_bytes(60));
+                    $fakeAccessToken = $this->generateAccessToken();
                     $isExist = $this->accessTokenRepository->findOneBy(["token" => $fakeAccessToken]);
                 }
 
@@ -51,5 +52,14 @@ class AccessTokenFixtures extends Fixture implements OrderedFixtureInterface
     public function getOrder(): int
     {
         return 2;
+    }
+
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public static function generateAccessToken(): string
+    {
+        return bin2hex(random_bytes(60));
     }
 }

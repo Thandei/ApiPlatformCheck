@@ -28,14 +28,26 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
 
             $fakeUser = new User();
 
+            $fakePasswordPlainString = $this->fakerFactory->password(8, 12);
+            $hashedPassword = (AppFixtures::USER_DONT_USE_HASH === TRUE) ? $fakePasswordPlainString : $this->passwordHasher->hashPassword($fakeUser, $fakePasswordPlainString);
+
             $fakeUser->setEmail($this->fakerFactory->email);
-            $fakeUser->setPassword($this->passwordHasher->hashPassword($fakeUser, $this->fakerFactory->password(8, 12)));
+            $fakeUser->setPassword($hashedPassword);
             $fakeUser->setAccountname($this->fakerFactory->firstName . " " . $this->fakerFactory->lastName);
             $fakeUser->setNickname($this->fakerFactory->userName);
-            $fakeUser->setRoles(["ROLE_USER"]);
+            $fakeUser->setRoles([AppFixtures::USERS_FAKE_ROLES[array_rand(AppFixtures::USERS_FAKE_ROLES)]]);
             $manager->persist($fakeUser);
 
         }
+
+        // Persist Admin Users
+        $fakeAdmin = new User();
+        $fakeAdmin->setEmail(AppFixtures::USER_FAKE_ADMIN);
+        $fakeAdmin->setPassword($this->passwordHasher->hashPassword($fakeAdmin, AppFixtures::USER_FAKE_ADMIN_PASSWORD));
+        $fakeAdmin->setAccountname(AppFixtures::USER_FAKE_ADMIN_ACCOUNT_NAME);
+        $fakeAdmin->setNickname(AppFixtures::USER_FAKE_ADMIN_NICK_NAME);
+        $fakeAdmin->setRoles(["ROLE_ADMIN"]);
+        $manager->persist($fakeAdmin);
 
         $manager->flush();
     }
