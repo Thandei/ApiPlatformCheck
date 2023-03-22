@@ -16,7 +16,10 @@ security:
     main:
       lazy: true
       provider: app_user_provider
-      custom_authenticator: App\Security\LoginFormAuthenticator
+      custom_authenticator:
+        - App\Security\AccessTokenAuthenticator
+        - App\Security\GoogleSigninAuthenticator
+        - App\Security\LoginFormAuthenticator
       access_token:
         token_handler: App\Security\AccessTokenHandler
         token_extractors: header
