@@ -8,6 +8,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
+use Google\Service\AdMob\App;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture implements OrderedFixtureInterface
@@ -36,6 +37,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
             $fakeUser->setAccountname($this->fakerFactory->firstName . " " . $this->fakerFactory->lastName);
             $fakeUser->setNickname($this->fakerFactory->userName);
             $fakeUser->setRoles([AppFixtures::USERS_FAKE_ROLES[array_rand(AppFixtures::USERS_FAKE_ROLES)]]);
+            $fakeUser = $this->loadUserDefaults($fakeUser);
             $manager->persist($fakeUser);
 
         }
@@ -47,6 +49,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
         $fakeAdmin->setAccountname(AppFixtures::USER_FAKE_ADMIN_ACCOUNT_NAME);
         $fakeAdmin->setNickname(AppFixtures::USER_FAKE_ADMIN_NICK_NAME);
         $fakeAdmin->setRoles(["ROLE_ADMIN"]);
+        $fakeAdmin = $this->loadUserDefaults($fakeAdmin);
         $manager->persist($fakeAdmin);
 
         $manager->flush();
@@ -56,4 +59,20 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
     {
         return 1;
     }
+
+    public function loadUserDefaults(User $user): User
+    {
+
+        // Generate Random Badge
+        $user->setApprovalbadge(AppFixtures::BOOL_RAND_NULLABLE[array_rand(AppFixtures::BOOL_RAND_NULLABLE)]);
+
+        // Generate Random Has Business
+        $user->setHasbusiness(AppFixtures::BOOL_RAND_NULLABLE[array_rand(AppFixtures::BOOL_RAND_NULLABLE)]);
+
+        // Generate Random Profile Image
+        $user->setProfileimage($this->fakerFactory->imageUrl(AppFixtures::USER_PROFILE_IMAGE_WIDTH, AppFixtures::USER_PROFILE_IMAGE_HEIGHT));
+
+        return $user;
+    }
+
 }

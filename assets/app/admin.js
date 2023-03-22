@@ -38,7 +38,7 @@ var adminPagesGlobalInitializer = function () {
 
     return {
         init: function () {
-            _initSwaggerUI();
+            // _initSwaggerUI();
         }
     }
 
