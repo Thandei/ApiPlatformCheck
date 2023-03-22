@@ -12,6 +12,15 @@ api_platform:
   # Set this to false if you want Webby to disappear.
   show_webby: false
 
+  formats:
+    json:
+      mime_types:
+        - 'application/json'
+    html:
+      mime_types:
+        - 'text/html'
+
+
   swagger:
     api_keys:
       JWT:

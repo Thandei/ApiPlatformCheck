@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Post;
 use App\Controller\Api\CreateMediaObjectAction;
 use App\Repository\MediaObjectRepository;
 use ArrayObject;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -49,6 +50,7 @@ use ApiPlatform\OpenApi\Model;
     ],
     normalizationContext: ['groups' => ['media_object:read']]
 )]
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: MediaObjectRepository::class)]
 class MediaObject
 {
@@ -68,6 +70,11 @@ class MediaObject
     #[Groups(['media_object:read'])]
     public ?string $contentUrl = null;
 
+    #[ORM\Column]
+    #[ApiProperty(readable: true, readableLink: true)]
+    #[Groups(['media_object:read'])]
+    private ?DateTimeImmutable $created_at = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -83,5 +90,23 @@ class MediaObject
         $this->filepath = $filepath;
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(DateTimeImmutable $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        $this->created_at = new DateTimeImmutable();
     }
 }

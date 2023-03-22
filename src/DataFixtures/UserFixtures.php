@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\MediaObject;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -70,7 +71,11 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
         $user->setHasbusiness(AppFixtures::BOOL_RAND_NULLABLE[array_rand(AppFixtures::BOOL_RAND_NULLABLE)]);
 
         // Generate Random Profile Image
-        $user->setProfileimage($this->fakerFactory->imageUrl(AppFixtures::USER_PROFILE_IMAGE_WIDTH, AppFixtures::USER_PROFILE_IMAGE_HEIGHT));
+        $fakeProfileImage = $this->fakerFactory->imageUrl(AppFixtures::USER_PROFILE_IMAGE_WIDTH, AppFixtures::USER_PROFILE_IMAGE_HEIGHT);
+        $randomMediaContent = new MediaObject();
+        $randomMediaContent->setFilepath($fakeProfileImage);
+
+        $user->setImage($randomMediaContent);
 
         return $user;
     }

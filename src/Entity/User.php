@@ -4,13 +4,23 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Google\Service\ShoppingContent\Resource\Pos;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ApiResource]
+#[ApiResource(
+    operations: [
+        new Get(),
+        new Post(),
+        new Patch()
+    ]
+)]
 #[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -23,12 +33,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
+    #[ApiProperty(readable: false)]
     #[ORM\Column]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
+    #[ApiProperty(readable: false)]
     #[ORM\Column]
     private ?string $password = null;
 
@@ -38,6 +50,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, unique: true, nullable: true)]
     private ?string $nickname = null;
 
+    #[ApiProperty(readable: false)]
     #[ORM\Column]
     private ?DateTimeImmutable $created_at = null;
 
@@ -46,6 +59,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(nullable: true)]
     private ?bool $hasbusiness = null;
+
+    #[ORM\OneToOne(targetEntity: MediaObject::class, cascade: ['persist', 'remove'])]
+    #[ApiProperty(readableLink: true, types: ['https://schema.org/image'])]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?MediaObject $image = null;
 
     public function getId(): ?int
     {
@@ -179,6 +197,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setHasbusiness(?bool $hasbusiness): self
     {
         $this->hasbusiness = $hasbusiness;
+
+        return $this;
+    }
+
+    public function getImage(): ?MediaObject
+    {
+        return $this->image;
+    }
+
+    public function setImage(?MediaObject $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
