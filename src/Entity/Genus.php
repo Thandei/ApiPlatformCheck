@@ -20,7 +20,6 @@ class Genus
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Context([TranslationNormalizer::class])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 

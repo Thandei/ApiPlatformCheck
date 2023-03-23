@@ -32,7 +32,6 @@ class Locale
     #[ORM\Column(length: 255)]
     private ?string $flag = null;
 
-    #[Context([TranslationNormalizer::class])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
