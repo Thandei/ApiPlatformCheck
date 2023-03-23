@@ -4,9 +4,12 @@ use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Link;
+use App\ApiResource\Normalizer\TranslationNormalizer;
 use App\ApiResource\Provider\ApplicationConfigProvider;
 use App\Entity\Locale;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Context;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
 #[ApiResource(
     shortName: "Application Config",
@@ -52,6 +55,26 @@ class ApplicationConfig
 
     #[ApiProperty(readable: true)]
     public array $locales = [];
+
+    #[ApiProperty(readable: true)]
+    #[Context([TranslationNormalizer::class])]
+    public ?\DateTimeInterface $publicationDate = null;
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getPublicationDate(): ?\DateTimeInterface
+    {
+        return $this->publicationDate;
+    }
+
+    /**
+     * @param \DateTimeInterface|null $publicationDate
+     */
+    public function setPublicationDate(?\DateTimeInterface $publicationDate): void
+    {
+        $this->publicationDate = $publicationDate;
+    }
 
     /**
      * @return array

@@ -7,6 +7,7 @@ use App\ApiResource\Hook\TranslationGetCollectionHookByName;
 use App\ApiResource\Model\ApplicationConfig;
 use App\Controller\ApplicationBaseController;
 use App\Repository\LocaleRepository;
+use Datetime;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Environment;
 use function PHPUnit\Framework\fileExists;
@@ -44,6 +45,7 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
         $appConfig->setDefaultLocale($catalogData["framework"]["default_locale"]);
         $appConfig->setTranslations($translations);
         $appConfig->setLocales($translatedLocales);
+        $appConfig->setPublicationDate(new Datetime());
 
         return $appConfig;
     }
