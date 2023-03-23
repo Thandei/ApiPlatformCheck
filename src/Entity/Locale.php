@@ -7,14 +7,11 @@ use ApiPlatform\Metadata\GetCollection;
 use App\ApiResource\Hook\TranslationGetCollectionHookByName;
 use App\Repository\LocaleRepository;
 use Doctrine\ORM\Mapping as ORM;
-
 #[ApiResource(
     operations: [
         new GetCollection(
-
             provider: TranslationGetCollectionHookByName::class
         )
-
     ],
     paginationEnabled: false
 )]

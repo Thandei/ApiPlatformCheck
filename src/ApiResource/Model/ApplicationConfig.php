@@ -3,7 +3,10 @@
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Link;
 use App\ApiResource\Provider\ApplicationConfigProvider;
+use App\Entity\Locale;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ApiResource(
     shortName: "Application Config",
@@ -46,6 +49,25 @@ class ApplicationConfig
 
     #[ApiProperty(readable: true)]
     public ?string $translations = NULL;
+
+    #[ApiProperty(readable: true)]
+    public array $locales = [];
+
+    /**
+     * @return array
+     */
+    public function getLocales(): array
+    {
+        return $this->locales;
+    }
+
+    /**
+     * @param array $locales
+     */
+    public function setLocales(array $locales): void
+    {
+        $this->locales = $locales;
+    }
 
     /**
      * @return string|null

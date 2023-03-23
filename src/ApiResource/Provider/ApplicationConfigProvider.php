@@ -1,9 +1,11 @@
 <?php namespace App\ApiResource\Provider;
 
+use ApiPlatform\Doctrine\Orm\State\CollectionProvider;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use App\ApiResource\Model\ApplicationConfig;
 use App\Controller\ApplicationBaseController;
+use App\Repository\LocaleRepository;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Environment;
 use function PHPUnit\Framework\fileExists;
@@ -15,7 +17,7 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
     const TRANSLATIONS_FILES = "/translations";
     const TRANSLATION_FETCH_FORMAT = "yaml";
 
-    public function __construct(private Environment $twig, private string $projectDir)
+    public function __construct(private Environment $twig, private string $projectDir, private LocaleRepository $localeRepository)
     {
     }
 
@@ -39,6 +41,7 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
         $appConfig->setSupportedLocales($supportedLocales);
         $appConfig->setDefaultLocale($catalogData["framework"]["default_locale"]);
         $appConfig->setTranslations($translations);
+        // $appConfig->setLocales($this->localeRepository->findAll());
 
         return $appConfig;
     }

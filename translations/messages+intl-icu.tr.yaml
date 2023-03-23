@@ -1,1 +1,3 @@
 app.trans.test: __app.trans.test
+app.locales.english: 'İngilizce'
+app.locales.turkish: 'Türkçe'
