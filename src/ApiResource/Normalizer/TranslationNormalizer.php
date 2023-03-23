@@ -1,5 +1,6 @@
 <?php namespace App\ApiResource\Normalizer;
 
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -20,9 +21,17 @@ class TranslationNormalizer implements NormalizerInterface, CacheableSupportsMet
 
     public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
     {
+        // Get Operations
         if (is_string($data)) {
             if (str_ends_with($data, self::TRANSLATION_ENDFIX)) {
                 return TRUE;
+            }
+        }
+
+        // Get Collection Operations
+        if (is_array($data)) {
+            foreach ($data as $index => $datum) {
+                $data[$index] = $datum->setName($this->translator->trans(str_replace(self::TRANSLATION_ENDFIX, '', $datum->getName())));
             }
         }
         return FALSE;

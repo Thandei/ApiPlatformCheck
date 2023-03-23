@@ -27,17 +27,17 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
     const LOCALES = [
         [
             "code" => "en",
-            "name" => "app.locales.english",
+            "name" => "app.locales.english|trans",
             "flag" => "/build/media/flag/en.svg",
         ],
         [
             "code" => "tr",
-            "name" => "app.locales.turkish",
+            "name" => "app.locales.turkish|trans",
             "flag" => "/build/media/flag/tr.svg",
         ],
         [
             "code" => "es",
-            "name" => "app.locales.turkish",
+            "name" => "app.locales.espaniol|trans",
             "flag" => "/build/media/flag/es.svg",
         ]
     ];
@@ -45,22 +45,22 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
     // === GENUS FIXTURES CONFIGURATION == //
     const GENUSES = [
         [
-            "name" => "bear"
+            "name" => "bear|trans"
         ],
         [
-            "name" => "camel"
+            "name" => "camel|trans"
         ],
         [
-            "name" => "donkey"
+            "name" => "donkey|trans"
         ],
         [
-            "name" => "rabbit"
+            "name" => "rabbit|trans"
         ],
         [
-            "name" => "zebra"
+            "name" => "zebra|trans"
         ],
         [
-            "name" => "dog"
+            "name" => "dog|trans"
         ]
     ];
 

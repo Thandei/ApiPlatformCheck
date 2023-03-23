@@ -5,16 +5,16 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
-use App\ApiResource\Hook\TranslationGetCollectionHookByName;
+use App\ApiResource\Normalizer\TranslationNormalizer;
 use App\Repository\LocaleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Context;
+
 #[ApiResource(
     operations: [
-        new GetCollection(
-            provider: TranslationGetCollectionHookByName::class
-        )
+        new GetCollection()
     ],
     paginationEnabled: false
 )]
@@ -32,6 +32,7 @@ class Locale
     #[ORM\Column(length: 255)]
     private ?string $flag = null;
 
+    #[Context([TranslationNormalizer::class])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 

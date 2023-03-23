@@ -5,6 +5,7 @@ use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use App\ApiResource\Hook\TranslationGetCollectionHookByName;
 use App\ApiResource\Model\ApplicationConfig;
+use App\ApiResource\Normalizer\TranslationNormalizer;
 use App\Controller\ApplicationBaseController;
 use App\Repository\LocaleRepository;
 use Datetime;
@@ -19,7 +20,7 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
     const TRANSLATIONS_FILES = "/translations";
     const TRANSLATION_FETCH_FORMAT = "yaml";
 
-    public function __construct(private Environment $twig, private string $projectDir, private LocaleRepository $localeRepository, private TranslationGetCollectionHookByName $translationGetCollectionHookByName)
+    public function __construct(private Environment $twig, private string $projectDir, private LocaleRepository $localeRepository)
     {
     }
 
@@ -31,7 +32,6 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
 
         $supportedLocales = $catalogData["framework"]["translator"]["fallbacks"];
         $translations = $this->getTranslationMessages($this->projectDir . self::TRANSLATIONS_FILES, $supportedLocales);
-        $translatedLocales = $this->translationGetCollectionHookByName->translateProvidedItemsByName($this->localeRepository->findAll());
 
         $appConfig = new ApplicationConfig();
         $appConfig->setAppName($twigGlobals["shared"]["appTitle"]);
@@ -44,7 +44,7 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
         $appConfig->setSupportedLocales($supportedLocales);
         $appConfig->setDefaultLocale($catalogData["framework"]["default_locale"]);
         $appConfig->setTranslations($translations);
-        $appConfig->setLocales($translatedLocales);
+        $appConfig->setLocales($this->localeRepository->findAll());
         $appConfig->setPublicationDate(new Datetime());
 
         return $appConfig;

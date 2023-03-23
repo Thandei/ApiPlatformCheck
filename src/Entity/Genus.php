@@ -2,19 +2,13 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
-use App\ApiResource\Context\Translation\GenusName;
 use App\ApiResource\Normalizer\TranslationNormalizer;
 use App\Repository\GenusRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Context;
-use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
 
 #[ApiResource]
@@ -26,6 +20,7 @@ class Genus
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Context([TranslationNormalizer::class])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
