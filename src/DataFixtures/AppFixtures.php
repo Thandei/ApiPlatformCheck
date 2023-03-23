@@ -42,6 +42,44 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
         ]
     ];
 
+    // === GENUS FIXTURES CONFIGURATION == //
+    const GENUSES = [
+        [
+            "name" => "bear"
+        ],
+        [
+            "name" => "camel"
+        ],
+        [
+            "name" => "donkey"
+        ],
+        [
+            "name" => "rabbit"
+        ],
+        [
+            "name" => "zebra"
+        ],
+        [
+            "name" => "dog"
+        ]
+    ];
+
+    // === GENUS ATTRIBUTE FIXTURES CONFIGURATION == //
+    const GENUS_ATTR = [
+        [
+            "name" => 'weight',
+            "unit" => "kg"
+        ],
+        [
+            "name" => 'length',
+            "unit" => "cm"
+        ],
+        [
+            "name" => 'eyecolor',
+            "unit" => "color"
+        ]
+    ];
+
     // === GLOBAL CONFIGURATION == //
     const BOOL_RAND_NULLABLE = [NULL, TRUE, FALSE];
 

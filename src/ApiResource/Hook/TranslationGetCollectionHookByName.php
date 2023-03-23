@@ -18,10 +18,15 @@ final class TranslationGetCollectionHookByName implements ProviderInterface
     {
 
         $myPrevItems = $this->itemProvider->provide($operation, $uriVariables, $context);
-        foreach ($myPrevItems as $myPrevItem) {
+        return $this->translateProvidedItemsByName($myPrevItems);
+    }
+
+    public function translateProvidedItemsByName($providedItems)
+    {
+        foreach ($providedItems as $myPrevItem) {
             $myPrevItem->setName($this->translator->trans($myPrevItem->getName()));
         }
 
-        return $myPrevItems;
+        return $providedItems;
     }
 }

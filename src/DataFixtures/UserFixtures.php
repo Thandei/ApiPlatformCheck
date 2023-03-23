@@ -71,11 +71,11 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
         $user->setHasbusiness(AppFixtures::BOOL_RAND_NULLABLE[array_rand(AppFixtures::BOOL_RAND_NULLABLE)]);
 
         // Generate Random Profile Image
-        $fakeProfileImage = $this->fakerFactory->imageUrl(AppFixtures::USER_PROFILE_IMAGE_WIDTH, AppFixtures::USER_PROFILE_IMAGE_HEIGHT);
-        $randomMediaContent = new MediaObject();
-        $randomMediaContent->setFilepath($fakeProfileImage);
+        // $fakeProfileImage = $this->fakerFactory->imageUrl(AppFixtures::USER_PROFILE_IMAGE_WIDTH, AppFixtures::USER_PROFILE_IMAGE_HEIGHT);
+        // $randomMediaContent = new MediaObject();
+        // $randomMediaContent->setFilepath($fakeProfileImage);
 
-        $user->setImage($randomMediaContent);
+        // $user->setImage($randomMediaContent);
 
         return $user;
     }

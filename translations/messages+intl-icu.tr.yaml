@@ -1,3 +1,5 @@
 app.trans.test: __app.trans.test
 app.locales.english: 'İngilizce'
 app.locales.turkish: 'Türkçe'
+app.genus.camel: 'deve'
+app.genusattribute.weight: 'sdgsdg'

@@ -5,21 +5,17 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\ApiResource\Provider\UserProfileProvider;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ApiResource(
-    operations: [
-        new Get(),
-        new Post(),
-        new Patch()
-    ]
-)]
+
 #[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -32,14 +28,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ApiProperty(readable: false, writable: false)]
     #[ORM\Column]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
-    #[ApiProperty(readable: false)]
     #[ORM\Column]
     private ?string $password = null;
 
@@ -49,21 +43,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, unique: true, nullable: true)]
     private ?string $nickname = null;
 
-    #[ApiProperty(readable: false, writable: false, readableLink: false)]
     #[ORM\Column]
     private ?DateTimeImmutable $created_at = null;
 
     #[ORM\Column(nullable: true)]
-    #[ApiProperty(readable: true, writable: false)]
     private ?bool $approvalbadge = null;
-    #[ApiProperty(readable: true, writable: false)]
     #[ORM\Column(nullable: true)]
     private ?bool $hasbusiness = null;
 
-    #[ORM\OneToOne(targetEntity: MediaObject::class, cascade: ['persist', 'remove'])]
-    #[ApiProperty(writable: false, readableLink: true)]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?MediaObject $image = null;
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Locale $defaultlocale = null;
 
     public function getId(): ?int
     {
@@ -201,14 +190,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getImage(): ?MediaObject
+    public function getDefaultlocale(): ?Locale
     {
-        return $this->image;
+        return $this->defaultlocale;
     }
 
-    public function setImage(?MediaObject $image): self
+    public function setDefaultlocale(?Locale $defaultlocale): self
     {
-        $this->image = $image;
+        $this->defaultlocale = $defaultlocale;
 
         return $this;
     }
