@@ -1,0 +1,193 @@
+#   __  __           _    _
+# |  \/  |         | |  | |
+# | \  / | ___  ___| |__| | ___  _   _
+# | |\/| |/ _ \/ _ \  __  |/ _ \| | | |
+# | |  | |  __/  __/ |  | | (_) | |_| |
+# |_|  |_|\___|\___|_|  |_|\___/ \__,_|
+
+# MeeHou Social Network Project Base Configuration File #
+
+# ===============================
+# WEB PROFILER CONFIGURATION
+# ===============================
+web_profiler:
+  # Show Symfony toolbar while in application development mode
+  toolbar: false
+  # Browser stops before making any redirection and shows you the URL which is going to redirect to
+  intercept_redirects: false
+
+
+# ===============================
+# 3rd SERVICES CONFIGURATION
+# ===============================
+services:
+  # Synchronized views in admin panel of Github application documentation repository
+  Github\Client:
+    arguments:
+      - '@Github\HttpClient\Builder'
+    calls:
+        - ['authenticate', ['%env(GITHUB_USERNAME)%', '%env(GITHUB_SECRET)%', '%env(GITHUB_AUTH_METHOD)%']]
+
+ # Github service http service selection
+  Github\HttpClient\Builder:
+    arguments:
+      - '@?Http\Client\HttpClient'
+      - '@?Http\Message\RequestFactory'
+      - '@?Http\Message\StreamFactory'
+
+  # Settings for authorization with Google
+  Google\Client:
+    class: Google\Client
+    calls:
+      # Authentication with "API key"
+      - [ setDeveloperKey, [ '%env(GOOGLE_API_KEY)%' ] ]
+      # Authentication with "OAuth 2.0" using Client ID & Secret
+      - [ setClientId, [ '%env(GOOGLE_CLIENT_ID)%' ] ]
+      - [ setClientSecret, [ '%env(GOOGLE_CLIENT_SECRET)%' ] ]
+      # Authentication with "OAuth 2.0" or "Service account" using JSON
+      - [ setAuthConfig, [ '%env(resolve:GOOGLE_AUTH_CONFIG)%' ] ]
+
+
+# ===============================
+# JWT AUTH CONFIGURATION
+# ===============================
+lexik_jwt_authentication:
+  # Certificate file setup for openssl signature - secret
+  secret_key: '%env(resolve:JWT_SECRET_KEY)%'
+  # Certificate file setup for openssl signature - public
+  public_key: '%env(resolve:JWT_PUBLIC_KEY)%'
+  # Openssl passphrase for certificates
+  pass_phrase: '%env(JWT_PASSPHRASE)%'
+  # JWT Token lifetime in seconds
+  token_ttl: 2592000
+  # LEXIC JWT api-platform configuration
+  api_platform:
+    # Client-side software will send requests to this directory for authorization
+    check_path: /api/auth/json
+    # Path for JWT token authorization proccess
+    username_path: email
+    # Path for JWT token authorization proccess
+    password_path: password
+
+
+# ===============================
+# VICH UPLOADER CONFIGURATION
+# ===============================
+vich_uploader:
+  db_driver: orm
+  # Mappings for uploads to server using vich uploader
+  mappings:
+    media_object:
+      # Mapping uri prefix for accessing uploaded media object
+      uri_prefix: /uploads/media
+      # Media files uploaded to the server will be moved to this folder
+      upload_destination: '%kernel.project_dir%/public/uploads/media'
+      # Class that creates a name for the media file uploaded to the server via vich uploader
+      namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+
+# ===============================
+# API PLATFORM CONFIGURATION
+# ===============================
+api_platform:
+  # API Platform Swagger UI main title
+  title: 'MeeHou Social Network Project'
+
+  # The description of the API
+  description: 'API infrastructure for mobile and web front-end designs.'
+
+  # The version of the API
+  version: '1.0.0'
+
+  # Set this to false if you want Webby(api-platform spider) to disappear
+  show_webby: true
+
+  # Configuration of data formats to be used for api operations
+  formats:
+    json:
+      mime_types:
+        - 'application/json'
+    html:
+      mime_types:
+        - 'text/html'
+  # Swagger UI authorization config
+  swagger:
+    api_keys:
+      JWT:
+        name: Authorization
+        type: header
+
+# ===============================
+# APPLICATION PARAMETERS
+# ===============================
+parameters:
+  app.admin.documentation.githubUsername: 'sinansahinwm'
+  app.admin.documentation.githubToken: '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'
+  app.admin.documentation.repositoryName: 'meehoudocs'
+  app.auth:
+    google_client:
+      google_client_id: "1020078667485-t5ome0a9bg9e3t39k5s5qac2hjt5ko6n.apps.googleusercontent.com"
+      google_client_secret: "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"
+      google_client_redirecturl: "https://meehou.app/admin/auth/signin"
+      google_client_scopes:
+        - "email"
+        - "profile"
+
+
+# ===============================
+# TRANSLATOR CONFIGURATION
+# ===============================
+framework:
+  # Specifies the software system's default language preference
+  default_locale: en
+  translator:
+    # Sets translation files directory
+    default_path: '%kernel.project_dir%/translations'
+    # Fallback languages for translatiobs
+    fallbacks:
+      - en
+      - tr
+      - de
+      - es
+      - it
+
+
+# ===============================
+# TWIG GLOBAL VARIABLES
+# ===============================
+twig:
+  globals:
+    shared:
+      appTitle: "MeeHou"
+      appBaseURL: "https://meehou.app"
+      appApiBaseURL: "https://meehou.app/api"
+      appLogo: 'build/media/logo.svg'
+      developerTitle: "Reformsoft Teknoloji A.Ş."
+      developerURL: "https://www.reformsoft.net/"
+
+    admin:
+      charset: "utf-8"
+      favicon: 'build/media/favicon.ico'
+      meta:
+        - key: "description"
+          value: "Lorem ipsum dolor sit amet..."
+      sidebar:
+        - header: "SUMMARY"
+        - name: "Dashboard"
+          icon: "ti ti-home"
+          path: 'app_admin_dashboard'
+        - name: "User Management"
+          icon: "ti ti-user"
+          path: 'app_admin_documentation'
+          items:
+            - name: "Users List"
+              path: "app_admin_documentation"
+        - header: "Development Proccess"
+        - name: "Documentation"
+          icon: "ti ti-flask"
+          path: 'app_admin_documentation'
+    misc:
+      coming_soon:
+        year: 2023
+        month: 7
+        day: 1

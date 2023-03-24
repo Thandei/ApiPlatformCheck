@@ -3,18 +3,7 @@
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
-parameters:
-    app.admin.documentation.githubUsername: 'sinansahinwm'
-    app.admin.documentation.githubToken: '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'
-    app.admin.documentation.repositoryName: 'meehoudocs'
-    app.auth:
-        google_client:
-            google_client_id: "1020078667485-t5ome0a9bg9e3t39k5s5qac2hjt5ko6n.apps.googleusercontent.com"
-            google_client_secret: "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"
-            google_client_redirecturl: "https://meehou.app/admin/auth/signin"
-            google_client_scopes:
-                - "email"
-                - "profile"
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -35,3 +24,5 @@ services:
         #tags: [ 'api_platform.state_provider' ]
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+imports:
+    - { resource: 'app.yaml' }

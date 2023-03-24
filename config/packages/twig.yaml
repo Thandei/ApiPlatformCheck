@@ -1,40 +1,5 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
-    globals:
-        shared:
-          appTitle: "MeeHou"
-          appBaseURL: "https://meehou.app"
-          appApiBaseURL: "https://meehou.app/api"
-          appLogo: 'build/media/logo.svg'
-          developerTitle: "Reformsoft Teknoloji A.Ş."
-          developerURL: "https://www.reformsoft.net/"
-
-        admin:
-            charset: "utf-8"
-            favicon: 'build/media/favicon.ico'
-            meta:
-                - key: "description"
-                  value: "Lorem ipsum dolor sit amet..."
-            sidebar:
-              - header: "SUMMARY"
-              - name: "Dashboard"
-                icon: "ti ti-home"
-                path: 'app_admin_dashboard'
-              - name: "User Management"
-                icon: "ti ti-user"
-                path: 'app_admin_documentation'
-                items:
-                  - name: "Users List"
-                    path: "app_admin_documentation"
-              - header: "Development Proccess"
-              - name: "Documentation"
-                icon: "ti ti-flask"
-                path: 'app_admin_documentation'
-        misc:
-            coming_soon:
-                year: 2023
-                month: 7
-                day: 1
 
 when@test:
     twig:

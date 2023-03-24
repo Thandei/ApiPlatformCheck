@@ -3,6 +3,9 @@
 namespace App\Controller\Admin\Helpers;
 
 use App\Controller\Admin\AdminBaseController;
+use App\Repository\GenusAttributeRepository;
+use App\Repository\LocaleRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -14,13 +17,12 @@ class DatabaseTranslationController extends AdminBaseController
     const TRANSLATION_ATTRIBUTES = ["appName", "name"];
     const TRANSLATION_PREFIX = 'app.database.';
 
-    #[Route('/database/translation', name: 'database_translation')]
+    #[Route('/database/translation/remake', name: 'database_translation_remake')]
     public function index(): Response
     {
-        return $this->render('database_translation/index.html.twig', [
-            'controller_name' => 'DatabaseTranslationController',
-        ]);
+        return $this->redirectToRoute('app_admin_dashboard');
     }
+
 
     public static function apiPropertySupportsNormalization(mixed $data, string $format = null, array $context = []): bool
     {
