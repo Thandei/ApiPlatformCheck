@@ -1,6 +1,6 @@
 <?php namespace App\ApiResource\Normalizer;
 
-use App\Controller\Admin\DatabaseTranslationController;
+use App\Controller\Admin\Helpers\DatabaseTranslationController;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 

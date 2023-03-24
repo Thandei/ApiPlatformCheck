@@ -2,8 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\ApiResource\Normalizer\TranslatableTextNormalizer;
-use App\Controller\Admin\DatabaseTranslationController;
+use App\Controller\Admin\Helpers\DatabaseTranslationController;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
