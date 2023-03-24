@@ -45,7 +45,7 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
         $appConfig->setDefaultLocale($catalogData["framework"]["default_locale"]);
         $appConfig->setTranslations($translations);
         $appConfig->setLocales($this->localeRepository->findAll());
-        $appConfig->setPublicationDate(new Datetime());
+
 
         return $appConfig;
     }

@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route(path: '/admin/auth', name: 'app_admin_auth_')]
-class AuthController extends ApplicationBaseController
+class AuthController extends AdminBaseController
 {
     #[Route(path: '/signin', name: 'signin')]
     public function authSignin(Request $request, AuthenticationUtils $authenticationUtils, Security $security, UserRepository $userRepository): Response

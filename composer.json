@@ -15,6 +15,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.14",
         "fakerphp/faker": "^1.21",
+        "gedmo/doctrine-extensions": "^3.11",
         "google/apiclient": "^2.13",
         "knplabs/github-api": "^3.11",
         "league/commonmark": "^2.3",

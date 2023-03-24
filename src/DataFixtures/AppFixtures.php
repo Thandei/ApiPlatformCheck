@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\ApiResource\Normalizer\TranslatableTextNormalizer;
+use App\Controller\Admin\DatabaseTranslationController;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -27,17 +29,17 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
     const LOCALES = [
         [
             "code" => "en",
-            "name" => "app.locales.english|trans",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.english",
             "flag" => "/build/media/flag/en.svg",
         ],
         [
             "code" => "tr",
-            "name" => "app.locales.turkish|trans",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.turkish",
             "flag" => "/build/media/flag/tr.svg",
         ],
         [
             "code" => "es",
-            "name" => "app.locales.espaniol|trans",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.espaniol",
             "flag" => "/build/media/flag/es.svg",
         ]
     ];
@@ -45,43 +47,44 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
     // === GENUS FIXTURES CONFIGURATION == //
     const GENUSES = [
         [
-            "name" => "bear|trans"
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.bear"
         ],
         [
-            "name" => "camel|trans"
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.camel"
         ],
         [
-            "name" => "donkey|trans"
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.donkey"
         ],
         [
-            "name" => "rabbit|trans"
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.rabbit"
         ],
         [
-            "name" => "zebra|trans"
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.zebra"
         ],
         [
-            "name" => "dog|trans"
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.dog"
         ]
     ];
 
     // === GENUS ATTRIBUTE FIXTURES CONFIGURATION == //
     const GENUS_ATTR = [
         [
-            "name" => 'weight',
+            "name" => self::DATABASE_TRANSLATION_PREFIX . 'genusattr.weight',
             "unit" => "kg"
         ],
         [
-            "name" => 'length',
+            "name" => self::DATABASE_TRANSLATION_PREFIX . 'genusattr.length',
             "unit" => "cm"
         ],
         [
-            "name" => 'eyecolor',
+            "name" => self::DATABASE_TRANSLATION_PREFIX . 'genusattr.eyecolor',
             "unit" => "color"
         ]
     ];
 
     // === GLOBAL CONFIGURATION == //
     const BOOL_RAND_NULLABLE = [NULL, TRUE, FALSE];
+    const DATABASE_TRANSLATION_PREFIX = DatabaseTranslationController::TRANSLATION_PREFIX;
 
     public Generator $fakerFactory;
 

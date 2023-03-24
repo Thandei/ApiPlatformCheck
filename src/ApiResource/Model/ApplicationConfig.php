@@ -56,26 +56,6 @@ class ApplicationConfig
     #[ApiProperty(readable: true)]
     public array $locales = [];
 
-    #[ApiProperty(readable: true)]
-    #[Context([TranslationNormalizer::class])]
-    public ?\DateTimeInterface $publicationDate = null;
-
-    /**
-     * @return \DateTimeInterface|null
-     */
-    public function getPublicationDate(): ?\DateTimeInterface
-    {
-        return $this->publicationDate;
-    }
-
-    /**
-     * @param \DateTimeInterface|null $publicationDate
-     */
-    public function setPublicationDate(?\DateTimeInterface $publicationDate): void
-    {
-        $this->publicationDate = $publicationDate;
-    }
-
     /**
      * @return array
      */
