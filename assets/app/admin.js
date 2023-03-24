@@ -19,26 +19,46 @@ import '../theme/ablepro/js/fonts/custom-font.js'
 import '../theme/ablepro/js/pcoded';
 import 'feather-icons';
 
-// OTHERS
+// ----- SCRIPTS ----- //
+
+// Swagger UI - Depreced
 import SwaggerUI from 'swagger-ui'
 import 'swagger-ui/dist/swagger-ui.css';
 
+// Notifier
+import notifier from 'notifier-js/js/notifier';
+import 'notifier-js/css/notifier.css';
+
 var adminPagesGlobalInitializer = function () {
+
+    // General Config
+    const pageMessageDismissDelay = 5000;
 
     const swaggerURL = 'admin/documentation/swagger/json';
 
     var _initSwaggerUI = function () {
-
         SwaggerUI({
             dom_id: '#docsSwagger',
             url: window.location.origin + "/" + swaggerURL,
         })
+    }
+
+    var _initNotifications = function () {
+
+        $(".showNotifierSuccess").each(function () {
+            notifier.show('Success!', $(this).val(), 'success', '', pageMessageDismissDelay);
+        });
+
+        $(".showNotifierError").each(function () {
+            notifier.show('Sorry!', $(this).val(), 'danger', '', pageMessageDismissDelay);
+        });
 
     }
 
     return {
         init: function () {
             // _initSwaggerUI();
+            _initNotifications();
         }
     }
 

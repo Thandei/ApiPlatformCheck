@@ -1,6 +1,18 @@
-{#
 <ul class="list-unstyled">
-    <li class="dropdown pc-h-item">
+
+    <li class="pc-h-item" data-bs-toggle="tooltip" data-bs-title="Clear App Cache">
+        <a href="{{ path('app_admin_clear_cache') }}" class="pc-head-link me-0">
+            <i class="ti ti-eraser"></i>
+        </a>
+    </li>
+
+    <li class="pc-h-item" data-bs-toggle="tooltip" data-bs-title="Remake Translation Files">
+        <a href="{{ path('app_admin_clear_cache') }}" class="pc-head-link me-0">
+            <i class="ti ti-language"></i>
+        </a>
+    </li>
+
+{#    <li class="dropdown pc-h-item">
         <a
                 class="pc-head-link dropdown-toggle arrow-none me-0"
                 data-bs-toggle="dropdown"
@@ -338,5 +350,5 @@
                 </div>
             </div>
         </div>
-    </li>
-</ul>#}
+    </li>#}
+</ul>

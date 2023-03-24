@@ -14,8 +14,6 @@ class DashboardController extends AdminBaseController
     public function index(UserRepository $userRepository): Response
     {
 
-        $userRepository->findAll();
-
         return $this->render('admin/dashboard/index.html.twig');
     }
 }

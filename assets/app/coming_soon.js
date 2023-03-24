@@ -19,11 +19,8 @@ import Sketch from 'sketch-js/js/sketch';
 $(function () {
 
     // REMOVE SYMFONY DEBUG TOOLBAR
-    setTimeout(function () {
-        $('.sf-minitoolbar').remove();
-        console.log("Symfony Toolbar Removed");
-    }, 3000);
-
+    $('.sf-minitoolbar').remove();
+    $('.sf-toolbar').remove();
 
 
     // ANIMATE

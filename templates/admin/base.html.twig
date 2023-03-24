@@ -122,6 +122,15 @@
     {% else %}
     {% include 'admin/partials/_unabletoaccess.html.twig' %}
 {% endif %}
+
+{% for message in app.flashes('pageNotificationSuccess') %}
+    <input type="hidden" class="showNotifierSuccess" value="{{ message }}">
+{% endfor %}
+
+{% for message in app.flashes('pageNotificationError') %}
+    <input type="hidden" class="showNotifierError" value="{{ message }}">
+{% endfor %}
+
 </body>
 <!-- [Body] end -->
 </html>
