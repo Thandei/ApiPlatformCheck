@@ -14,4 +14,4 @@ If you are working in a test environment;
 php bin/console doctrine:fixtures:load
 run the command.
 
-[MeeHou](https://mww.meehou.app)
+[MeeHou](https://www.meehou.app)
