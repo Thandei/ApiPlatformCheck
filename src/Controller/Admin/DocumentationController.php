@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Service\GithubDocumentationSyncService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DocumentationController extends AbstractController
 {
     #[Route('/documentation', name: 'documentation')]
-    public function index(Request $request, GithubDocumentationSyncService $githubDocumentationSyncService): Response
+    public function documentationMain(Request $request, GithubDocumentationSyncService $githubDocumentationSyncService): Response
     {
         $githubUsername = $this->getParameter('app.admin.documentation.githubUsername');
         $githubToken = $this->getParameter('app.admin.documentation.githubToken');
@@ -20,4 +21,17 @@ class DocumentationController extends AbstractController
         $myDocumentation = $githubDocumentationSyncService->getApplicationDocumentation($githubToken, $githubUsername, $repositoryName, $request->get("docpath"));
         return $this->render('admin/documentation/index.html.twig', ["documentation" => $myDocumentation]);
     }
+
+    #[Route('/documentation/swagger', name: 'documentation_swagger')]
+    public function documentationSwagger(Request $request): Response
+    {
+        return $this->render('admin/documentation/swagger.html.twig');
+    }
+
+    #[Route('/documentation/swagger/json', name: 'documentation_swagger_json')]
+    public function documentationSwaggerJSON(Request $request): Response
+    {
+        return $this->render('admin/documentation/api.json.twig', []);
+    }
+
 }

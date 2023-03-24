@@ -4,13 +4,13 @@ twig:
         shared:
           appTitle: "MeeHou"
           appBaseURL: "https://meehou.app"
-          appLogo: 'build/theme/ablepro/images/logo-dark.svg'
+          appLogo: 'build/media/logo.svg'
           developerTitle: "Reformsoft Teknoloji A.Ş."
           developerURL: "https://www.reformsoft.net/"
 
         admin:
             charset: "utf-8"
-            favicon: 'build/theme/ablepro/images/favicon.svg'
+            favicon: 'build/media/favicon.ico'
             meta:
                 - key: "description"
                   value: "Lorem ipsum dolor sit amet..."
@@ -19,11 +19,11 @@ twig:
               - name: "Dashboard"
                 icon: "ti ti-home"
                 path: 'app_admin_dashboard'
-              - name: "sgdsdgsdg"
-                icon: "ti ti-home"
+              - name: "User Management"
+                icon: "ti ti-user"
                 path: 'app_admin_documentation'
                 items:
-                  - name: "sdgsdg"
+                  - name: "Users List"
                     path: "app_admin_documentation"
               - header: "Development Proccess"
               - name: "Documentation"

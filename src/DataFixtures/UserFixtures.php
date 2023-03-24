@@ -2,7 +2,9 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\AccessToken;
 use App\Entity\User;
+use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -44,14 +46,49 @@ class UserFixtures extends Fixture
                 $myUser->setNickname($nickName);
 
                 // And Persist
-                $manager->persist($myUser);
+                $manager = $this->persistUser($myUser, $manager);
 
             }
 
         }
 
+        // CREATE RANDOM TEST ACCOUNT
+        $testUser = new User();
+        $testUser->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
+        $testUser->setNickname("system.admin");
+        $testUser->setAccountname("System Administrator");
+        $testUser->setEmail("sinansahinwm@gmail.com");
+        $testUser->setPassword($this->passwordHasher->hashPassword($testUser, "321"));
+        $manager = $this->persistUser($testUser, $manager);
+
 
         $manager->flush();
 
+    }
+
+    private function persistUser(User $user, ObjectManager $manager): ObjectManager
+    {
+        // Persist User
+        $manager->persist($user);
+
+        // Create API Access Token
+        $this->createAccessTokens($user, $manager);
+
+        return $manager;
+    }
+
+    public function createAccessTokens(User $user, ObjectManager $manager): void
+    {
+
+        $dtRandom = $this->fakerFactory->dateTimeBetween("-3 years", "now");
+        $dtRandomImmutable = DateTimeImmutable::createFromMutable($dtRandom);
+
+        $myToken = new AccessToken();
+        $myToken->setUser($user);
+        $myToken->setValid(TRUE);
+        $myToken->setToken(md5($this->fakerFactory->password(20)));
+        $myToken->setCreatedAt($dtRandomImmutable);
+        $manager->persist($myToken);
+        $manager->flush();
     }
 }
