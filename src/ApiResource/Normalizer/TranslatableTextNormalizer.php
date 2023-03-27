@@ -1,7 +1,9 @@
 <?php namespace App\ApiResource\Normalizer;
 
 use App\Controller\Admin\Helpers\DatabaseTranslationController;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TranslatableTextNormalizer implements NormalizerInterface

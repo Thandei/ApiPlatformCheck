@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Repository\UserRepository;
-use App\Service\Helper\GithubDocumentationSyncService;
 use Facebook\Facebook;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
