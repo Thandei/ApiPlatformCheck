@@ -22,7 +22,7 @@ class GenusFixtures extends Fixture implements OrderedFixtureInterface
 
         foreach (AppFixtures::GENUSES as $genus) {
 
-            $genusName = strtolower('app.genus.' . $genus["name"]);
+            $genusName = strtolower($genus["name"]);
 
             $myGenus = new Genus();
             $myGenus->setName($genusName);

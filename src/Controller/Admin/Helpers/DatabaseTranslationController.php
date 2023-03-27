@@ -4,9 +4,6 @@ namespace App\Controller\Admin\Helpers;
 
 use App\ApiResource\Normalizer\TranslatableTextNormalizer;
 use App\Controller\Admin\AdminBaseController;
-use App\Repository\GenusAttributeRepository;
-use App\Repository\LocaleRepository;
-use Doctrine\Persistence\ManagerRegistry;
 use Psr\Cache\InvalidArgumentException;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\Response;
