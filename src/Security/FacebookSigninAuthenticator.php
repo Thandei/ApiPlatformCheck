@@ -1,18 +1,13 @@
-<?php
+<?php namespace App\Security;
 
-namespace App\Security;
-
-use App\Controller\Admin\AuthController;
 use App\Entity\User;
-use App\Repository\AccessTokenRepository;
+
 use App\Repository\UserRepository;
 use App\Service\UserRegistrationService;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
-use Google_Service_Oauth2;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use League\OAuth2\Client\Provider\FacebookUser;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,10 +19,8 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 
-class GoogleSigninAuthenticator extends OAuth2Authenticator implements AuthenticationEntrypointInterface
+class FacebookSigninAuthenticator extends OAuth2Authenticator implements AuthenticationEntrypointInterface
 {
-
-    const GOOGLE_QUERY_PLACEHOLDER = 'code';
 
 
     public function __construct(private ClientRegistry $clientRegistry, private RouterInterface $router, private UserRepository $userRepository, private UserRegistrationService $registrationService)
@@ -36,24 +29,22 @@ class GoogleSigninAuthenticator extends OAuth2Authenticator implements Authentic
 
     public function supports(Request $request): ?bool
     {
-        return (bool)$request->get(self::GOOGLE_QUERY_PLACEHOLDER, FALSE);
+        return str_ends_with($request->attributes->get('_controller'), 'getBackForFacebook');
     }
 
     public function authenticate(Request $request): Passport
     {
-
-        $client = $this->clientRegistry->getClient('google_main');
+        $client = $this->clientRegistry->getClient('facebook_main');
         $accessToken = $this->fetchAccessToken($client);
-
 
         return new SelfValidatingPassport(
             new UserBadge($accessToken->getToken(), function () use ($accessToken, $client, $request) {
 
-                $googleUser = $client->fetchUserFromToken($accessToken);
-                $googleUserData = $googleUser->toArray();
+                $facebookUser = $client->fetchUserFromToken($accessToken);
+                $facebookUserData = $facebookUser->toArray();
 
                 $loggedUser = $this->userRepository->findOneBy([
-                    "email" => $googleUserData["email"]
+                    "email" => $facebookUserData["email"]
                 ]);
 
                 if ($loggedUser instanceof User) {
@@ -61,18 +52,16 @@ class GoogleSigninAuthenticator extends OAuth2Authenticator implements Authentic
                     return $loggedUser;
                 } else {
                     // User Is Not Registered Yet, Try to Register
-                    $registerResult = $this->registrationService->registerUserByGoogle($googleUserData, $request);
+                    $registerResult = $this->registrationService->registerUserByFacebook($facebookUserData, $request);
                     if ($registerResult instanceof User) {
                         return $registerResult;
                     }
                 }
 
-
                 return new AuthenticationException();
 
             })
         );
-
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
@@ -88,6 +77,5 @@ class GoogleSigninAuthenticator extends OAuth2Authenticator implements Authentic
     public function start(Request $request, AuthenticationException $authException = null): Response
     {
         return new RedirectResponse($this->router->generate('app_admin_auth_signin'));
-
     }
 }

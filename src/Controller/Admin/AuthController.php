@@ -9,6 +9,9 @@ use App\Security\GoogleSigninAuthenticator;
 use App\Security\LoginFormAuthenticator;
 use Google_Client;
 use Google_Service_Oauth2;
+use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
+use KnpU\OAuth2ClientBundle\Client\Provider\FacebookClient;
+use League\OAuth2\Client\Provider\Facebook;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,28 +23,23 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 #[Route(path: '/admin/auth', name: 'app_admin_auth_')]
 class AuthController extends AdminBaseController
 {
-    #[Route(path: '/signin', name: 'signin')]
-    public function authSignin(Request $request, AuthenticationUtils $authenticationUtils, Security $security, UserRepository $userRepository): Response
-    {
 
-        // If User is logged, redirect immediately.
-        if ($this->getUser()) {
-            return $this->redirectToRoute('app_admin_dashboard');
-        }
+    const SCOPES_GOOGLE = ['email', 'profile'];
+    const SCOPES_FACEBOOK = ['public_profile', 'email'];
+
+    #[Route(path: '/signin', name: 'signin')]
+    public function authSignin(Request $request, AuthenticationUtils $authenticationUtils, ClientRegistry $clientRegistry, Security $security, UserRepository $userRepository): Response
+    {
 
         // Push The Latest Error & Last Username If Exists
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        // If User is not logged, create Google Client link for Sign In to Google
-        $myGoogleClient = AuthController::getGoogleAPIClient($this->getParameter("app.auth"));
-        $googleClientAuthURL = $myGoogleClient->createAuthUrl();
-
-        return $this->render('admin/auth/signin.html.twig', ['last_username' => $lastUsername, 'error' => $error, "googleAuthURL" => $googleClientAuthURL]);
+        return $this->render('admin/auth/signin.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
     #[Route(path: '/signout', name: 'signout')]
-    public function logout(): void
+    public function authSignout(): void
     {
         // throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
@@ -67,4 +65,29 @@ class AuthController extends AdminBaseController
         return $myGoogleClient;
 
     }
+
+    #[Route(path: '/redirect/google', name: 'redirect_google')]
+    public function redirectForGoogle(Request $request, ClientRegistry $clientRegistry): Response
+    {
+        return $clientRegistry->getClient('google_main')->redirect(self::SCOPES_GOOGLE);;
+    }
+
+    #[Route(path: '/redirect/facebook', name: 'redirect_facebook')]
+    public function redirectForFacebook(Request $request, ClientRegistry $clientRegistry): Response
+    {
+        return $clientRegistry->getClient('facebook_main')->redirect(self::SCOPES_FACEBOOK);
+    }
+
+    #[Route(path: '/getback/google', name: 'getback_google')]
+    public function getBackForGoogle(): Response
+    {
+        return $this->redirectToRoute('app_admin_dashboard');
+    }
+
+    #[Route(path: '/getback/facebook', name: 'getback_facebook')]
+    public function getBackForFacebook(): Response
+    {
+        return $this->redirectToRoute('app_admin_dashboard');
+    }
+
 }

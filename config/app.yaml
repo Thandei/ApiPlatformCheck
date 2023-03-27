@@ -69,6 +69,24 @@ lexik_jwt_authentication:
     # Path for JWT token authorization proccess
     password_path: password
 
+# ===============================
+# OAUTH2 CONFIGURATIONS
+# ===============================
+knpu_oauth2_client:
+  clients:
+    facebook_main:
+      type: facebook
+      client_id: '%env(OAUTH_FACEBOOK_ID)%'
+      client_secret: '%env(OAUTH_FACEBOOK_SECRET)%'
+      redirect_route: app_admin_auth_getback_facebook
+      redirect_params: {}
+      graph_api_version: v2.12
+    google_main:
+      type: google
+      client_id: '%env(OAUTH_GOOGLE_CLIENT_ID)%'
+      client_secret: '%env(OAUTH_GOOGLE_CLIENT_SECRET)%'
+      redirect_route: app_admin_auth_getback_google
+      redirect_params: { }
 
 # ===============================
 # VICH UPLOADER CONFIGURATION
@@ -124,14 +142,6 @@ parameters:
   app.admin.documentation.githubUsername: 'sinansahinwm'
   app.admin.documentation.githubToken: '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'
   app.admin.documentation.repositoryName: 'meehoudocs'
-  app.auth:
-    google_client:
-      google_client_id: "1020078667485-t5ome0a9bg9e3t39k5s5qac2hjt5ko6n.apps.googleusercontent.com"
-      google_client_secret: "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"
-      google_client_redirecturl: "https://meehou.app/admin/auth/signin"
-      google_client_scopes:
-        - "email"
-        - "profile"
 
 
 # ===============================

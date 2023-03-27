@@ -8,6 +8,10 @@
     <title>{% block title %}{% endblock %}</title>
     {% include 'admin/partials/_head.html.twig' %}
 
+    {% block pageCSS %}
+
+    {% endblock %}
+
 </head>
 <!-- [Head] end -->
 <!-- [Body] Start -->
@@ -37,6 +41,10 @@
     {{ encore_entry_script_tags('admin') }}
 {% endblock %}
 <!-- [Global Scripts] end -->
+
+{% block pageJS %}
+
+{% endblock %}
 
 </body>
 <!-- [Body] end -->
