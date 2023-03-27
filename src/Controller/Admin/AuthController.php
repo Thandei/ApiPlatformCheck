@@ -31,6 +31,11 @@ class AuthController extends AdminBaseController
     public function authSignin(Request $request, AuthenticationUtils $authenticationUtils, ClientRegistry $clientRegistry, Security $security, UserRepository $userRepository): Response
     {
 
+        // If user is logged, redirect to dashboard
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_admin_dashboard');
+        }
+
         // Push The Latest Error & Last Username If Exists
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();

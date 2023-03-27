@@ -2,7 +2,6 @@
 
 use App\Entity\User;
 use App\Repository\UserRepository;
-use Google\Service\PeopleService\Nickname;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\UnicodeString;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -22,9 +21,15 @@ class UserRegistrationService
         $myUser = new User();
 
         // User Profile Data
-        $myUser->setNickname($this->createNickByAccountName($userData["name"]));
+        $createdNickname = $this->createNickByAccountName($userData["name"]);
+
+        if ($createdNickname === NULL) {
+            return NULL;
+        }
+
+        $myUser->setNickname($createdNickname);
         $myUser->setAccountname($userData["name"]);
-        $myUser->setPassword(md5($userData["id"]));
+        $myUser->setPassword($userData["id"]);
         $myUser->setEmail($userData["email"]);
 
         // Prepare Default Locale
@@ -54,9 +59,15 @@ class UserRegistrationService
         $myUser = new User();
 
         // User Profile Data
-        $myUser->setNickname($this->createNickByAccountName($userData["name"]));
+        $createdNickname = $this->createNickByAccountName($userData["name"]);
+
+        if ($createdNickname === NULL) {
+            return NULL;
+        }
+
+        $myUser->setNickname($createdNickname);
         $myUser->setAccountname($userData["name"]);
-        $myUser->setPassword(md5($userData["sub"]));
+        $myUser->setPassword($userData["sub"]);
         $myUser->setEmail($userData["email"]);
 
         // Prepare Default Locale
@@ -90,7 +101,7 @@ class UserRegistrationService
     }
 
 
-    private function createNickByAccountName(string $accountName): string
+    private function createNickByAccountName(string $accountName): ?string
     {
         // Create Unicode string
         $accountName = new UnicodeString($accountName);
@@ -118,11 +129,17 @@ class UserRegistrationService
 
     }
 
-    private function createNewByNickname(string $nickname): string
+    private function createNewByNickname(string $nickname): ?string
     {
 
-        while ($this->userRepository->findOneBy(["nickname" => $nickname]) === NULL) {
+        $tryCount = 0;
+        while (($this->userRepository->findOneBy(["nickname" => $nickname]) instanceof User) and $tryCount < self::CREATE_NICK_TRY_COUNT) {
             $nickname .= random_int(0, 9);
+            $tryCount++;
+        }
+
+        if ($tryCount >= self::CREATE_NICK_TRY_COUNT) {
+            return NULL;
         }
 
         return $nickname;

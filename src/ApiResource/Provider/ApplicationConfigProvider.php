@@ -16,8 +16,6 @@ use function PHPUnit\Framework\fileExists;
 class ApplicationConfigProvider extends ApplicationBaseController implements ProviderInterface
 {
 
-    const TRANSLATIONS_CONFIG = "/config/packages/translation.yaml";
-    const TRANSLATIONS_FILES = "/translations";
     const TRANSLATION_FETCH_FORMAT = "yaml";
 
     public function __construct(private Environment $twig, private string $projectDir, private LocaleRepository $localeRepository)
@@ -28,10 +26,6 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
     {
 
         $twigGlobals = $this->twig->getGlobals();
-        $catalogData = Yaml::parseFile($this->projectDir . self::TRANSLATIONS_CONFIG);
-
-        $supportedLocales = $catalogData["framework"]["translator"]["fallbacks"];
-        $translations = $this->getTranslationMessages($this->projectDir . self::TRANSLATIONS_FILES, $supportedLocales);
 
         $appConfig = new ApplicationConfig();
         $appConfig->setAppName($twigGlobals["shared"]["appTitle"]);
@@ -41,27 +35,25 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
         $appConfig->setAppFavicon($twigGlobals["admin"]["favicon"]);
         $appConfig->setDeveloperTitle($twigGlobals["shared"]["developerTitle"]);
         $appConfig->setDeveloperURL($twigGlobals["shared"]["developerURL"]);
-        $appConfig->setSupportedLocales($supportedLocales);
-        $appConfig->setDefaultLocale($catalogData["framework"]["default_locale"]);
-        $appConfig->setTranslations($translations);
+        $appConfig->setTranslations($this->getTranslations());
         $appConfig->setLocales($this->localeRepository->findAll());
-
 
         return $appConfig;
     }
 
-    public function getTranslationMessages(string $translationsDir, array $supportedLocales = []): string
+
+    public function getTranslations(): string
     {
-
-        $myTranslations = [];
-
-        foreach ($supportedLocales as $supportedLocale) {
-            $translationFile = $translationsDir . "/messages+intl-icu.$supportedLocale." . self::TRANSLATION_FETCH_FORMAT;
+        $localeTranslations = [];
+        $locales = $this->localeRepository->findAll();
+        foreach ($locales as $locale) {
+            $localeCode = $locale->getCode();
+            $translationFile = $this->projectDir . DIRECTORY_SEPARATOR . "translations" . DIRECTORY_SEPARATOR . "messages+intl+icu." . $localeCode . ".yaml";
             if (file_exists($translationFile)) {
-                $myTranslations[$supportedLocale] = Yaml::parseFile($translationFile);
+                $localeTranslations[$localeCode] = Yaml::parseFile($translationFile);
             }
         }
 
-        return json_encode($myTranslations);
+        return json_encode($localeTranslations);
     }
 }

@@ -45,12 +45,6 @@ class ApplicationConfig
     public ?string $developerURL = NULL;
 
     #[ApiProperty(readable: true)]
-    public array $supportedLocales = [];
-
-    #[ApiProperty(readable: true)]
-    public ?string $defaultLocale = NULL;
-
-    #[ApiProperty(readable: true)]
     public ?string $translations = NULL;
 
     #[ApiProperty(readable: true)]
@@ -182,38 +176,6 @@ class ApplicationConfig
     public function setDeveloperURL(?string $developerURL): void
     {
         $this->developerURL = $developerURL;
-    }
-
-    /**
-     * @return array
-     */
-    public function getSupportedLocales(): array
-    {
-        return $this->supportedLocales;
-    }
-
-    /**
-     * @param array $supportedLocales
-     */
-    public function setSupportedLocales(array $supportedLocales): void
-    {
-        $this->supportedLocales = $supportedLocales;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getDefaultLocale(): ?string
-    {
-        return $this->defaultLocale;
-    }
-
-    /**
-     * @param string|null $defaultLocale
-     */
-    public function setDefaultLocale(?string $defaultLocale): void
-    {
-        $this->defaultLocale = $defaultLocale;
     }
 
     /**

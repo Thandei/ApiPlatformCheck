@@ -35,19 +35,6 @@ services:
       - '@?Http\Message\RequestFactory'
       - '@?Http\Message\StreamFactory'
 
-  # Settings for authorization with Google
-  Google\Client:
-    class: Google\Client
-    calls:
-      # Authentication with "API key"
-      - [ setDeveloperKey, [ '%env(GOOGLE_API_KEY)%' ] ]
-      # Authentication with "OAuth 2.0" using Client ID & Secret
-      - [ setClientId, [ '%env(GOOGLE_CLIENT_ID)%' ] ]
-      - [ setClientSecret, [ '%env(GOOGLE_CLIENT_SECRET)%' ] ]
-      # Authentication with "OAuth 2.0" or "Service account" using JSON
-      - [ setAuthConfig, [ '%env(resolve:GOOGLE_AUTH_CONFIG)%' ] ]
-
-
 # ===============================
 # JWT AUTH CONFIGURATION
 # ===============================
@@ -118,7 +105,7 @@ api_platform:
   version: '1.0.0'
 
   # Set this to false if you want Webby(api-platform spider) to disappear
-  show_webby: true
+  show_webby: false
 
   # Configuration of data formats to be used for api operations
   formats:
@@ -139,9 +126,9 @@ api_platform:
 # APPLICATION PARAMETERS
 # ===============================
 parameters:
-  app.admin.documentation.githubUsername: 'sinansahinwm'
-  app.admin.documentation.githubToken: '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'
-  app.admin.documentation.repositoryName: 'meehoudocs'
+  app.admin.documentation.githubUsername: '%env(GITHUB_USERNAME)%'
+  app.admin.documentation.githubToken: '%env(GITHUB_SECRET)%'
+  app.admin.documentation.repositoryName: '%env(GITHUB_DOCUMENTATION_REPO)%'
 
 
 # ===============================
@@ -149,11 +136,11 @@ parameters:
 # ===============================
 framework:
   # Specifies the software system's default language preference
-  default_locale: en
+  default_locale: tr
   translator:
     # Sets translation files directory
     default_path: '%kernel.project_dir%/translations'
-    # Fallback languages for translatiobs
+    # Fallback languages for translations
     fallbacks:
       - en
       - tr

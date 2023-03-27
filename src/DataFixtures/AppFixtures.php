@@ -30,16 +30,19 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
             "code" => "en",
             "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.english",
             "flag" => "/build/media/flag/en.svg",
+            "systemsdefault" => FALSE
         ],
         [
             "code" => "tr",
             "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.turkish",
             "flag" => "/build/media/flag/tr.svg",
+            "systemsdefault" => TRUE
         ],
         [
             "code" => "es",
             "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.espaniol",
             "flag" => "/build/media/flag/es.svg",
+            "systemsdefault" => FALSE
         ]
     ];
 
