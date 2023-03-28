@@ -54,7 +54,7 @@
                 <ul class="pc-submenu">
                     {% for y in x.items %}
                     <li class="pc-item">
-                        <a class="pc-link" href="../elements/icon-feather.html">{{ y.name }}</a>
+                        <a class="pc-link" href="{{ path(y.path) }}">{{ y.name }}</a>
                     </li>
                     {% endfor %}
                 </ul>

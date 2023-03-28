@@ -179,10 +179,14 @@ twig:
           items:
             - name: "Users List"
               path: "app_admin_documentation"
-        - header: "Development Proccess"
+        - header: "SYSTEM ADMINISTRATION"
         - name: "Documentation"
           icon: "ti ti-flask"
-          path: 'app_admin_documentation'
+          items:
+            - name: "Github Sync"
+              path: 'app_admin_documentation'
+            - name: "Backend API"
+              path: 'app_admin_backend_api'
     misc:
       coming_soon:
         year: 2023
