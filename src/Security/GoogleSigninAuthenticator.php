@@ -30,7 +30,7 @@ class GoogleSigninAuthenticator extends OAuth2Authenticator implements Authentic
     const GOOGLE_QUERY_PLACEHOLDER = 'code';
 
 
-    public function __construct(private ClientRegistry $clientRegistry, private RouterInterface $router, private UserRepository $userRepository, private UserRegistrationService $registrationService)
+    public function __construct(private ClientRegistry $clientRegistry, private RouterInterface $router, private AuthenticationSuccessProcessor $authenticationSuccessProcessor, private UserRepository $userRepository, private UserRegistrationService $registrationService)
     {
     }
 
@@ -77,7 +77,7 @@ class GoogleSigninAuthenticator extends OAuth2Authenticator implements Authentic
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        return NULL;
+        return $this->authenticationSuccessProcessor->returnForAuthSuccess($request, $token, $firewallName, AuthenticationSuccessProcessor::AUTHORIZED_BY_GOOGLE);
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response

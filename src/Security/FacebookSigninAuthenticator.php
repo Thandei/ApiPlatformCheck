@@ -23,7 +23,7 @@ class FacebookSigninAuthenticator extends OAuth2Authenticator implements Authent
 {
 
 
-    public function __construct(private ClientRegistry $clientRegistry, private RouterInterface $router, private UserRepository $userRepository, private UserRegistrationService $registrationService)
+    public function __construct(private ClientRegistry $clientRegistry, private RouterInterface $router, private AuthenticationSuccessProcessor $authenticationSuccessProcessor, private UserRepository $userRepository, private UserRegistrationService $registrationService)
     {
     }
 
@@ -66,7 +66,7 @@ class FacebookSigninAuthenticator extends OAuth2Authenticator implements Authent
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        return NULL;
+        return $this->authenticationSuccessProcessor->returnForAuthSuccess($request, $token, $firewallName, AuthenticationSuccessProcessor::AUTHORIZED_BY_FACEBOOK);
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response

@@ -26,6 +26,9 @@ class AuthController extends AdminBaseController
 
     const SCOPES_GOOGLE = ['email', 'profile'];
     const SCOPES_FACEBOOK = ['public_profile', 'email'];
+    const ROUTE_NORMAL = 'app_admin_auth_signin';
+    const ROUTE_FACEBOOK = 'app_admin_auth_redirect_facebook';
+    const ROUTE_GOOGLE = 'app_admin_auth_redirect_google';
 
     #[Route(path: '/signin', name: 'signin')]
     public function authSignin(Request $request, AuthenticationUtils $authenticationUtils, ClientRegistry $clientRegistry, Security $security, UserRepository $userRepository): Response
@@ -47,28 +50,6 @@ class AuthController extends AdminBaseController
     public function authSignout(): void
     {
         // throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
-    }
-
-    public static function getGoogleAPIClient(array $authConfigParams): Google_Client
-    {
-
-        $clientConfig = $authConfigParams["google_client"];
-        $clientID = $clientConfig["google_client_id"];
-        $clientSecret = $clientConfig["google_client_secret"];
-        $redirectURL = $clientConfig["google_client_redirecturl"];
-        $scopes = $clientConfig["google_client_scopes"];
-
-        $myGoogleClient = new Google_Client();
-        $myGoogleClient->setClientId($clientID);
-        $myGoogleClient->setClientSecret($clientSecret);
-        $myGoogleClient->setRedirectUri($redirectURL);
-
-        foreach ($scopes as $scope) {
-            $myGoogleClient->addScope($scope);
-        }
-
-        return $myGoogleClient;
-
     }
 
     #[Route(path: '/redirect/google', name: 'redirect_google')]

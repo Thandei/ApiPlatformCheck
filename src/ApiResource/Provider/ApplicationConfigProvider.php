@@ -1,22 +1,17 @@
 <?php namespace App\ApiResource\Provider;
 
-use ApiPlatform\Doctrine\Orm\State\CollectionProvider;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
-use App\ApiResource\Hook\TranslationGetCollectionHookByName;
 use App\ApiResource\Model\ApplicationConfig;
-use App\ApiResource\Normalizer\TranslationNormalizer;
+use App\Controller\Admin\AuthController;
 use App\Controller\ApplicationBaseController;
 use App\Repository\LocaleRepository;
-use Datetime;
+use App\Security\AuthenticationSuccessProcessor;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Environment;
-use function PHPUnit\Framework\fileExists;
 
 class ApplicationConfigProvider extends ApplicationBaseController implements ProviderInterface
 {
-
-    const TRANSLATION_FETCH_FORMAT = "yaml";
 
     public function __construct(private Environment $twig, private string $projectDir, private LocaleRepository $localeRepository)
     {
@@ -38,6 +33,12 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
         $appConfig->setDeveloperURL($twigGlobals["shared"]["developerURL"]);
         $appConfig->setTranslations($this->getTranslations());
         $appConfig->setLocales($this->localeRepository->findAll());
+
+        // Authentication
+        $appConfig->setAuthWithUsernamePasswordURL($this->generateUrl(AuthController::ROUTE_NORMAL));
+        $appConfig->setAuthWithFacebookURL($this->generateUrl(AuthController::ROUTE_FACEBOOK));
+        $appConfig->setAuthWithGoogleURL($this->generateUrl(AuthController::ROUTE_GOOGLE));
+        $appConfig->setAuthCatchTokenByHeader(AuthenticationSuccessProcessor::WHEN_REDIRECT_ADD_TOKEN_TO_RESPONSE);
 
         return $appConfig;
     }

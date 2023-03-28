@@ -12,7 +12,7 @@
 # ===============================
 web_profiler:
   # Show Symfony toolbar while in application development mode
-  toolbar: false
+  toolbar: true
   # Browser stops before making any redirection and shows you the URL which is going to redirect to
   intercept_redirects: false
 

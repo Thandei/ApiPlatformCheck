@@ -69,6 +69,18 @@ class ApplicationConfig
     #[ApiProperty(readable: true)]
     public array $locales = [];
 
+    #[ApiProperty(readable: true)]
+    public ?string $authWithUsernamePasswordURL = NULL;
+
+    #[ApiProperty(readable: true)]
+    public ?string $authWithGoogleURL = NULL;
+
+    #[ApiProperty(readable: true)]
+    public ?string $authWithFacebookURL = NULL;
+
+    #[ApiProperty(readable: true)]
+    public ?string $authCatchTokenByHeader = NULL;
+
     /**
      * @return array
      */
@@ -211,6 +223,70 @@ class ApplicationConfig
     public function setTranslations(?string $translations): void
     {
         $this->translations = $translations;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAuthWithUsernamePasswordURL(): ?string
+    {
+        return $this->authWithUsernamePasswordURL;
+    }
+
+    /**
+     * @param string|null $authWithUsernamePasswordURL
+     */
+    public function setAuthWithUsernamePasswordURL(?string $authWithUsernamePasswordURL): void
+    {
+        $this->authWithUsernamePasswordURL = $authWithUsernamePasswordURL;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAuthWithGoogleURL(): ?string
+    {
+        return $this->authWithGoogleURL;
+    }
+
+    /**
+     * @param string|null $authWithGoogleURL
+     */
+    public function setAuthWithGoogleURL(?string $authWithGoogleURL): void
+    {
+        $this->authWithGoogleURL = $authWithGoogleURL;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAuthWithFacebookURL(): ?string
+    {
+        return $this->authWithFacebookURL;
+    }
+
+    /**
+     * @param string|null $authWithFacebookURL
+     */
+    public function setAuthWithFacebookURL(?string $authWithFacebookURL): void
+    {
+        $this->authWithFacebookURL = $authWithFacebookURL;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAuthCatchTokenByHeader(): ?string
+    {
+        return $this->authCatchTokenByHeader;
+    }
+
+    /**
+     * @param string|null $authCatchTokenByHeader
+     */
+    public function setAuthCatchTokenByHeader(?string $authCatchTokenByHeader): void
+    {
+        $this->authCatchTokenByHeader = $authCatchTokenByHeader;
     }
 
 
