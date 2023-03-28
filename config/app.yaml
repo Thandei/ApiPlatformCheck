@@ -155,6 +155,7 @@ framework:
 twig:
   globals:
     shared:
+      underMaintance: false
       appTitle: "MeeHou"
       appBaseURL: "https://meehou.app"
       appApiBaseURL: "https://meehou.app/api"
@@ -181,7 +182,7 @@ twig:
               path: "app_admin_documentation"
         - header: "SYSTEM ADMINISTRATION"
         - name: "Documentation"
-          icon: "ti ti-flask"
+          icon: "ti ti-brand-github"
           items:
             - name: "Github Sync"
               path: 'app_admin_documentation'

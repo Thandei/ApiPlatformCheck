@@ -24,6 +24,25 @@ class ApplicationConfig
 {
 
     #[ApiProperty(readable: true)]
+    public ?bool $underMaintance = NULL;
+
+    /**
+     * @return bool|null
+     */
+    public function getUnderMaintance(): ?bool
+    {
+        return $this->underMaintance;
+    }
+
+    /**
+     * @param bool|null $underMaintance
+     */
+    public function setUnderMaintance(?bool $underMaintance): void
+    {
+        $this->underMaintance = $underMaintance;
+    }
+
+    #[ApiProperty(readable: true)]
     public ?string $appName = NULL;
 
     #[ApiProperty(readable: true)]

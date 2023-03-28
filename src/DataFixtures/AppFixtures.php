@@ -29,19 +29,49 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
         [
             "code" => "en",
             "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.english",
-            "flag" => "/build/media/flag/en.svg",
+            "flag" => "/build/media/flags/us.svg",
             "systemsdefault" => FALSE
         ],
         [
             "code" => "tr",
             "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.turkish",
-            "flag" => "/build/media/flag/tr.svg",
+            "flag" => "/build/media/flags/tr.svg",
             "systemsdefault" => TRUE
+        ],
+        [
+            "code" => "zh",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.chinese",
+            "flag" => "/build/media/flags/zh.svg",
+            "systemsdefault" => FALSE
         ],
         [
             "code" => "es",
             "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.espaniol",
-            "flag" => "/build/media/flag/es.svg",
+            "flag" => "/build/media/flags/es.svg",
+            "systemsdefault" => FALSE
+        ],
+        [
+            "code" => "de",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.german",
+            "flag" => "/build/media/flags/de.svg",
+            "systemsdefault" => FALSE
+        ],
+        [
+            "code" => "fr",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.french",
+            "flag" => "/build/media/flags/fr.svg",
+            "systemsdefault" => FALSE
+        ],
+        [
+            "code" => "ru",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.russian",
+            "flag" => "/build/media/flags/ru.svg",
+            "systemsdefault" => FALSE
+        ],
+        [
+            "code" => "pt",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.portuguese",
+            "flag" => "/build/media/flags/pt.svg",
             "systemsdefault" => FALSE
         ]
     ];

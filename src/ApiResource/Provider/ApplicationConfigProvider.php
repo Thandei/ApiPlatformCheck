@@ -28,6 +28,7 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
         $twigGlobals = $this->twig->getGlobals();
 
         $appConfig = new ApplicationConfig();
+        $appConfig->setUnderMaintance($twigGlobals["shared"]["underMaintance"]);
         $appConfig->setAppName($twigGlobals["shared"]["appTitle"]);
         $appConfig->setAppBaseURL($twigGlobals["shared"]["appBaseURL"]);
         $appConfig->setAppApiBaseURL($twigGlobals["shared"]["appApiBaseURL"]);
