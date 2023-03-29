@@ -9,11 +9,13 @@ use App\Repository\GenusRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin/genus', name: "app_admin_genus_")]
 class GenusController extends AdminBaseController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
+    #[IsGranted("ROLE_USER")]
     public function index(GenusRepository $genusRepository): Response
     {
         return $this->render('admin/genus/index.html.twig', [
@@ -22,6 +24,7 @@ class GenusController extends AdminBaseController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    #[IsGranted("CREATE" , subject: "genus")]
     public function new(Request $request, GenusRepository $genusRepository): Response
     {
         $genu = new Genus();
@@ -41,6 +44,7 @@ class GenusController extends AdminBaseController
     }
 
     #[Route('/{id}', name: 'show', methods: ['GET'])]
+    #[IsGranted("SHOW", subject: "genus")]
     public function show(Genus $genu): Response
     {
         return $this->render('admin/genus/show.html.twig', [
@@ -49,6 +53,7 @@ class GenusController extends AdminBaseController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[IsGranted("EDIT", subject: "genus")]
     public function edit(Request $request, Genus $genu, GenusRepository $genusRepository): Response
     {
         $form = $this->createForm(GenusType::class, $genu);
@@ -67,6 +72,7 @@ class GenusController extends AdminBaseController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    #[IsGranted("DELETE", subject: "genus")]
     public function delete(Request $request, Genus $genu, GenusRepository $genusRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $genu->getId(), $request->request->get('_token'))) {
