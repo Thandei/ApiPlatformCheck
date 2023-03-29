@@ -1,0 +1,28 @@
+api_platform:
+
+  # The title of the API.
+  title: 'MeeHou Social Network Project'
+
+  # The description of the API.
+  description: 'API infrastructure for mobile and web front-end designs.'
+
+  # The version of the API.
+  version: '1.0.0'
+
+  # Set this to false if you want Webby to disappear.
+  show_webby: false
+
+  formats:
+    json:
+      mime_types:
+        - 'application/json'
+    html:
+      mime_types:
+        - 'text/html'
+
+
+  swagger:
+    api_keys:
+      JWT:
+        name: Authorization
+        type: header

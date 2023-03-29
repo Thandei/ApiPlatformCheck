@@ -3,3 +3,6 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+json_auth:
+    path: /api/auth/json
+    methods: ['POST']

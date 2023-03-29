@@ -31,3 +31,7 @@ yarn-error.log
 /assets/theme/metronic/tools/node_modules
 ###< other user defined ignored files & folders ###
 
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###

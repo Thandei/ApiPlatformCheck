@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use App\ApiResource\Hook\DTNorma;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -40,13 +44,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?DateTimeImmutable $created_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: AccessToken::class)]
-    private Collection $accessTokens;
+    #[ORM\Column(nullable: true)]
+    private ?bool $approvalbadge = null;
 
-    public function __construct()
-    {
-        $this->accessTokens = new ArrayCollection();
-    }
+    #[ORM\Column(nullable: true)]
+    private ?bool $hasbusiness = null;
+
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Locale $defaultlocale = null;
 
     public function getId(): ?int
     {
@@ -160,33 +165,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->created_at = new DateTimeImmutable();
     }
 
-    /**
-     * @return Collection<int, AccessToken>
-     */
-    public function getAccessTokens(): Collection
+    public function isApprovalbadge(): ?bool
     {
-        return $this->accessTokens;
+        return $this->approvalbadge;
     }
 
-    public function addAccessToken(AccessToken $accessToken): self
+    public function setApprovalbadge(?bool $approvalbadge): self
     {
-        if (!$this->accessTokens->contains($accessToken)) {
-            $this->accessTokens->add($accessToken);
-            $accessToken->setUser($this);
-        }
+        $this->approvalbadge = $approvalbadge;
 
         return $this;
     }
 
-    public function removeAccessToken(AccessToken $accessToken): self
+    public function isHasbusiness(): ?bool
     {
-        if ($this->accessTokens->removeElement($accessToken)) {
-            // set the owning side to null (unless already changed)
-            if ($accessToken->getUser() === $this) {
-                $accessToken->setUser(null);
-            }
-        }
+        return $this->hasbusiness;
+    }
+
+    public function setHasbusiness(?bool $hasbusiness): self
+    {
+        $this->hasbusiness = $hasbusiness;
 
         return $this;
     }
+
+    public function getDefaultlocale(): ?Locale
+    {
+        return $this->defaultlocale;
+    }
+
+    public function setDefaultlocale(?Locale $defaultlocale): self
+    {
+        $this->defaultlocale = $defaultlocale;
+
+        return $this;
+    }
+
+
 }

@@ -20,7 +20,7 @@ $(function () {
 
     // REMOVE SYMFONY DEBUG TOOLBAR
     $('.sf-minitoolbar').remove();
-    //console.log("Symfony Toolbar Removed");
+    $('.sf-toolbar').remove();
 
 
     // ANIMATE

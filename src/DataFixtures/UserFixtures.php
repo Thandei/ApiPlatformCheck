@@ -2,16 +2,17 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\AccessToken;
+use App\Entity\MediaObject;
 use App\Entity\User;
-use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
+use Google\Service\AdMob\App;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class UserFixtures extends Fixture
+class UserFixtures extends Fixture implements OrderedFixtureInterface
 {
 
     private Generator $fakerFactory;
@@ -24,71 +25,59 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
-        // CREATE FAKE USERS
-        foreach (AppFixtures::USERS_ROLE_TYPES as $userRoleType) {
+        // Persist Fake Users
+        for ($x = 0; $x < AppFixtures::USERS_COUNT; $x++) {
 
-            for ($x = 0; $x < AppFixtures::USERS_COUNT; $x++) {
+            $fakeUser = new User();
 
-                $myUser = new User();
+            $fakePasswordPlainString = $this->fakerFactory->password(8, 12);
+            $hashedPassword = (AppFixtures::USER_DONT_USE_HASH === TRUE) ? $fakePasswordPlainString : $this->passwordHasher->hashPassword($fakeUser, $fakePasswordPlainString);
 
-                // Prepare Data
-                $fakerUserPassword = (AppFixtures::USER_GENERATE_RANDOM_PASSWORD !== TRUE) ? AppFixtures::USER_GENERATE_RANDOM_PASSWORD : $this->fakerFactory->password(8, 12);
-                $userPassword = AppFixtures::USER_SKIP_HASH_PASSWORDS === TRUE ? $fakerUserPassword : $this->passwordHasher->hashPassword($myUser, $fakerUserPassword);
-
-                $accountName = $this->fakerFactory->firstName . " " . $this->fakerFactory->lastName;
-                $nickName = $this->fakerFactory->userName;
-
-                // Set Data
-                $myUser->setEmail($this->fakerFactory->email);
-                $myUser->setPassword($userPassword);
-                $myUser->setRoles([$userRoleType]);
-                $myUser->setAccountname($accountName);
-                $myUser->setNickname($nickName);
-
-                // And Persist
-                $manager = $this->persistUser($myUser, $manager);
-
-            }
+            $fakeUser->setEmail($this->fakerFactory->email);
+            $fakeUser->setPassword($hashedPassword);
+            $fakeUser->setAccountname($this->fakerFactory->firstName . " " . $this->fakerFactory->lastName);
+            $fakeUser->setNickname($this->fakerFactory->userName);
+            $fakeUser->setRoles([AppFixtures::USERS_FAKE_ROLES[array_rand(AppFixtures::USERS_FAKE_ROLES)]]);
+            $fakeUser = $this->loadUserDefaults($fakeUser);
+            $manager->persist($fakeUser);
 
         }
 
-        // CREATE RANDOM TEST ACCOUNT
-        $testUser = new User();
-        $testUser->setRoles(["ROLE_USER", "ROLE_ADMIN"]);
-        $testUser->setNickname("system.admin");
-        $testUser->setAccountname("System Administrator");
-        $testUser->setEmail("sinansahinwm@gmail.com");
-        $testUser->setPassword($this->passwordHasher->hashPassword($testUser, "321"));
-        $manager = $this->persistUser($testUser, $manager);
-
+        // Persist Admin Users
+        $fakeAdmin = new User();
+        $fakeAdmin->setEmail(AppFixtures::USER_FAKE_ADMIN);
+        $fakeAdmin->setPassword($this->passwordHasher->hashPassword($fakeAdmin, AppFixtures::USER_FAKE_ADMIN_PASSWORD));
+        $fakeAdmin->setAccountname(AppFixtures::USER_FAKE_ADMIN_ACCOUNT_NAME);
+        $fakeAdmin->setNickname(AppFixtures::USER_FAKE_ADMIN_NICK_NAME);
+        $fakeAdmin->setRoles(["ROLE_ADMIN"]);
+        $fakeAdmin = $this->loadUserDefaults($fakeAdmin);
+        $manager->persist($fakeAdmin);
 
         $manager->flush();
-
     }
 
-    private function persistUser(User $user, ObjectManager $manager): ObjectManager
+    public function getOrder(): int
     {
-        // Persist User
-        $manager->persist($user);
-
-        // Create API Access Token
-        $this->createAccessTokens($user, $manager);
-
-        return $manager;
+        return 1;
     }
 
-    public function createAccessTokens(User $user, ObjectManager $manager): void
+    public function loadUserDefaults(User $user): User
     {
 
-        $dtRandom = $this->fakerFactory->dateTimeBetween("-3 years", "now");
-        $dtRandomImmutable = DateTimeImmutable::createFromMutable($dtRandom);
+        // Generate Random Badge
+        $user->setApprovalbadge(AppFixtures::BOOL_RAND_NULLABLE[array_rand(AppFixtures::BOOL_RAND_NULLABLE)]);
 
-        $myToken = new AccessToken();
-        $myToken->setUser($user);
-        $myToken->setValid(TRUE);
-        $myToken->setToken(md5($this->fakerFactory->password(20)));
-        $myToken->setCreatedAt($dtRandomImmutable);
-        $manager->persist($myToken);
-        $manager->flush();
+        // Generate Random Has Business
+        $user->setHasbusiness(AppFixtures::BOOL_RAND_NULLABLE[array_rand(AppFixtures::BOOL_RAND_NULLABLE)]);
+
+        // Generate Random Profile Image
+        // $fakeProfileImage = $this->fakerFactory->imageUrl(AppFixtures::USER_PROFILE_IMAGE_WIDTH, AppFixtures::USER_PROFILE_IMAGE_HEIGHT);
+        // $randomMediaContent = new MediaObject();
+        // $randomMediaContent->setFilepath($fakeProfileImage);
+
+        // $user->setImage($randomMediaContent);
+
+        return $user;
     }
+
 }

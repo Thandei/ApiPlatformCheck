@@ -16,16 +16,23 @@ security:
     main:
       lazy: true
       provider: app_user_provider
-      custom_authenticator: App\Security\LoginFormAuthenticator
-      access_token:
-        token_handler: App\Security\AccessTokenHandler
-        token_extractors: header
+      custom_authenticator:
+        - App\Security\GoogleSigninAuthenticator
+        - App\Security\LoginFormAuthenticator
+
+      # JWT CONFIGURATION
+      entry_point: App\Security\LoginFormAuthenticator
+      json_login:
+        check_path: json_auth
+        username_path: email
+        password_path: password
+        success_handler: lexik_jwt_authentication.handler.authentication_success
+        failure_handler: lexik_jwt_authentication.handler.authentication_failure
+      jwt: ~
+
 
       logout:
         path: app_admin_auth_signout
-        # where to redirect after logout
-        # target: app_any_route
-
       # activate different ways to authenticate
       # https://symfony.com/doc/current/security.html#the-firewall
 
@@ -36,8 +43,8 @@ security:
   # Note: Only the *first* access control that matches will be used
   access_control:
     # API ROUTES
-    - { path: ^/api/grantless, roles: [ ] }
-    - { path: ^/api/granted, roles: [ "ROLE_USER" ] }
+    - { path: ^/api/auth/json, roles: [ ] }
+    - { path: ^/api, roles: [ "ROLE_USER" ] }
     # ADMIN ROUTES
     - { path: ^/admin/auth, roles: [ ] }
     - { path: ^/admin, roles: ROLE_ADMIN }
