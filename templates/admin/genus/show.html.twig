@@ -1,0 +1,60 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}Genus Details{% endblock %}
+{% block bodyTitle %}Genus Details{% endblock %}
+
+{% block body %}
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Genus Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive dt-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                <th>ID</th>
+                                <td>{{ genu.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Name</th>
+                                <td>{{ genu.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Attributes</th>
+
+                                <td>
+                                    {% for attr in genu.attr %}
+                                        {{ attr.name }}
+                                        <span class="fw-semibold">
+                                            {{ attr.unit }}
+                                        </span>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a class="btn btn-secondary" href="{{ path('app_admin_genus_index') }}" >Back to List</a>
+                    <a class="btn btn-primary" href="{{ path('app_admin_genus_edit', {'id': genu.id}) }}">Edit</a>
+                    {{ include('admin/genus/_delete_form.html.twig') }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}
