@@ -1,7 +1,7 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Edit System Log{% endblock %}
-{% block bodyTitle %}Edit System Log{% endblock %}
+{% block title %}{{ "app.admin.crud.edit"|trans }} {{ "app.admin.crud.systemlog"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.edit"|trans }} {{ "app.admin.crud.systemlog"|trans }}{% endblock %}
 
 {% block body %}
     <div class="row">
@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title">
-                        System Log
+                        {{ "app.admin.crud.systemlog"|trans }}
                     </h5>
                 </div>
                 <div class="card-body">
@@ -17,7 +17,7 @@
                 </div>
                 <div class="card-footer d-flex justify-content-between">
 
-                    <a class="btn btn-secondary" href="{{ path('app_admin_system_log_index') }}">Back to List</a>
+                    <a class="btn btn-secondary" href="{{ path('app_admin_system_log_index') }}">{{ "app.admin.crud.backtolist"|trans }}</a>
                     {{ include('admin/system_log/_delete_form.html.twig') }}
 
                 </div>

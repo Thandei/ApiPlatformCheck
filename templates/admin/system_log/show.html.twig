@@ -1,7 +1,7 @@
  {% extends 'admin/base.html.twig' %}
 
- {% block title %}System Log Details{% endblock %}
- {% block bodyTitle %}System Log Details{% endblock %}
+ {% block title %}{{ "app.admin.crud.systemlog"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
+ {% block bodyTitle %}{{ "app.admin.crud.systemlog"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
 
  {% block body %}
      <div class="row">
@@ -9,7 +9,7 @@
              <div class="card">
                  <div class="card-header">
                      <h5 class="card-title">
-
+                         {{ "app.admin.crud.systemlog"|trans }}
                      </h5>
                  </div>
                  <div class="card-body">
@@ -17,19 +17,19 @@
                          <table class="table table-bordered">
                              <tbody>
                              <tr>
-                                 <th>ID</th>
+                                 <th>{{ "app.admin.crud.id"|trans|upper }}</th>
                                  <td>{{ system_log.id }}</td>
                              </tr>
                              <tr>
-                                 <th>PRIORITY</th>
+                                 <th>{{ "app.admin.crud.priority"|trans|upper }}</th>
                                  <td>{{ system_log.priority }}</td>
                              </tr>
                              <tr>
-                                 <th>CREATED AT</th>
+                                 <th>{{ "app.admin.crud.createdat"|trans|upper }}</th>
                                  <td>{{ system_log.createdAt ? system_log.createdAt|date(shared.defaultDatetimeFormat) : '' }}</td>
                              </tr>
                              <tr>
-                                 <th>CONTENT</th>
+                                 <th>{{ "app.admin.crud.content"|trans|upper }}</th>
                                  <td>{{ system_log.content }}</td>
                              </tr>
                              </tbody>
@@ -39,8 +39,8 @@
 
                  </div>
                  <div class="card-footer d-flex justify-content-between">
-                     <a class="btn btn-secondary" href="{{ path('app_admin_system_log_index') }}">Back to List</a>
-                     <a class="btn btn-primary" href="{{ path('app_admin_system_log_edit', {'id': system_log.id}) }}">Edit</a>
+                     <a class="btn btn-secondary" href="{{ path('app_admin_system_log_index') }}">{{ "app.admin.crud.backtolist"|trans }}</a>
+                     <a class="btn btn-primary" href="{{ path('app_admin_system_log_edit', {'id': system_log.id}) }}">{{ "app.admin.crud.edit"|trans }}</a>
                      {{ include('admin/system_log/_delete_form.html.twig')}}
                  </div>
              </div>
