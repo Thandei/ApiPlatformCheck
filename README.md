@@ -10,8 +10,17 @@ Follow the steps below in order to run the project.
 
 `npm run watch`
 
+## Creating JWT Certificates 
+
+After completing steps above, you need to create jwt certificates. For this, run the command below;
+
+`php bin/console lexik:jwt:generate-keypair`
+
+
 If you are working in a test environment;
 php bin/console doctrine:fixtures:load
 run the command.
 
 [MeeHou](https://www.meehou.app)
+
+

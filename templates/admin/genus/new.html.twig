@@ -1,0 +1,25 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}New Genus{% endblock%}
+{% block bodyTitle %}New Genus{% endblock%}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">New Genus</h5>
+                </div>
+                <div class="card-body">
+                    {{ include('admin/genus/_form.html.twig') }}
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a class="btn btn-secondary" href="{{ path('app_admin_genus_index') }}">Back to List</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
