@@ -1,0 +1,50 @@
+ {% extends 'admin/base.html.twig' %}
+
+ {% block title %}System Log Details{% endblock %}
+ {% block bodyTitle %}System Log Details{% endblock %}
+
+ {% block body %}
+     <div class="row">
+         <div class="col-md-12">
+             <div class="card">
+                 <div class="card-header">
+                     <h5 class="card-title">
+
+                     </h5>
+                 </div>
+                 <div class="card-body">
+                     <div class="table-responsive dt-responsive">
+                         <table class="table table-bordered">
+                             <tbody>
+                             <tr>
+                                 <th>ID</th>
+                                 <td>{{ system_log.id }}</td>
+                             </tr>
+                             <tr>
+                                 <th>PRIORITY</th>
+                                 <td>{{ system_log.priority }}</td>
+                             </tr>
+                             <tr>
+                                 <th>CREATED AT</th>
+                                 <td>{{ system_log.createdAt ? system_log.createdAt|date(shared.defaultDatetimeFormat) : '' }}</td>
+                             </tr>
+                             <tr>
+                                 <th>CONTENT</th>
+                                 <td>{{ system_log.content }}</td>
+                             </tr>
+                             </tbody>
+                         </table>
+
+                     </div>
+
+                 </div>
+                 <div class="card-footer d-flex justify-content-between">
+                     <a class="btn btn-secondary" href="{{ path('app_admin_system_log_index') }}">Back to List</a>
+                     <a class="btn btn-primary" href="{{ path('app_admin_system_log_edit', {'id': system_log.id}) }}">Edit</a>
+                     {{ include('admin/system_log/_delete_form.html.twig')}}
+                 </div>
+             </div>
+         </div>
+     </div>
+ {% endblock %}
+

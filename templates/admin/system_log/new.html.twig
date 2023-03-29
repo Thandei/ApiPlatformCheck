@@ -1,0 +1,24 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Create System Log{%endblock %}
+{% block bodyTitle %}Create System Log{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        System Log
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {{ include('admin/system_log/_form.html.twig') }}
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a class="btn btn-secondary" href="{{ path('app_admin_system_log_index') }}">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
