@@ -5,7 +5,6 @@
 
 {% block body %}
 
-
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -41,7 +40,7 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                    <a class="btn btn-secondary" href="{{ path('app_admin_genus_index') }}" >Back to List</a>
+                    <a class="btn btn-secondary" href="{{ path('app_admin_genus_index') }}">Back to List</a>
                     <a class="btn btn-primary" href="{{ path('app_admin_genus_edit', {'id': genu.id}) }}">Edit</a>
                     {{ include('admin/genus/_delete_form.html.twig') }}
                 </div>
@@ -49,12 +48,5 @@
 
         </div>
     </div>
-
-
-
-
-
-
-
 
 {% endblock %}

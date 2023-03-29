@@ -173,6 +173,9 @@ twig:
       appLogo: 'build/media/logo.svg'
       developerTitle: "Reformsoft Teknoloji A.Ş."
       developerURL: "https://www.reformsoft.net/"
+      defaultDatetimeFormat: "d.m.Y H:i"
+      defaultDateFormat: "d.m.Y"
+      defaultTimeFormat: "H:i"
 
     admin:
       charset: "utf-8"
@@ -190,7 +193,7 @@ twig:
           path: 'app_admin_documentation'
           items:
             - name: "Users List"
-              path: "app_admin_documentation"
+              path: "app_admin_user_index"
         - header: "SYSTEM ADMINISTRATION"
         - name: "Documentation"
           icon: "ti ti-brand-github"
