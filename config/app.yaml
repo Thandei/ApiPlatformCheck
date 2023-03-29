@@ -153,6 +153,7 @@ framework:
 # TWIG GLOBAL VARIABLES
 # ===============================
 twig:
+  form_themes: ['bootstrap_5_horizontal_layout.html.twig']
   globals:
     shared:
       underMaintance: false
@@ -188,6 +189,11 @@ twig:
               path: 'app_admin_documentation'
             - name: "Backend API"
               path: 'app_admin_backend_api'
+        - name: "Internalization"
+          icon: "ti ti-language"
+          items:
+            - name: "Locales"
+              path: "app_admin_locale_index"
     misc:
       coming_soon:
         year: 2023

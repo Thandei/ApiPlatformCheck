@@ -39,9 +39,9 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
             "systemsdefault" => TRUE
         ],
         [
-            "code" => "zh",
+            "code" => "ch",
             "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.chinese",
-            "flag" => "/build/media/flags/zh.svg",
+            "flag" => "/build/media/flags/ch.svg",
             "systemsdefault" => FALSE
         ],
         [

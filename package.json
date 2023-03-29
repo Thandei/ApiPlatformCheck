@@ -26,6 +26,8 @@
         "@popperjs/core": "^2.11.6",
         "@tabler/icons": "^2.10.0",
         "bootstrap": "5.3.0-alpha1",
+        "datatables.net": "^1.13.4",
+        "datatables.net-bs5": "^1.13.4",
         "feather-icons": "^4.29.0",
         "font-awesome": "^4.7.0",
         "jquery": "^3.6.4",

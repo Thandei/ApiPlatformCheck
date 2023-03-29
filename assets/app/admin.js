@@ -29,6 +29,10 @@ import 'swagger-ui/dist/swagger-ui.css';
 import notifier from 'notifier-js/js/notifier';
 import 'notifier-js/css/notifier.css';
 
+// Datatables
+import DataTable from 'datatables.net-bs5/js/dataTables.bootstrap5';
+import 'datatables.net-bs5/css/dataTables.bootstrap5.css';
+
 var adminPagesGlobalInitializer = function () {
 
     // General Config
@@ -55,10 +59,15 @@ var adminPagesGlobalInitializer = function () {
 
     }
 
+    var _initDatatables = function () {
+        const myDatatable = $('.datatable').DataTable();
+    }
+
     return {
         init: function () {
             // _initSwaggerUI();
             _initNotifications();
+            _initDatatables();
         }
     }
 
