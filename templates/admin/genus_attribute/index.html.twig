@@ -1,0 +1,61 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Genus Attribute Index{% endblock %}
+{% block bodyTitle %}Genus Attribute Index{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Genus Attributes</h5>
+                </div>
+                <div class="card-body">
+
+                    <div class="table-responsive dt-responsive">
+                        <table class="table table-bordered datatable">
+                            <thead>
+                            <tr>
+                                <th>NAME</th>
+                                <th class="text-center" data-orderable="false">UNIT</th>
+                                <th class="text-center" data-orderable="false">ACTIONS</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for genus_attribute in genus_attributes %}
+                                <tr>
+                                    <td>{{ genus_attribute.name }}</td>
+                                    <td class="text-center">{{ genus_attribute.unit }}</td>
+                                    <td class="text-center">
+                                        <ul class="list-inline me-auto mb-0">
+                                            <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" aria-label="View" data-bs-original-title="View">
+                                                <a href="{{ path('app_admin_genus_attribute_show', {'id': genus_attribute.id}) }}" class="avtar avtar-xs btn-link-secondary btn-pc-default">
+                                                    <i class="ti ti-eye f-18"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" aria-label="Edit" data-bs-original-title="Edit">
+                                                <a href="{{ path('app_admin_genus_attribute_edit', {'id': genus_attribute.id}) }}" class="avtar avtar-xs btn-link-success btn-pc-default">
+                                                    <i class="ti ti-edit-circle f-18"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a class="btn btn-primary" href="{{ path('app_admin_genus_attribute_new') }}">Create New</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

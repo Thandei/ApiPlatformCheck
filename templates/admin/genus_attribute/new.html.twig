@@ -1,0 +1,24 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}New Genus Attribute{% endblock %}
+{% block bodyTitle %}New Genus Attribute{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">New Genus Attribute</h5>
+                </div>
+                <div class="card-body">
+                    {{ include('admin/genus_attribute/_form.html.twig') }}
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a class="btn btn-secondary" href="{{ path('app_admin_genus_attribute_index') }}">back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -194,6 +194,11 @@ twig:
           items:
             - name: "Locales"
               path: "app_admin_locale_index"
+        - name: "Genus Management"
+          icon: 'ti ti-ghost'
+          items:
+            - name: "Genus Attributes"
+              path: 'app_admin_genus_attribute_index'
     misc:
       coming_soon:
         year: 2023
