@@ -150,6 +150,16 @@ framework:
 
 
 # ===============================
+# DOCTRINE CONFIGURATION
+# ===============================
+doctrine:
+  dbal:
+    mapping_types:
+      enum: string
+    types:
+      system_log_priority: App\Config\SystemLogPriorityType
+
+# ===============================
 # TWIG GLOBAL VARIABLES
 # ===============================
 twig:

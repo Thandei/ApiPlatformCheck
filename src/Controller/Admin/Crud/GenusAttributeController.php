@@ -24,6 +24,7 @@ class GenusAttributeController extends AdminBaseController
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, GenusAttributeRepository $genusAttributeRepository): Response
     {
+
         $genusAttribute = new GenusAttribute();
         $form = $this->createForm(GenusAttributeType::class, $genusAttribute);
         $form->handleRequest($request);

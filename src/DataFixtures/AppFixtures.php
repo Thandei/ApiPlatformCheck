@@ -114,6 +114,9 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
         ]
     ];
 
+    // === SYSTEM LOG FIXTURES CONFIGURATION == //
+    const SYSTEM_LOG_COUNT = 100;
+
     // === GLOBAL CONFIGURATION == //
     const BOOL_RAND_NULLABLE = [NULL, TRUE, FALSE];
     const DATABASE_TRANSLATION_PREFIX = DatabaseTranslationController::TRANSLATION_PREFIX;
