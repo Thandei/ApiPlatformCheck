@@ -18,6 +18,7 @@ class LocaleFixtures extends AppFixtures implements OrderedFixtureInterface
             $myLocale->setName($locale["name"]);
             $myLocale->setCode($locale["code"]);
             $myLocale->setFlag($locale["flag"]);
+            $myLocale->setSystemsdefault($locale["systemsdefault"]);
             $manager->persist($myLocale);
         }
 

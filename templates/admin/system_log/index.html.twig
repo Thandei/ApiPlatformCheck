@@ -1,0 +1,90 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ "app.admin.crud.systemlog"|trans }} {{ "app.admin.crud.index"|trans }} {% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.systemlog"|trans }} {{ "app.admin.crud.index"|trans }}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        {{ "app.admin.crud.systemlogs"|trans }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive dt-responsive">
+                        <table class="table table-bordered datatable">
+                            <thead>
+                            <tr>
+                                <th class="text-center" >{{ "app.admin.crud.priority"|trans|upper }}</th>
+                                <th data-orderable="false">{{ "app.admin.crud.content"|trans|upper }}</th>
+                                <th data-orderable="false" class="text-center">{{ "app.admin.crud.createdat"|trans|upper }}</th>
+                                <th data-orderable="false" class="text-center">{{ "app.admin.crud.actions"|trans|upper }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for system_log in system_logs %}
+                                <tr>
+                                    <td class="text-center">
+                                        {% if system_log.priority is same as("LOW") %}
+                                            <span class="text-secondary">{{ system_log.priority }}</span>
+                                        {% endif %}
+                                        {% if system_log.priority is same as("NORMAL") %}
+                                            {{ system_log.priority }}
+                                        {% endif %}
+                                        {% if system_log.priority is same as("HIGH") %}
+                                            <span class="fw-semibold text-danger">{{ system_log.priority }}</span>
+                                        {% endif %}
+                                    </td>
+
+                                    <td>
+                                        {% if system_log.content|length > 50 %}
+                                            {{ system_log.content|slice(0,50) }}<a href="{{ path('app_admin_system_log_show', {'id': system_log.id}) }}}}">{{ "app.admin.crud.showmore"|trans|lower }}</a>
+                                        {% else %}
+                                            {{ system_log.content }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">{{ system_log.createdAt ? system_log.createdAt|date(shared.defaultDatetimeFormat) : '' }}</td>
+                                    <td class="text-center">
+                                        <ul class="list-inline me-auto mb-0">
+                                            <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" aria-label="{{ "app.admin.crud.show"|trans }}" data-bs-original-title="{{ "app.admin.crud.show"|trans }}">
+                                                <a href="{{ path('app_admin_system_log_show', {'id': system_log.id}) }}" class="avtar avtar-xs btn-link-secondary btn-pc-default">
+                                                    <i class="ti ti-eye f-18"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" aria-label="{{ "app.admin.crud.edit"|trans|upper }}" data-bs-original-title="{{ "app.admin.crud.edit"|trans|upper }}">
+                                                <a href="{{ path('app_admin_system_log_edit', {'id': system_log.id}) }}" class="avtar avtar-xs btn-link-success btn-pc-default">
+                                                    <i class="ti ti-edit-circle f-18"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="7">{{ "app.admin.crud.norecords"|trans }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a class="btn btn-primary" href="{{ path('app_admin_system_log_new') }}">{{ "app.admin.crud.createnew"|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

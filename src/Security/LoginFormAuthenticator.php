@@ -22,7 +22,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     public const LOGIN_ROUTE = 'app_admin_auth_signin';
     public const LOGIN_SUCCESS_ROUTE = 'app_admin_dashboard';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    public function __construct(private UrlGeneratorInterface $urlGenerator, private AuthenticationSuccessProcessor $authenticationSuccessProcessor)
     {
     }
 
@@ -43,10 +43,13 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-            return new RedirectResponse($targetPath);
+            // return new RedirectResponse($targetPath);
         }
-        return new RedirectResponse($this->urlGenerator->generate(self::LOGIN_SUCCESS_ROUTE));
+
+        return $this->authenticationSuccessProcessor->returnForAuthSuccess($request, $token, $firewallName);
+
     }
 
     protected function getLoginUrl(Request $request): string

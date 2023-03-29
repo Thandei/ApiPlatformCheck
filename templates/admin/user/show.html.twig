@@ -1,0 +1,74 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}{{ "app.admin.crud.user"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.user"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">{{ "app.admin.crud.user"|trans }} {{ "app.admin.crud.details"|trans }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive dt-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                <th>{{ "app.admin.crud.id"|trans|upper }}</th>
+                                <td>{{ user.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "app.admin.crud.email"|trans|upper }}</th>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "app.admin.crud.roles"|trans|upper }}</th>
+
+                                <td>
+                                     {% for role in user.roles %}
+                                        {{ role }}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "app.admin.crud.account"|trans }} {{ "app.admin.crud.name"|trans }}</th>
+
+                                <td>
+                                    {{ user.accountname }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "app.admin.crud.nickname"|trans }}</th>
+
+                                <td>
+                                    {{ user.nickname }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ "app.admin.crud.createdat"|trans }}</th>
+                                <td>{{ user.createdAt ? user.createdAt|date(shared.defaultDatetimeFormat) : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "app.admin.crud.approvalbadge"|trans }}</th>
+                                <td>{{ user.approvalbadge ? '<i class="ti ti-checks fw-semibold text-success"></i>' : '--' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Has Business</th>
+                                <td>{{ user.hasbusiness ? '<i class="ti ti-checks fw-semibold text-success"></i>' : '--' }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a class="btn btn-secondary" href="{{ path('app_admin_user_index') }}">{{ "app.admin.crud.backtolist"|trans }}</a>
+                    <a class="btn btn-primary" href="{{ path('app_admin_user_edit', {'id': user.id}) }}">{{ "app.admin.crud.edit"|trans }}</a>
+                    {{ include('admin/user/_delete_form.html.twig') }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

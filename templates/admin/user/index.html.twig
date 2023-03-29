@@ -1,0 +1,66 @@
+{{ "app.admin.crud.systemlog"|trans }} {{ "app.admin.crud.index"|trans }}user extends "admin/base.html.twig" %}
+
+{% block title %}{{ "app.admin.crud.user"|trans }} {{ "app.admin.crud.index"|trans }} {% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.user"|trans }} {{ "app.admin.crud.index"|trans }}{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">{{ "app.admin.crud.users"|trans }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive dt-responsive">
+                        <table class="table table-bordered datatable">
+                            <thead>
+                            <tr>
+                                <th>{{ "app.admin.crud.email"|trans|upper }}</th>
+                                <th>{{ "app.admin.crud.nickname"|trans|upper }}</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.approvalbadge"|trans|upper }}</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.business"|trans|upper }}</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.actions"|trans|upper }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.nickname }}</td>
+                                    <td class="text-center">{{ user.approvalbadge ? '<i class="ti ti-checks fw-semibold text-success"></i>' : '--' }}</td>
+                                    <td class="text-center">{{ user.hasbusiness ? '<i class="ti ti-checks fw-semibold text-success"></i>' : '--' }}</td>
+                                    <td class="text-center">
+                                        <ul class="list-inline me-auto mb-0">
+                                            <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" aria-label="View" data-bs-original-title="View">
+                                                <a href="{{ path('app_admin_user_show', {'id': user.id}) }}" class="avtar avtar-xs btn-link-secondary btn-pc-default">
+                                                    <i class="ti ti-eye f-18"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" aria-label="Edit" data-bs-original-title="Edit">
+                                                <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="avtar avtar-xs btn-link-success btn-pc-default">
+                                                    <i class="ti ti-edit-circle f-18"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="3">{{ "app.admin.crud.norecords"|trans }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card-footer d-flex justify-content-end">
+                    <a class="btn btn-primary" href="{{ path('app_admin_user_new') }}">{{ "app.admin.crud.createnew"|trans }}</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

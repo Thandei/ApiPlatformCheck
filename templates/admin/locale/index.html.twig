@@ -1,0 +1,62 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ "app.admin.crud.locale"|trans }} {{ "app.admin.crud.index"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.locale"|trans }} {{ "app.admin.crud.index"|trans }}{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">{{ "app.admin.crud.locales"|trans }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive dt-responsive">
+                        <table class="table datatable table-bordered">
+                            <thead>
+                            <tr>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.flagorcode"|trans|upper }}</th>
+                                <th CLASS="w-75">{{ "app.admin.crud.name"|trans|upper }}</th>
+                                <th class="text-center">{{ "app.admin.crud.systemsdefault"|trans|upper }}?</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.actions"|trans|upper }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for locale in locales %}
+                                <tr>
+                                    <td class="text-center">
+                                        <img src="{{ shared.appBaseURL }}{{ locale.flag }}" style="width: 32px; height: 32px;" class="rounded" alt="{{ locale.name }} Flag">
+                                        <span class="ms-2 fw-semibold">{{ locale.code }}</span>
+                                    </td>
+                                    <td>{{ locale.name }}</td>
+                                    <td class="text-center">{{ locale.systemsdefault ? '<span class="badge bg-success">Yes</span>' : '--' }}</td>
+                                    <td class="text-center">
+                                        <ul class="list-inline me-auto mb-0">
+                                            <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="View">
+                                                <a href="{{ path('app_admin_locale_show', { id: locale.id }) }}" class="avtar avtar-xs btn-link-secondary btn-pc-default">
+                                                    <i class="ti ti-eye f-18"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="Edit">
+                                                <a href="{{ path('app_admin_locale_edit', { id: locale.id }) }}" class="avtar avtar-xs btn-link-success btn-pc-default">
+                                                    <i class="ti ti-edit-circle f-18"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-primary" href="{{ path('app_admin_locale_new') }}">{{ "app.admin.crud.create"|trans }} {{ "app.admin.crud.new"|trans }} {{ "app.admin.crud.locale"|trans }}</a>
+    </div>
+{% endblock %}

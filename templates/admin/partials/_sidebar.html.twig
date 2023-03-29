@@ -15,11 +15,11 @@
         <div class="collapse pc-user-links" id="pc_sidebar_userlink">
             <div class="pt-3">
                 <a href="#!">
-                    <i class="fa fa-user"></i>
-                    <span>User Profile</span>
+                    <i class="ti ti-user"></i>
+                    <span>My Account</span>
                 </a>
                 <a href="{{ path('app_admin_auth_signout') }}">
-                    <i class="fa fa-sign-out"></i>
+                    <i class="ti ti-power"></i>
                     <span>Logout</span>
                 </a>
             </div>
@@ -54,7 +54,7 @@
                 <ul class="pc-submenu">
                     {% for y in x.items %}
                     <li class="pc-item">
-                        <a class="pc-link" href="../elements/icon-feather.html">{{ y.name }}</a>
+                        <a class="pc-link" href="{{ path(y.path) }}">{{ y.name }}</a>
                     </li>
                     {% endfor %}
                 </ul>

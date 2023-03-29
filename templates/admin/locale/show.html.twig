@@ -1,0 +1,52 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ "app.admin.crud.locale"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.locale"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">{{ "app.admin.crud.locale"|trans }} {{ "app.admin.crud.details"|trans }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive dt-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                <th>{{ "app.admin.crud.id"|trans|upper }}</th>
+                                <td>{{ locale.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "app.admin.crud.code"|trans }}</th>
+                                <td>{{ locale.code }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "app.admin.crud.flag"|trans }}</th>
+                                <td>{{ locale.flag }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "app.admin.crud.name"|trans }}</th>
+                                <td>{{ locale.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Is System's Default?</th>
+                                <td>{{ locale.systemsdefault ? '<span class="badge bg-success">Yes</span>' : '--' }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a class="btn btn-secondary" href="{{ path('app_admin_locale_index') }}">{{ "app.admin.crud.backtolist"|trans }}</a>
+                    <a class="btn btn-primary" href="{{ path('app_admin_locale_edit', {'id': locale.id}) }}">{{ "app.admin.crud.edit"|trans }}</a>
+                    {{ include('admin/locale/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

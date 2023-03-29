@@ -46,9 +46,13 @@
 
                 <div class="text-center">
                     <div class="d-grid my-3">
-                        <a href="{{ googleAuthURL }}" type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
-                            <img src="{{ asset('build/theme/ablepro/images/authentication/google.svg') }}" alt="img">
+                        <a href="{{ path('app_admin_auth_redirect_google') }}" type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
+                            <img src="{{ asset('build/theme/ablepro/images/authentication/google.svg') }}" alt="{{ shared.appTitle }} Logo">
                             <span> Sign In with Google</span>
+                        </a>
+                        <a href="{{ path('app_admin_auth_redirect_facebook') }}" class="btn mt-2 btn-light-primary bg-light text-muted">
+                            <img src="{{ asset('build/theme/ablepro/images/authentication/facebook.svg') }}" alt="{{ shared.appTitle }} Logo"> <span>
+                            Sign In with Facebook</span>
                         </a>
                     </div>
                 </div>

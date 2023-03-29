@@ -24,6 +24,25 @@ class ApplicationConfig
 {
 
     #[ApiProperty(readable: true)]
+    public ?bool $underMaintance = NULL;
+
+    /**
+     * @return bool|null
+     */
+    public function getUnderMaintance(): ?bool
+    {
+        return $this->underMaintance;
+    }
+
+    /**
+     * @param bool|null $underMaintance
+     */
+    public function setUnderMaintance(?bool $underMaintance): void
+    {
+        $this->underMaintance = $underMaintance;
+    }
+
+    #[ApiProperty(readable: true)]
     public ?string $appName = NULL;
 
     #[ApiProperty(readable: true)]
@@ -45,16 +64,22 @@ class ApplicationConfig
     public ?string $developerURL = NULL;
 
     #[ApiProperty(readable: true)]
-    public array $supportedLocales = [];
-
-    #[ApiProperty(readable: true)]
-    public ?string $defaultLocale = NULL;
-
-    #[ApiProperty(readable: true)]
     public ?string $translations = NULL;
 
     #[ApiProperty(readable: true)]
     public array $locales = [];
+
+    #[ApiProperty(readable: true)]
+    public ?string $authWithUsernamePasswordURL = NULL;
+
+    #[ApiProperty(readable: true)]
+    public ?string $authWithGoogleURL = NULL;
+
+    #[ApiProperty(readable: true)]
+    public ?string $authWithFacebookURL = NULL;
+
+    #[ApiProperty(readable: true)]
+    public ?string $authCatchTokenByHeader = NULL;
 
     /**
      * @return array
@@ -185,38 +210,6 @@ class ApplicationConfig
     }
 
     /**
-     * @return array
-     */
-    public function getSupportedLocales(): array
-    {
-        return $this->supportedLocales;
-    }
-
-    /**
-     * @param array $supportedLocales
-     */
-    public function setSupportedLocales(array $supportedLocales): void
-    {
-        $this->supportedLocales = $supportedLocales;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getDefaultLocale(): ?string
-    {
-        return $this->defaultLocale;
-    }
-
-    /**
-     * @param string|null $defaultLocale
-     */
-    public function setDefaultLocale(?string $defaultLocale): void
-    {
-        $this->defaultLocale = $defaultLocale;
-    }
-
-    /**
      * @return string|null
      */
     public function getTranslations(): ?string
@@ -230,6 +223,70 @@ class ApplicationConfig
     public function setTranslations(?string $translations): void
     {
         $this->translations = $translations;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAuthWithUsernamePasswordURL(): ?string
+    {
+        return $this->authWithUsernamePasswordURL;
+    }
+
+    /**
+     * @param string|null $authWithUsernamePasswordURL
+     */
+    public function setAuthWithUsernamePasswordURL(?string $authWithUsernamePasswordURL): void
+    {
+        $this->authWithUsernamePasswordURL = $authWithUsernamePasswordURL;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAuthWithGoogleURL(): ?string
+    {
+        return $this->authWithGoogleURL;
+    }
+
+    /**
+     * @param string|null $authWithGoogleURL
+     */
+    public function setAuthWithGoogleURL(?string $authWithGoogleURL): void
+    {
+        $this->authWithGoogleURL = $authWithGoogleURL;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAuthWithFacebookURL(): ?string
+    {
+        return $this->authWithFacebookURL;
+    }
+
+    /**
+     * @param string|null $authWithFacebookURL
+     */
+    public function setAuthWithFacebookURL(?string $authWithFacebookURL): void
+    {
+        $this->authWithFacebookURL = $authWithFacebookURL;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAuthCatchTokenByHeader(): ?string
+    {
+        return $this->authCatchTokenByHeader;
+    }
+
+    /**
+     * @param string|null $authCatchTokenByHeader
+     */
+    public function setAuthCatchTokenByHeader(?string $authCatchTokenByHeader): void
+    {
+        $this->authCatchTokenByHeader = $authCatchTokenByHeader;
     }
 
 

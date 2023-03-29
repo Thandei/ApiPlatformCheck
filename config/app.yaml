@@ -1,0 +1,222 @@
+#   __  __           _    _
+# |  \/  |         | |  | |
+# | \  / | ___  ___| |__| | ___  _   _
+# | |\/| |/ _ \/ _ \  __  |/ _ \| | | |
+# | |  | |  __/  __/ |  | | (_) | |_| |
+# |_|  |_|\___|\___|_|  |_|\___/ \__,_|
+
+# MeeHou Social Network Project Base Configuration File #
+
+# ===============================
+# WEB PROFILER CONFIGURATION
+# ===============================
+web_profiler:
+  # Show Symfony toolbar while in application development mode
+  toolbar: true
+  # Browser stops before making any redirection and shows you the URL which is going to redirect to
+  intercept_redirects: false
+
+
+# ===============================
+# 3rd SERVICES CONFIGURATION
+# ===============================
+services:
+  # Synchronized views in admin panel of Github application documentation repository
+  Github\Client:
+    arguments:
+      - '@Github\HttpClient\Builder'
+    calls:
+        - ['authenticate', ['%env(GITHUB_USERNAME)%', '%env(GITHUB_SECRET)%', '%env(GITHUB_AUTH_METHOD)%']]
+
+ # Github service http service selection
+  Github\HttpClient\Builder:
+    arguments:
+      - '@?Http\Client\HttpClient'
+      - '@?Http\Message\RequestFactory'
+      - '@?Http\Message\StreamFactory'
+
+# ===============================
+# JWT AUTH CONFIGURATION
+# ===============================
+lexik_jwt_authentication:
+  # Certificate file setup for openssl signature - secret
+  secret_key: '%env(resolve:JWT_SECRET_KEY)%'
+  # Certificate file setup for openssl signature - public
+  public_key: '%env(resolve:JWT_PUBLIC_KEY)%'
+  # Openssl passphrase for certificates
+  pass_phrase: '%env(JWT_PASSPHRASE)%'
+  # JWT Token lifetime in seconds
+  token_ttl: 2592000
+  # LEXIC JWT api-platform configuration
+  api_platform:
+    # Client-side software will send requests to this directory for authorization
+    check_path: /api/auth/json
+    # Path for JWT token authorization proccess
+    username_path: email
+    # Path for JWT token authorization proccess
+    password_path: password
+
+# ===============================
+# OAUTH2 CONFIGURATIONS
+# ===============================
+knpu_oauth2_client:
+  clients:
+    facebook_main:
+      type: facebook
+      client_id: '%env(OAUTH_FACEBOOK_ID)%'
+      client_secret: '%env(OAUTH_FACEBOOK_SECRET)%'
+      redirect_route: app_admin_auth_getback_facebook
+      redirect_params: {}
+      graph_api_version: v2.12
+    google_main:
+      type: google
+      client_id: '%env(OAUTH_GOOGLE_CLIENT_ID)%'
+      client_secret: '%env(OAUTH_GOOGLE_CLIENT_SECRET)%'
+      redirect_route: app_admin_auth_getback_google
+      redirect_params: { }
+
+# ===============================
+# VICH UPLOADER CONFIGURATION
+# ===============================
+vich_uploader:
+  db_driver: orm
+  # Mappings for uploads to server using vich uploader
+  mappings:
+    media_object:
+      # Mapping uri prefix for accessing uploaded media object
+      uri_prefix: /uploads/media
+      # Media files uploaded to the server will be moved to this folder
+      upload_destination: '%kernel.project_dir%/public/uploads/media'
+      # Class that creates a name for the media file uploaded to the server via vich uploader
+      namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+
+# ===============================
+# API PLATFORM CONFIGURATION
+# ===============================
+api_platform:
+  # API Platform Swagger UI main title
+  title: 'MeeHou Social Network Project'
+
+  # The description of the API
+  description: 'API infrastructure for mobile and web front-end designs.'
+
+  # The version of the API
+  version: '1.0.0'
+
+  # Set this to false if you want Webby(api-platform spider) to disappear
+  show_webby: false
+
+  # Configuration of data formats to be used for api operations
+  formats:
+    json:
+      mime_types:
+        - 'application/json'
+    html:
+      mime_types:
+        - 'text/html'
+  # Swagger UI authorization config
+  swagger:
+    api_keys:
+      JWT:
+        name: Authorization
+        type: header
+
+# ===============================
+# APPLICATION PARAMETERS
+# ===============================
+parameters:
+  app.admin.documentation.githubUsername: '%env(GITHUB_USERNAME)%'
+  app.admin.documentation.githubToken: '%env(GITHUB_SECRET)%'
+  app.admin.documentation.repositoryName: '%env(GITHUB_DOCUMENTATION_REPO)%'
+
+
+# ===============================
+# TRANSLATOR CONFIGURATION
+# ===============================
+framework:
+  # Specifies the software system's default language preference
+  default_locale: tr
+  translator:
+    # Sets translation files directory
+    default_path: '%kernel.project_dir%/translations'
+    # Fallback languages for translations
+    fallbacks:
+      - en
+      - tr
+      - de
+      - es
+      - it
+
+
+# ===============================
+# DOCTRINE CONFIGURATION
+# ===============================
+doctrine:
+  dbal:
+    mapping_types:
+      enum: string
+    types:
+      system_log_priority: App\Config\SystemLogPriorityType
+
+# ===============================
+# TWIG GLOBAL VARIABLES
+# ===============================
+twig:
+  form_themes: ['bootstrap_5_horizontal_layout.html.twig']
+  globals:
+    shared:
+      underMaintance: false
+      appTitle: "MeeHou"
+      appBaseURL: "https://meehou.app"
+      appApiBaseURL: "https://meehou.app/api"
+      appLogo: 'build/media/logo.svg'
+      developerTitle: "Reformsoft Teknoloji A.Ş."
+      developerURL: "https://www.reformsoft.net/"
+      defaultDatetimeFormat: "d.m.Y H:i"
+      defaultDateFormat: "d.m.Y"
+      defaultTimeFormat: "H:i"
+
+    admin:
+      charset: "utf-8"
+      favicon: 'build/media/favicon.ico'
+      meta:
+        - key: "description"
+          value: "Lorem ipsum dolor sit amet..."
+      sidebar:
+        - header: "SUMMARY"
+        - name: "Dashboard"
+          icon: "ti ti-home"
+          path: 'app_admin_dashboard'
+        - name: "User Management"
+          icon: "ti ti-user"
+          path: 'app_admin_documentation'
+          items:
+            - name: "Users List"
+              path: "app_admin_user_index"
+        - header: "SYSTEM ADMINISTRATION"
+        - name: "Documentation"
+          icon: "ti ti-brand-github"
+          items:
+            - name: "Github Sync"
+              path: 'app_admin_documentation'
+            - name: "Backend API"
+              path: 'app_admin_backend_api'
+        - name: "Internalization"
+          icon: "ti ti-language"
+          items:
+            - name: "Locales"
+              path: "app_admin_locale_index"
+        - name: "Genus Management"
+          icon: 'ti ti-ghost'
+          items:
+            - name: "Genus Attributes"
+              path: 'app_admin_genus_attribute_index'
+            - name: "Genusses"
+              path: "app_admin_genus_index"
+
+    misc:
+      coming_soon:
+        year: 2023
+        month: 7
+        day: 1

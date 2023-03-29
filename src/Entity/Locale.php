@@ -39,6 +39,9 @@ class Locale
     #[ORM\OneToMany(mappedBy: 'defaultlocale', targetEntity: User::class)]
     private Collection $users;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $systemsdefault = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -113,5 +116,22 @@ class Locale
         }
 
         return $this;
+    }
+
+    public function isSystemsdefault(): ?bool
+    {
+        return $this->systemsdefault;
+    }
+
+    public function setSystemsdefault(?bool $systemsdefault): self
+    {
+        $this->systemsdefault = $systemsdefault;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name . ' (' . $this->code . ")";
     }
 }

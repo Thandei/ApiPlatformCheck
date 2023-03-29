@@ -1,0 +1,52 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}{{ "app.admin.crud.genus"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.genus"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">{{ "app.admin.crud.genus"|trans }} {{ "app.admin.crud.details"|trans }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive dt-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                <th>{{ "app.admin.crud.id"|trans|upper }}</th>
+                                <td>{{ genu.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "app.admin.crud.name"|trans }}</th>
+                                <td>{{ genu.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ "app.admin.crud.attributes"|trans }}</th>
+
+                                <td>
+                                    {% for attr in genu.attr %}
+                                        {{ attr.name }}
+                                        <span class="fw-semibold">
+                                            {{ attr.unit }}
+                                        </span>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a class="btn btn-secondary" href="{{ path('app_admin_genus_index') }}">{{ "app.admin.crud.backtolist"|trans }}</a>
+                    <a class="btn btn-primary" href="{{ path('app_admin_genus_edit', {'id': genu.id}) }}">{{ "app.admin.crud.edit"|trans }}</a>
+                    {{ include('admin/genus/_delete_form.html.twig') }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

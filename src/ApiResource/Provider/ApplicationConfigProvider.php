@@ -1,24 +1,17 @@
 <?php namespace App\ApiResource\Provider;
 
-use ApiPlatform\Doctrine\Orm\State\CollectionProvider;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
-use App\ApiResource\Hook\TranslationGetCollectionHookByName;
 use App\ApiResource\Model\ApplicationConfig;
-use App\ApiResource\Normalizer\TranslationNormalizer;
+use App\Controller\Admin\AuthController;
 use App\Controller\ApplicationBaseController;
 use App\Repository\LocaleRepository;
-use Datetime;
+use App\Security\AuthenticationSuccessProcessor;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Environment;
-use function PHPUnit\Framework\fileExists;
 
 class ApplicationConfigProvider extends ApplicationBaseController implements ProviderInterface
 {
-
-    const TRANSLATIONS_CONFIG = "/config/packages/translation.yaml";
-    const TRANSLATIONS_FILES = "/translations";
-    const TRANSLATION_FETCH_FORMAT = "yaml";
 
     public function __construct(private Environment $twig, private string $projectDir, private LocaleRepository $localeRepository)
     {
@@ -28,12 +21,9 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
     {
 
         $twigGlobals = $this->twig->getGlobals();
-        $catalogData = Yaml::parseFile($this->projectDir . self::TRANSLATIONS_CONFIG);
-
-        $supportedLocales = $catalogData["framework"]["translator"]["fallbacks"];
-        $translations = $this->getTranslationMessages($this->projectDir . self::TRANSLATIONS_FILES, $supportedLocales);
 
         $appConfig = new ApplicationConfig();
+        $appConfig->setUnderMaintance($twigGlobals["shared"]["underMaintance"]);
         $appConfig->setAppName($twigGlobals["shared"]["appTitle"]);
         $appConfig->setAppBaseURL($twigGlobals["shared"]["appBaseURL"]);
         $appConfig->setAppApiBaseURL($twigGlobals["shared"]["appApiBaseURL"]);
@@ -41,27 +31,31 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
         $appConfig->setAppFavicon($twigGlobals["admin"]["favicon"]);
         $appConfig->setDeveloperTitle($twigGlobals["shared"]["developerTitle"]);
         $appConfig->setDeveloperURL($twigGlobals["shared"]["developerURL"]);
-        $appConfig->setSupportedLocales($supportedLocales);
-        $appConfig->setDefaultLocale($catalogData["framework"]["default_locale"]);
-        $appConfig->setTranslations($translations);
+        $appConfig->setTranslations($this->getTranslations());
         $appConfig->setLocales($this->localeRepository->findAll());
 
+        // Authentication
+        $appConfig->setAuthWithUsernamePasswordURL($this->generateUrl(AuthController::ROUTE_NORMAL));
+        $appConfig->setAuthWithFacebookURL($this->generateUrl(AuthController::ROUTE_FACEBOOK));
+        $appConfig->setAuthWithGoogleURL($this->generateUrl(AuthController::ROUTE_GOOGLE));
+        $appConfig->setAuthCatchTokenByHeader(AuthenticationSuccessProcessor::WHEN_REDIRECT_ADD_TOKEN_TO_RESPONSE);
 
         return $appConfig;
     }
 
-    public function getTranslationMessages(string $translationsDir, array $supportedLocales = []): string
+
+    public function getTranslations(): string
     {
-
-        $myTranslations = [];
-
-        foreach ($supportedLocales as $supportedLocale) {
-            $translationFile = $translationsDir . "/messages+intl-icu.$supportedLocale." . self::TRANSLATION_FETCH_FORMAT;
+        $localeTranslations = [];
+        $locales = $this->localeRepository->findAll();
+        foreach ($locales as $locale) {
+            $localeCode = $locale->getCode();
+            $translationFile = $this->projectDir . DIRECTORY_SEPARATOR . "translations" . DIRECTORY_SEPARATOR . "messages+intl+icu." . $localeCode . ".yaml";
             if (file_exists($translationFile)) {
-                $myTranslations[$supportedLocale] = Yaml::parseFile($translationFile);
+                $localeTranslations[$localeCode] = Yaml::parseFile($translationFile);
             }
         }
 
-        return json_encode($myTranslations);
+        return json_encode($localeTranslations);
     }
 }
