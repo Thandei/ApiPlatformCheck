@@ -15,7 +15,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class DatabaseTranslationController extends AdminBaseController
 {
 
-    const TRANSLATION_ATTRIBUTES = ["appName", "name"];
+    const TRANSLATION_ATTRIBUTES = ["appName", "name", "tags", "textcontent"];
     const TRANSLATION_PREFIX = 'app.database.';
     const REMAKE_DATABASE_TRANSLATIONS_CACHE_TIME = 3600;
 
