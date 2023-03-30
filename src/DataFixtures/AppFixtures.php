@@ -114,6 +114,22 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
         ]
     ];
 
+    // === LANDING SLIDE FIXTURES CONFIGURATION == //
+    const LANDING_SLIDES = [
+        [
+            "content" => "Find animal lovers with similar interests",
+            "tags" => "animallovers,withsimilar,interests"
+        ],
+        [
+            "content" => "Find animal lovers with similar interests",
+            "tags" => "animallovers,withsimilar,interests"
+        ],
+        [
+            "content" => "Find animal lovers with similar interests",
+            "tags" => "animallovers,withsimilar,interests"
+        ]
+    ];
+
     // === SYSTEM LOG FIXTURES CONFIGURATION == //
     const SYSTEM_LOG_COUNT = 100;
 

@@ -70,6 +70,25 @@ class ApplicationConfig
     public array $locales = [];
 
     #[ApiProperty(readable: true)]
+    public array $landingSlides = [];
+
+    /**
+     * @return array
+     */
+    public function getLandingSlides(): array
+    {
+        return $this->landingSlides;
+    }
+
+    /**
+     * @param array $landingSlides
+     */
+    public function setLandingSlides(array $landingSlides): void
+    {
+        $this->landingSlides = $landingSlides;
+    }
+
+    #[ApiProperty(readable: true)]
     public ?string $authWithUsernamePasswordURL = NULL;
 
     #[ApiProperty(readable: true)]
