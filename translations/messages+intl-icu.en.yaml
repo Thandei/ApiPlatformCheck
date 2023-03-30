@@ -6,35 +6,35 @@ app.database.locales.german: __app.database.locales.german
 app.database.locales.french: __app.database.locales.french
 app.database.locales.russian: __app.database.locales.russian
 app.database.locales.portuguese: __app.database.locales.portuguese
-app.admin.crud.systemlogs: "System Logs"
-app.admin.crud.systemlog: "System Log"
+app.admin.crud.systemlogs: 'System Logs'
+app.admin.crud.systemlog: 'System Log'
 app.admin.crud.index: "Index"
 app.admin.crud.priority: "Priority"
 app.admin.crud.content: "Content"
-app.admin.crud.createdat: "Created At"
+app.admin.crud.createdat: 'Created At'
 app.admin.crud.actions: "Actions"
-app.admin.crud.showmore: "show more"
+app.admin.crud.showmore: 'show more'
 app.admin.crud.show: "Show"
 app.admin.crud.edit: "Edit"
-app.admin.crud.norecords: "no records"
-app.admin.crud.createnew: "Create New"
+app.admin.crud.norecords: 'no records'
+app.admin.crud.createnew: 'Create New'
 app.admin.crud.details: "Details"
 app.admin.crud.id: "ID"
-app.admin.crud.backtolist: "Back to List"
+app.admin.crud.backtolist: 'Back to List'
 app.admin.crud.create: "Create"
 app.admin.crud.delete: "Delete"
 app.admin.crud.save: "Save"
-app.admin.crud.removeconfirmationmessage: "Are you sure you want to delete this item"
+app.admin.crud.removeconfirmationmessage: 'Are you sure you want to delete this item'
 app.admin.crud.genus: "Genus"
 app.admin.crud.genusses: "Genusses"
 app.admin.crud.new: "New"
 app.admin.crud.attributes: "Attributes"
 app.admin.crud.attribute: "Attribute"
-app.admin.crud.unit: "Unit"
+app.admin.crud.unit:  "Unit"
 app.admin.crud.name: "Name"
 app.admin.crud.locale: "Locale"
 app.admin.crud.locales: "Locales"
-app.admin.crud.flagorcode: "Flag / Code"
+app.admin.crud.flagorcode: 'Flag / Code'
 app.admin.crud.systemsdefault: "System's Default"
 app.admin.crud.code: "Code"
 app.admin.crud.flag: "Flag"
@@ -42,10 +42,7 @@ app.admin.crud.user: "User"
 app.admin.crud.users: "Users"
 app.admin.crud.email: "Email"
 app.admin.crud.nickname: "Nickname"
-app.admin.crud.approvalbadge: "Approval Badge"
+app.admin.crud.approvalbadge: 'Approval Badge'
 app.admin.crud.business: "Business"
 app.admin.crud.roles: "Roles"
 app.admin.crud.account: "Account"
-
-
-

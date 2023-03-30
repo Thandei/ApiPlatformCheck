@@ -136,7 +136,7 @@ parameters:
 # ===============================
 framework:
   # Specifies the software system's default language preference
-  default_locale: tr
+  default_locale: en
   translator:
     # Sets translation files directory
     default_path: '%kernel.project_dir%/translations'
