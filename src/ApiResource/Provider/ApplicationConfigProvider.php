@@ -50,7 +50,7 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
         $locales = $this->localeRepository->findAll();
         foreach ($locales as $locale) {
             $localeCode = $locale->getCode();
-            $translationFile = $this->projectDir . DIRECTORY_SEPARATOR . "translations" . DIRECTORY_SEPARATOR . "messages+intl+icu." . $localeCode . ".yaml";
+            $translationFile = $this->projectDir . DIRECTORY_SEPARATOR . "translations" . DIRECTORY_SEPARATOR . "messages+intl-icu." . $localeCode . ".yaml";
             if (file_exists($translationFile)) {
                 $localeTranslations[$localeCode] = Yaml::parseFile($translationFile);
             }
