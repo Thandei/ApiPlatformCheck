@@ -18,8 +18,8 @@ After completing steps above, you need to create jwt certificates. For this, run
 
 
 If you are working in a test environment;
-php bin/console doctrine:fixtures:load
-run the command.
+run "php bin/console doctrine:fixtures:load"
+command.
 
 [MeeHou](https://www.meehou.app)
 
