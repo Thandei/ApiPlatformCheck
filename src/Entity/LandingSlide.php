@@ -2,9 +2,20 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\LandingSlideRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ApiResource(
+    shortName: 'Landing Slides',
+    operations: [
+        new GetCollection(
+            uriTemplate: '/landing_slides'
+        )
+    ],
+    paginationEnabled: false
+)]
 #[ORM\Entity(repositoryClass: LandingSlideRepository::class)]
 class LandingSlide
 {

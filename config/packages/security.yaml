@@ -47,6 +47,8 @@ security:
   # Note: Only the *first* access control that matches will be used
   access_control:
     # API ROUTES
+    - { path: ^/api/application_config, roles: [ ] }
+    - { path: ^/api/landing_slides, roles: [ ] }
     - { path: ^/api/auth/json, roles: [ ] }
     - { path: ^/api, roles: [ "ROLE_USER" ] }
     # ADMIN ROUTES

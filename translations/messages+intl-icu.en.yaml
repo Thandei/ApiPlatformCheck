@@ -1,6 +1,4 @@
 app.database.locales.english: 'English'
-<<<<<<< HEAD
-=======
 app.database.locales.turkish: 'Turkish'
 app.database.locales.chinese: 'Chinese'
 app.database.locales.espaniol: 'Spanish'
@@ -9,7 +7,6 @@ app.database.locales.french: 'French'
 app.database.locales.russian: 'Russian'
 app.database.locales.portuguese: 'Portuguese'
 app.database.locales.english: "English"
->>>>>>> 5529ba2ecce8126deb726c5872f24faa6e8469f0
 app.database.locales.turkish: "Turkish"
 app.database.locales.chinese: "Chinese"
 app.database.locales.espaniol: "Espaniol"
