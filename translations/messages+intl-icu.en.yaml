@@ -1,0 +1,28 @@
+app.database.locales.english: __app.database.locales.english
+app.database.locales.turkish: __app.database.locales.turkish
+app.database.locales.chinese: __app.database.locales.chinese
+app.database.locales.espaniol: __app.database.locales.espaniol
+app.database.locales.german: __app.database.locales.german
+app.database.locales.french: __app.database.locales.french
+app.database.locales.russian: __app.database.locales.russian
+app.database.locales.portuguese: __app.database.locales.portuguese
+app.admin.crud.systemlogs: "System Logs"
+app.admin.crud.systemlog: "System Log"
+app.admin.crud.index: "Index"
+app.admin.crud.priority: "Priority"
+app.admin.crud.content: "Content"
+app.admin.crud.createdat: "Created At"
+app.admin.crud.actions: "Actions"
+app.admin.crud.showmore: "show more"
+app.admin.crud.show: "Show"
+app.admin.crud.edit: "Edit"
+app.admin.crud.norecords: "no records"
+app.admin.crud.createnew: "Create New"
+app.admin.crud.details: "Details"
+app.admin.crud.id: "ID"
+app.admin.crud.backtolist: "Back to List"
+app.admin.crud.create: "Create"
+app.admin.crud.delete: "Delete"
+app.admin.crud.save: "Save"
+app.admin.crud.removeconfirmationmessage: "Are you sure you want to delete this item"
+

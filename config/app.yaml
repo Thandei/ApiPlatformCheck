@@ -214,6 +214,7 @@ twig:
               path: 'app_admin_genus_attribute_index'
             - name: "Genusses"
               path: "app_admin_genus_index"
+
     misc:
       coming_soon:
         year: 2023

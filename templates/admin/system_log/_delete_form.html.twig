@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_admin_system_log_delete', {'id': system_log.id}) }}" onsubmit="return confirm('{{ "app.admin.crud.removeconfirmationmessage"|trans }}?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ system_log.id) }}">
+    <button class="btn btn-danger">{{ "app.admin.crud.delete"|trans }}</button>
+</form>
