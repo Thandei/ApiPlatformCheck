@@ -9,7 +9,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Genusses</h5>
+                    <h5 class="card-title">{{ 'app.admin.crud.genusses'|trans }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive dt-responsive">
@@ -18,7 +18,7 @@
                             <tr>
                                 <th>NAME</th>
                                 <th data-orderable="false">ATTRIBUTES</th>
-                                <th class="text-center" data-orderable="false">ACTIONS</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.actions"|trans|upper }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -48,7 +48,7 @@
                                 </tr>
                             {% else %}
                                 <tr>
-                                    <td colspan="3">no records found</td>
+                                    <td colspan="3">{{ "app.admin.crud.norecords"|trans }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="card-footer d-flex justify-content-end">
-                    <a class="btn btn-primary" href="{{ path('app_admin_genus_new') }}">Create New</a>
+                    <a class="btn btn-primary" href="{{ path('app_admin_genus_new') }}">{{ "app.admin.crud.createnew"|trans }}</a>
                 </div>
 
             </div>

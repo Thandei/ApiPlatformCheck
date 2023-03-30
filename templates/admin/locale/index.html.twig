@@ -1,7 +1,7 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Locale Index{% endblock %}
-{% block bodyTitle %}Locale Index{% endblock %}
+{% block title %}{{ "app.admin.crud.locale"|trans }} {{ "app.admin.crud.index"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.locale"|trans }} {{ "app.admin.crud.index"|trans }}{% endblock %}
 
 {% block body %}
 
@@ -9,17 +9,17 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Locales</h5>
+                    <h5 class="card-title">{{ "app.admin.crud.locales"|trans }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive dt-responsive">
                         <table class="table datatable table-bordered">
                             <thead>
                             <tr>
-                                <th class="text-center" data-orderable="false">FLAG / CODE</th>
-                                <th CLASS="w-75">NAME</th>
-                                <th class="text-center">SYSTEM'S DEFAULT?</th>
-                                <th class="text-center" data-orderable="false">ACTIONS</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.flagorcode"|trans|upper }}</th>
+                                <th CLASS="w-75">{{ "app.admin.crud.name"|trans|upper }}</th>
+                                <th class="text-center">{{ "app.admin.crud.systemsdefault"|trans|upper }}?</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.actions"|trans|upper }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -57,6 +57,6 @@
 
 
     <div class="d-flex justify-content-end">
-        <a class="btn btn-primary" href="{{ path('app_admin_locale_new') }}">Create New Locale</a>
+        <a class="btn btn-primary" href="{{ path('app_admin_locale_new') }}">{{ "app.admin.crud.create"|trans }} {{ "app.admin.crud.new"|trans }} {{ "app.admin.crud.locale"|trans }}</a>
     </div>
 {% endblock %}

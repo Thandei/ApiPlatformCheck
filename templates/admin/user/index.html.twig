@@ -1,7 +1,7 @@
-{% extends "admin/base.html.twig" %}
+{%  extends "admin/base.html.twig" %}
 
-{% block title %}User Index{% endblock %}
-{% block bodyTitle %}User Index{% endblock %}
+{% block title %}{{ "app.admin.crud.user"|trans }} {{ "app.admin.crud.index"|trans }} {% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.user"|trans }} {{ "app.admin.crud.index"|trans }}{% endblock %}
 
 {% block body %}
 
@@ -9,18 +9,18 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Users</h5>
+                    <h5 class="card-title">{{ "app.admin.crud.users"|trans }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive dt-responsive">
                         <table class="table table-bordered datatable">
                             <thead>
                             <tr>
-                                <th>EMAIL</th>
-                                <th>NICKNAME</th>
-                                <th class="text-center" data-orderable="false">APPROVAL BADGE</th>
-                                <th class="text-center" data-orderable="false">BUSINESS</th>
-                                <th class="text-center" data-orderable="false">ACTIONS</th>
+                                <th>{{ "app.admin.crud.email"|trans|upper }}</th>
+                                <th>{{ "app.admin.crud.nickname"|trans|upper }}</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.approvalbadge"|trans|upper }}</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.business"|trans|upper }}</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.actions"|trans|upper }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -47,7 +47,7 @@
                                 </tr>
                             {% else %}
                                 <tr>
-                                    <td colspan="3">No records found</td>
+                                    <td colspan="3">{{ "app.admin.crud.norecords"|trans }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="card-footer d-flex justify-content-end">
-                    <a class="btn btn-primary" href="{{ path('app_admin_user_new') }}">Create New</a>
+                    <a class="btn btn-primary" href="{{ path('app_admin_user_new') }}">{{ "app.admin.crud.createnew"|trans }}</a>
                 </div>
 
             </div>

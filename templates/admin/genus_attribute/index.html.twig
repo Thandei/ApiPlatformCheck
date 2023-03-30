@@ -1,7 +1,7 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Genus Attribute Index{% endblock %}
-{% block bodyTitle %}Genus Attribute Index{% endblock %}
+{% block title %}{{ "app.admin.crud.genus"|trans }} {{ "app.admin.crud.attribute"|trans }} {{ "app.admin.crud.index"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.genus"|trans }} {{ "app.admin.crud.attribute"|trans }} {{ "app.admin.crud.index"|trans }}{% endblock %}
 
 {% block body %}
 
@@ -9,7 +9,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Genus Attributes</h5>
+                    <h5 class="card-title">{{ "app.admin.crud.genus"|trans }} {{ "app.admin.crud.attributes"|trans }}</h5>
                 </div>
                 <div class="card-body">
 
@@ -17,9 +17,9 @@
                         <table class="table table-bordered datatable">
                             <thead>
                             <tr>
-                                <th>NAME</th>
-                                <th class="text-center" data-orderable="false">UNIT</th>
-                                <th class="text-center" data-orderable="false">ACTIONS</th>
+                                <th>{{ "app.admin.crud.name"|trans|upper }}</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.unit"|trans|upper }}</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.actions"|trans|upper }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -44,7 +44,7 @@
                                 </tr>
                             {% else %}
                                 <tr>
-                                    <td colspan="4">no records found</td>
+                                    <td colspan="4">{{ "app.admin.crud.norecords"|trans }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -53,7 +53,7 @@
 
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    <a class="btn btn-primary" href="{{ path('app_admin_genus_attribute_new') }}">Create New</a>
+                    <a class="btn btn-primary" href="{{ path('app_admin_genus_attribute_new') }}">{{ "app.admin.crud.createnew"|trans }}</a>
                 </div>
             </div>
         </div>
