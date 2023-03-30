@@ -5,6 +5,7 @@ use ApiPlatform\State\ProviderInterface;
 use App\ApiResource\Model\ApplicationConfig;
 use App\Controller\Admin\AuthController;
 use App\Controller\ApplicationBaseController;
+use App\Repository\LandingSlideRepository;
 use App\Repository\LocaleRepository;
 use App\Security\AuthenticationSuccessProcessor;
 use Symfony\Component\Yaml\Yaml;
@@ -13,7 +14,7 @@ use Twig\Environment;
 class ApplicationConfigProvider extends ApplicationBaseController implements ProviderInterface
 {
 
-    public function __construct(private Environment $twig, private string $projectDir, private LocaleRepository $localeRepository)
+    public function __construct(private Environment $twig, private string $projectDir, private LocaleRepository $localeRepository, private LandingSlideRepository $landingSlideRepository)
     {
     }
 
@@ -33,6 +34,7 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
         $appConfig->setDeveloperURL($twigGlobals["shared"]["developerURL"]);
         $appConfig->setTranslations($this->getTranslations());
         $appConfig->setLocales($this->localeRepository->findAll());
+        $appConfig->setLandingSlides($this->landingSlideRepository->findAll());
 
         // Authentication
         $appConfig->setAuthWithUsernamePasswordURL($this->generateUrl(AuthController::ROUTE_NORMAL));
@@ -50,7 +52,7 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
         $locales = $this->localeRepository->findAll();
         foreach ($locales as $locale) {
             $localeCode = $locale->getCode();
-            $translationFile = $this->projectDir . DIRECTORY_SEPARATOR . "translations" . DIRECTORY_SEPARATOR . "messages+intl+icu." . $localeCode . ".yaml";
+            $translationFile = $this->projectDir . DIRECTORY_SEPARATOR . "translations" . DIRECTORY_SEPARATOR . "messages+intl-icu." . $localeCode . ".yaml";
             if (file_exists($translationFile)) {
                 $localeTranslations[$localeCode] = Yaml::parseFile($translationFile);
             }

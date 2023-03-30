@@ -1,0 +1,68 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ "app.admin.crud.landingslide"|trans }} {{ "app.admin.crud.index"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.landingslide"|trans }} {{ "app.admin.crud.index"|trans }}{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        {{ "app.admin.crud.landingslide"|trans }} {{ "app.admin.crud.index"|trans }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive dt-responsive">
+                        <table class="table table-bordered datatable">
+                            <thead>
+                            <tr>
+                                <th>{{ "app.admin.crud.id"|trans|upper }}</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.textcontent"|trans|upper }}</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.tags"|trans }}</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.image"|trans }}</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.actions"|trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for landing_slide in landing_slides %}
+                                <tr>
+                                    <td>{{ landing_slide.id }}</td>
+                                    <td>{{ landing_slide.textcontent }}</td>
+                                    <td>{{ landing_slide.tags }}</td>
+                                    <td>{{ landing_slide.image }}</td>
+                                    <td class="text-center">
+                                        <ul class="list-inline me-auto mb-0">
+                                            <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" aria-label="View" data-bs-original-title="View">
+                                                <a href="{{ path('app_admin_landing_slide_show', {'id': landing_slide.id}) }}" class="avtar avtar-xs btn-link-success btn-pc-default">
+                                                    <i class="ti ti-eye f-18"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" aria-label="Edit" data-bs-original-title="Edit">
+                                                <a href="{{ path('app_admin_landing_slide_edit', {'id': landing_slide.id}) }}" class="avtar avtar-xs btn-link-success btn-pc-default">
+                                                    <i class="ti ti-edit-circle f-18"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="5">{{ "app.admin.crud.norecords"|trans }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a class="btn btn-primary" href="{{ path('app_admin_landing_slide_new') }}">{{ "app.admin.crud.createnew"|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
