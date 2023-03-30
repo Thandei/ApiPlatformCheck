@@ -16,6 +16,7 @@ class LandingSlideFixtures extends AppFixtures implements OrderedFixtureInterfac
             $mySlide = new LandingSlide();
             $mySlide->setTags($landingSlide["tags"]);
             $mySlide->setTextcontent($landingSlide["content"]);
+            $mySlide->setImage($landingSlide["image"]);
             $manager->persist($mySlide);
         }
 

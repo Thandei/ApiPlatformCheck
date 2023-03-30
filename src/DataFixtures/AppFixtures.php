@@ -118,15 +118,18 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
     const LANDING_SLIDES = [
         [
             "content" => "Find animal lovers with similar interests",
-            "tags" => "animallovers,withsimilar,interests"
+            "tags" => "animallovers,withsimilar,interests",
+            "image" => "/build/media/slides/1.svg"
         ],
         [
             "content" => "Find animal lovers with similar interests",
-            "tags" => "animallovers,withsimilar,interests"
+            "tags" => "animallovers,withsimilar,interests",
+            "image" => "/build/media/slides/1.svg"
         ],
         [
             "content" => "Find animal lovers with similar interests",
-            "tags" => "animallovers,withsimilar,interests"
+            "tags" => "animallovers,withsimilar,interests",
+            "image" => "/build/media/slides/1.svg"
         ]
     ];
 

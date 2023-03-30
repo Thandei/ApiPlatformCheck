@@ -19,6 +19,9 @@ class LandingSlide
     #[ORM\Column(length: 255)]
     private ?string $tags = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class LandingSlide
     public function setTags(string $tags): self
     {
         $this->tags = $tags;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
