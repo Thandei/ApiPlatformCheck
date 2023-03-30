@@ -1,0 +1,24 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ "app.admin.crud.createnew"|trans }} {{ "app.admin.crud.landingslide"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.createnew"|trans }} {{ "app.admin.crud.landingslide"|trans }}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        {{ "app.admin.crud.createnew"|trans }} {{ "app.admin.crud.landingslide"|trans }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {{ include('admin/landing_slide/_form.html.twig') }}
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a class="btn btn-secondary" href="{{ path('app_admin_landing_slide_index') }}">{{ "app.admin.crud.backtolist"|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

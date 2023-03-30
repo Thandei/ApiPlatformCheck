@@ -214,6 +214,11 @@ twig:
               path: 'app_admin_genus_attribute_index'
             - name: "Genusses"
               path: "app_admin_genus_index"
+        - name: "Front-End"
+          icon: "ti ti-brand-figma"
+          items:
+            - name: "Slider İtems"
+              path: "app_admin_landing_slide_index"
 
     misc:
       coming_soon:
