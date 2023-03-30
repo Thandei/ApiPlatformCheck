@@ -46,14 +46,18 @@ class TranslatableTextNormalizer implements NormalizerInterface
 
     private function removeEmptyLines(array $databaseTranslationFileLines): array
     {
-        foreach ($databaseTranslationFileLines as $index => $databaseTranslationFileLine) {
+        $validTranslationKeys = [];
 
-            if (($databaseTranslationFileLine === PHP_EOL) or (strlen($databaseTranslationFileLine) < 5)) {
-                unset($databaseTranslationFileLines[$index]);
+        foreach ($databaseTranslationFileLines as $databaseTranslationFileLine) {
+
+            if($databaseTranslationFileLine !== PHP_EOL){
+                if(strlen($databaseTranslationFileLine) > 15){
+                    $validTranslationKeys[] = $databaseTranslationFileLine;
+                }
             }
-
         }
-        return array_unique($databaseTranslationFileLines);
+
+        return array_unique(array_values($validTranslationKeys));;
     }
 
 }

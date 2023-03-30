@@ -34,7 +34,6 @@ class ApplicationConfigProvider extends ApplicationBaseController implements Pro
         $appConfig->setDeveloperURL($twigGlobals["shared"]["developerURL"]);
         $appConfig->setTranslations($this->getTranslations());
         $appConfig->setLocales($this->localeRepository->findAll());
-        $appConfig->setLandingSlides($this->landingSlideRepository->findAll());
 
         // Authentication
         $appConfig->setAuthWithUsernamePasswordURL($this->generateUrl(AuthController::ROUTE_NORMAL));
