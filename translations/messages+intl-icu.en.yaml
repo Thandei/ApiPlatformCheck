@@ -1,3 +1,11 @@
+app.database.locales.english: 'English'
+app.database.locales.turkish: 'Turkish'
+app.database.locales.chinese: 'Chinese'
+app.database.locales.espaniol: 'Spanish'
+app.database.locales.german: 'German'
+app.database.locales.french: 'French'
+app.database.locales.russian: 'Russian'
+app.database.locales.portuguese: 'Portuguese'
 app.database.locales.english: "English"
 app.database.locales.turkish: "Turkish"
 app.database.locales.chinese: "Chinese"
