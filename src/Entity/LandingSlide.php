@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
+use App\ApiResource\Normalizer\TranslatableTextNormalizer;
 use App\Repository\LandingSlideRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Context;
 
 #[ApiResource(
     shortName: 'Landing Slides',
@@ -24,9 +26,11 @@ class LandingSlide
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Context([TranslatableTextNormalizer::class])]
     #[ORM\Column(length: 40)]
     private ?string $textcontent = null;
 
+    #[Context([TranslatableTextNormalizer::class])]
     #[ORM\Column(length: 255)]
     private ?string $tags = null;
 

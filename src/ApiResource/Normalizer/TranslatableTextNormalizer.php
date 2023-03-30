@@ -37,8 +37,9 @@ class TranslatableTextNormalizer implements NormalizerInterface
         $translationsFile = $this->projectDir . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'raw' . DIRECTORY_SEPARATOR . 'database_translations.html.twig';
         if (file_exists($translationsFile)) {
             $rawContent = file_get_contents($translationsFile);
-            $explodedTranslationsContent = explode(PHP_EOL, $rawContent);
+            $explodedTranslationsContent = array_unique(explode(PHP_EOL, $rawContent));
             $explodedTranslationsContent[] = "{{ '" . $databaseTranslationKey . "'|trans }}";
+            $explodedTranslationsContent = array_unique($explodedTranslationsContent);
             file_put_contents($translationsFile, implode(PHP_EOL, $this->removeEmptyLines($explodedTranslationsContent)));
         }
 
@@ -50,14 +51,14 @@ class TranslatableTextNormalizer implements NormalizerInterface
 
         foreach ($databaseTranslationFileLines as $databaseTranslationFileLine) {
 
-            if($databaseTranslationFileLine !== PHP_EOL){
-                if(strlen($databaseTranslationFileLine) > 15){
-                    $validTranslationKeys[] = $databaseTranslationFileLine;
+            if ($databaseTranslationFileLine !== PHP_EOL) {
+                if (strlen($databaseTranslationFileLine) > 15) {
+                    $validTranslationKeys[] = trim($databaseTranslationFileLine);
                 }
             }
         }
 
-        return array_unique(array_values($validTranslationKeys));;
+        return array_values($validTranslationKeys);
     }
 
 }
