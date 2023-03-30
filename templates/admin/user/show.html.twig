@@ -1,14 +1,14 @@
 {% extends "admin/base.html.twig" %}
 
-{% block title %}{{ "app.admin.crud.user"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
-{% block bodyTitle %}{{ "app.admin.crud.user"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
+{% block title %}{{ "app.admin.crud.userdetails"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.userdetails"|trans }}{% endblock %}
 
 {% block body %}
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">{{ "app.admin.crud.user"|trans }} {{ "app.admin.crud.details"|trans }}</h5>
+                    <h5 class="card-title">{{ "app.admin.crud.userdetails"|trans }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive dt-responsive">
@@ -54,7 +54,7 @@
                                 <td>{{ user.approvalbadge ? '<i class="ti ti-checks fw-semibold text-success"></i>' : '--' }}</td>
                             </tr>
                             <tr>
-                                <th>Has Business</th>
+                                <th>{{ "app.admin.crud.business"|trans }}</th>
                                 <td>{{ user.hasbusiness ? '<i class="ti ti-checks fw-semibold text-success"></i>' : '--' }}</td>
                             </tr>
                             </tbody>

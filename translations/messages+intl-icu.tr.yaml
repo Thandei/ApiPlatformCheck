@@ -1,48 +1,51 @@
-app.admin.crud.edit: __app.admin.crud.edit
-app.admin.crud.systemlog: __app.admin.crud.systemlog
-app.admin.crud.backtolist: __app.admin.crud.backtolist
-app.admin.crud.index: __app.admin.crud.index
-app.admin.crud.systemlogs: __app.admin.crud.systemlogs
-app.admin.crud.priority: __app.admin.crud.priority
-app.admin.crud.content: __app.admin.crud.content
-app.admin.crud.createdat: __app.admin.crud.createdat
-app.admin.crud.actions: __app.admin.crud.actions
-app.admin.crud.showmore: __app.admin.crud.showmore
-app.admin.crud.show: __app.admin.crud.show
-app.admin.crud.norecords: __app.admin.crud.norecords
-app.admin.crud.createnew: __app.admin.crud.createnew
-app.admin.crud.create: __app.admin.crud.create
-app.admin.crud.details: __app.admin.crud.details
-app.admin.crud.id: __app.admin.crud.id
-app.admin.crud.removeconfirmationmessage: __app.admin.crud.removeconfirmationmessage
-app.admin.crud.delete: __app.admin.crud.delete
-app.admin.crud.save: __app.admin.crud.save
-app.database.locales.english: __app.database.locales.english
-app.database.locales.turkish: __app.database.locales.turkish
-app.database.locales.chinese: __app.database.locales.chinese
-app.database.locales.espaniol: __app.database.locales.espaniol
-app.database.locales.german: __app.database.locales.german
-app.database.locales.french: __app.database.locales.french
-app.database.locales.russian: __app.database.locales.russian
-app.database.locales.portuguese: __app.database.locales.portuguese
-app.admin.crud.genus: __app.admin.crud.genus
-app.admin.crud.genusses: __app.admin.crud.genusses
-app.admin.crud.new: __app.admin.crud.new
-app.admin.crud.name: __app.admin.crud.name
-app.admin.crud.attributes: __app.admin.crud.attributes
-app.admin.crud.attribute: __app.admin.crud.attribute
-app.admin.crud.unit: __app.admin.crud.unit
-app.admin.crud.locale: __app.admin.crud.locale
-app.admin.crud.locales: __app.admin.crud.locales
-app.admin.crud.flagorcode: __app.admin.crud.flagorcode
-app.admin.crud.systemsdefault: __app.admin.crud.systemsdefault
-app.admin.crud.code: __app.admin.crud.code
-app.admin.crud.flag: __app.admin.crud.flag
-app.admin.crud.user: __app.admin.crud.user
-app.admin.crud.users: __app.admin.crud.users
-app.admin.crud.email: __app.admin.crud.email
-app.admin.crud.nickname: __app.admin.crud.nickname
-app.admin.crud.approvalbadge: __app.admin.crud.approvalbadge
-app.admin.crud.business: __app.admin.crud.business
-app.admin.crud.roles: __app.admin.crud.roles
-app.admin.crud.account: __app.admin.crud.account
+app.admin.crud.edit: "Düzenle"
+app.admin.crud.systemlog: "Sistem Kaydı"
+app.admin.crud.backtolist: "Listeye Geri Dön"
+app.admin.crud.index: "Listesi"
+app.admin.crud.systemlogs: "Sistem Kayıtları"
+app.admin.crud.priority: "Öncelik"
+app.admin.crud.content: "İçerik"
+app.admin.crud.createdat: "Oluşturulma Zamanı"
+app.admin.crud.actions: "Hareketler"
+app.admin.crud.showmore: "daha fazla göster"
+app.admin.crud.show: "Göster"
+app.admin.crud.norecords: "kayıt bulunamadı"
+app.admin.crud.createnew: "Yeni Oluştur"
+app.admin.crud.create: "Oluştur"
+app.admin.crud.details: "Ayrıntılar"
+app.admin.crud.userdetails: "Kullanıcı Ayrıntıları"
+app.admin.crud.id: "No"
+app.admin.crud.removeconfirmationmessage: "Bu öğeyi kaldırmak istediğinize emin misiniz?"
+app.admin.crud.delete: "Sil"
+app.admin.crud.save: "Kaydet"
+app.database.locales.english: "İngilizce"
+app.database.locales.turkish: "Türkçe"
+app.database.locales.chinese: "Çince"
+app.database.locales.espaniol: "İspanyolca"
+app.database.locales.german: "Almanca"
+app.database.locales.french: "Fransızca"
+app.database.locales.russian: "Rusça"
+app.database.locales.portuguese: "Portekizce"
+app.admin.crud.genus: "Cins"
+app.admin.crud.genusses: "Cinsler"
+app.admin.crud.new: "Yeni"
+app.admin.crud.name: "İsim"
+app.admin.crud.attributes: "Özellikler"
+app.admin.crud.attribute: "Özellik"
+app.admin.crud.unit: "Birim"
+app.admin.crud.locale: "Dil"
+app.admin.crud.locales: "Diller"
+app.admin.crud.flagorcode: "Bayrak / Ülke Kodu"
+app.admin.crud.systemsdefault: "Sistem Varsayılanı"
+app.admin.crud.code: "Ülke Kodu"
+app.admin.crud.flag: "Bayrak"
+app.admin.crud.user: "Kullanıcı"
+app.admin.crud.users: "Kullanıcılar"
+app.admin.crud.email: "E-Posta"
+app.admin.crud.nickname: "Kullanıcı Adı"
+app.admin.crud.approvalbadge: "Onay Durumu"
+app.admin.crud.business: "İşletmesi Var"
+app.admin.crud.roles: "Roller"
+app.admin.crud.account: "Hesap"
+app.admin.crud.issystemdefault: "Sistem Varsayılanı mı"
+app.admin.crud.genus.details: "Cins Özellikleri"

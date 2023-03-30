@@ -1,11 +1,11 @@
-app.database.locales.english: __app.database.locales.english
-app.database.locales.turkish: __app.database.locales.turkish
-app.database.locales.chinese: __app.database.locales.chinese
-app.database.locales.espaniol: __app.database.locales.espaniol
-app.database.locales.german: __app.database.locales.german
-app.database.locales.french: __app.database.locales.french
-app.database.locales.russian: __app.database.locales.russian
-app.database.locales.portuguese: __app.database.locales.portuguese
+app.database.locales.english: 'English'
+app.database.locales.turkish: 'Turkish'
+app.database.locales.chinese: 'Chinese'
+app.database.locales.espaniol: 'Spanish'
+app.database.locales.german: 'German'
+app.database.locales.french: 'French'
+app.database.locales.russian: 'Russian'
+app.database.locales.portuguese: 'Portuguese'
 app.admin.crud.systemlogs: 'System Logs'
 app.admin.crud.systemlog: 'System Log'
 app.admin.crud.index: "Index"
