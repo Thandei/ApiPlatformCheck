@@ -21,17 +21,9 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
     const USER_FAKE_ADMIN_ACCOUNT_NAME = "System Administrator";
     const USER_FAKE_ADMIN_NICK_NAME = "system.admin";
     const USER_DONT_USE_HASH = TRUE;
-    const USER_PROFILE_IMAGE_WIDTH = 500;
-    const USER_PROFILE_IMAGE_HEIGHT = 500;
 
     // === LOCALE FIXTURES CONFIGURATION == //
     const LOCALES = [
-        [
-            "code" => "en",
-            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.english",
-            "flag" => "/build/media/flags/us.svg",
-            "systemsdefault" => FALSE
-        ],
         [
             "code" => "tr",
             "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.turkish",
@@ -39,9 +31,15 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
             "systemsdefault" => TRUE
         ],
         [
-            "code" => "ch",
-            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.chinese",
-            "flag" => "/build/media/flags/ch.svg",
+            "code" => "en",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.english",
+            "flag" => "/build/media/flags/us.svg",
+            "systemsdefault" => FALSE
+        ],
+        [
+            "code" => "hn",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.hindi",
+            "flag" => "/build/media/flags/in.svg",
             "systemsdefault" => FALSE
         ],
         [
@@ -51,15 +49,21 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
             "systemsdefault" => FALSE
         ],
         [
-            "code" => "de",
-            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.german",
-            "flag" => "/build/media/flags/de.svg",
-            "systemsdefault" => FALSE
-        ],
-        [
             "code" => "fr",
             "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.french",
             "flag" => "/build/media/flags/fr.svg",
+            "systemsdefault" => FALSE
+        ],
+        [
+            "code" => "ae",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.arabic",
+            "flag" => "/build/media/flags/ae.svg",
+            "systemsdefault" => FALSE
+        ],
+        [
+            "code" => "ch",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.chinese",
+            "flag" => "/build/media/flags/ch.svg",
             "systemsdefault" => FALSE
         ],
         [
@@ -69,36 +73,51 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
             "systemsdefault" => FALSE
         ],
         [
-            "code" => "pt",
+            "code" => "id",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.indonesian",
+            "flag" => "/build/media/flags/id.svg",
+            "systemsdefault" => FALSE
+        ],
+        ["code" => "pt",
             "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.portuguese",
             "flag" => "/build/media/flags/pt.svg",
             "systemsdefault" => FALSE
-        ]
+        ],
+        [
+            "code" => "de",
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "locales.german",
+            "flag" => "/build/media/flags/de.svg",
+            "systemsdefault" => FALSE
+        ],
+
+
     ];
 
     // === GENUS FIXTURES CONFIGURATION == //
     const GENUSES = [
         [
-            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.bear"
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.dog"
         ],
         [
-            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.camel"
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.cat"
         ],
         [
-            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.donkey"
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.fish"
         ],
         [
             "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.rabbit"
         ],
         [
-            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.zebra"
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.hamster"
         ],
         [
-            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.dog"
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.donkey"
+        ],
+        [
+            "name" => self::DATABASE_TRANSLATION_PREFIX . "genus.bird"
         ]
     ];
 
-    // === GENUS ATTRIBUTE FIXTURES CONFIGURATION == //
     const GENUS_ATTR = [
         [
             "name" => self::DATABASE_TRANSLATION_PREFIX . 'genusattr.weight',
@@ -111,14 +130,24 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
         [
             "name" => self::DATABASE_TRANSLATION_PREFIX . 'genusattr.eyecolor',
             "unit" => "color"
+        ],
+        [
+            "name" => self::DATABASE_TRANSLATION_PREFIX . 'genusattr.tail',
+            "unit" => "cm"
         ]
     ];
+    // === GENUS ATTRIBUTE FIXTURES CONFIGURATION == //
 
     // === LANDING SLIDE FIXTURES CONFIGURATION == //
     const LANDING_SLIDES = [
         [
-            "content" => "app.database.slider.content1",
-            "tags" => "app.database.slider.tags1",
+            "content" => "Find animal lovers with similar interests",
+            "tags" => "animallovers,withsimilar,interests",
+            "image" => "/build/media/slides/1.svg"
+        ],
+        [
+            "content" => "Find animal lovers with similar interests",
+            "tags" => "animallovers,withsimilar,interests",
             "image" => "/build/media/slides/1.svg"
         ],
         [

@@ -6,6 +6,14 @@ app.database.locales.german: 'German'
 app.database.locales.french: 'French'
 app.database.locales.russian: 'Russian'
 app.database.locales.portuguese: 'Portuguese'
+app.database.locales.english: "English"
+app.database.locales.turkish: "Turkish"
+app.database.locales.chinese: "Chinese"
+app.database.locales.espaniol: "Espaniol"
+app.database.locales.german: "German"
+app.database.locales.french: "French"
+app.database.locales.russian: "Russian"
+app.database.locales.portuguese: "Portuguese"
 app.admin.crud.systemlogs: 'System Logs'
 app.admin.crud.systemlog: 'System Log'
 app.admin.crud.index: "Index"
@@ -46,3 +54,9 @@ app.admin.crud.approvalbadge: 'Approval Badge'
 app.admin.crud.business: "Business"
 app.admin.crud.roles: "Roles"
 app.admin.crud.account: "Account"
+app.admin.crud.landingslide: "Landing Slide"
+app.admin.crud.textcontent: "Text Content"
+app.admin.crud.tags: "Tags"
+app.admin.crud.image: "İmage"
+app.admin.crud.update: "Update"
+
