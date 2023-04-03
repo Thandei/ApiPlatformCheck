@@ -18,16 +18,8 @@ use Symfony\Flex\Configurator\ContainerConfigurator;
 class DashboardController extends AdminBaseController
 {
     #[Route('/dashboard', name: 'dashboard')]
-    public function index(MailerInterface $mailer, TransportInterface $transport): Response
+    public function index(): Response
     {
-        $myMail = new NotificationEmail();
-        $myMail->from("noreply@meehou.app");
-        $myMail->to("sinansahinwm@gmail.com");
-        $myMail->content("deneme mail");
-        $myMail->subject("deneme konu");
-
-        $transport->send($myMail);
-
         return $this->render('admin/dashboard/index.html.twig');
     }
 }
