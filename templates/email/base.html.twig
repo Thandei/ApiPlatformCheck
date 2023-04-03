@@ -25,9 +25,12 @@
 
                         {% block body %}{% endblock %}
 
+                        {% if action is defined %}
                         <!--begin:Action-->
-                        <a href='../../demo1/dist/authentication/general/welcome.html' target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;">Activate Account</a>
+                        <a href='{{ action.url }}' target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;">{{ action.text }}</a>
                         <!--begin:Action-->
+                        {% endif %}
+
                     </div>
                     <!--end:Email content-->
                 </td>

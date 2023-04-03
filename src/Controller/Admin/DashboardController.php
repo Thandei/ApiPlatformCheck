@@ -23,6 +23,13 @@ class DashboardController extends AdminBaseController
     {
 
 
+        // $mailerService->setFrom("noreply@meehou.app");
+        // $mailerService->setTo("sinansahinwm@gmail.com");
+        // $mailerService->setSubject("DENEME");
+        // $mailerService->setAction('#', 'Hemen Tıklaa!!!');
+        // $mailerService->setPriority(MailerService::PRIORITY_HIGH);
+        // $sendResult = $mailerService->send('test', ["resetToken" => "deee"]);
+
         return $this->render('admin/dashboard/index.html.twig');
     }
 }
