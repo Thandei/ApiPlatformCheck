@@ -1,4 +1,4 @@
- {% extends 'admin/base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
  {% block title %}{{ "app.admin.crud.systemlog"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
  {% block bodyTitle %}{{ "app.admin.crud.systemlog"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
@@ -17,19 +17,19 @@
                          <table class="table table-bordered">
                              <tbody>
                              <tr>
-                                 <th>{{ "app.admin.crud.id"|trans|upper }}</th>
+                                 <th>{{ "app.admin.crud.id"|trans|caseupper }}</th>
                                  <td>{{ system_log.id }}</td>
                              </tr>
                              <tr>
-                                 <th>{{ "app.admin.crud.priority"|trans|upper }}</th>
+                                 <th>{{ "app.admin.crud.priority"|trans|caseupper }}</th>
                                  <td>{{ system_log.priority }}</td>
                              </tr>
                              <tr>
-                                 <th>{{ "app.admin.crud.createdat"|trans|upper }}</th>
+                                 <th>{{ "app.admin.crud.createdat"|trans|caseupper }}</th>
                                  <td>{{ system_log.createdAt ? system_log.createdAt|date(shared.defaultDatetimeFormat) : '' }}</td>
                              </tr>
                              <tr>
-                                 <th>{{ "app.admin.crud.content"|trans|upper }}</th>
+                                 <th>{{ "app.admin.crud.content"|trans|caseupper }}</th>
                                  <td>{{ system_log.content }}</td>
                              </tr>
                              </tbody>
@@ -47,4 +47,3 @@
          </div>
      </div>
  {% endblock %}
-

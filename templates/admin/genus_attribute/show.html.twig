@@ -14,15 +14,15 @@
                     <table class="table table-bordered">
                         <tbody>
                         <tr>
-                            <th>{{ "app.admin.crud.id"|trans|upper }}</th>
+                            <th>{{ "app.admin.crud.id"|trans|caseupper }}</th>
                             <td>{{ genus_attribute.id }}</td>
                         </tr>
                         <tr>
-                            <th>{{ "app.admin.crud.name"|trans }}</th>
+                            <th>{{ "app.admin.crud.name"|trans|caseupper }}</th>
                             <td>{{ genus_attribute.name }}</td>
                         </tr>
                         <tr>
-                            <th>{{ "app.admin.crud.unit"|trans }}</th>
+                            <th>{{ "app.admin.crud.unit"|trans|caseupper }}</th>
                             <td>{{ genus_attribute.unit }}</td>
                         </tr>
                         </tbody>
@@ -38,4 +38,3 @@
     </div>
 
 {% endblock %}
-

@@ -16,23 +16,23 @@
                         <table class="table table-bordered">
                             <tbody>
                             <tr>
-                                <th>{{ "app.admin.crud.id"|trans|upper }}</th>
+                                <th>{{ "app.admin.crud.id"|trans|caseupper }}</th>
                                 <td>{{ locale.id }}</td>
                             </tr>
                             <tr>
-                                <th>{{ "app.admin.crud.code"|trans }}</th>
+                                <th>{{ "app.admin.crud.code"|trans|caseupper }}</th>
                                 <td>{{ locale.code }}</td>
                             </tr>
                             <tr>
-                                <th>{{ "app.admin.crud.flag"|trans }}</th>
+                                <th>{{ "app.admin.crud.flag"|trans|caseupper }}</th>
                                 <td>{{ locale.flag }}</td>
                             </tr>
                             <tr>
-                                <th>{{ "app.admin.crud.name"|trans }}</th>
+                                <th>{{ "app.admin.crud.name"|trans|caseupper }}</th>
                                 <td>{{ locale.name }}</td>
                             </tr>
                             <tr>
-                                <th>{{ "app.admin.crud.issystemdefault"|trans }}?</th>
+                                <th>{{ "app.admin.crud.issystemdefault"|trans|caseupper }}?</th>
                                 <td>{{ locale.systemsdefault ? '<span class="badge bg-success">Yes</span>' : '--' }}</td>
                             </tr>
                             </tbody>
@@ -49,4 +49,3 @@
     </div>
 
 {% endblock %}
-

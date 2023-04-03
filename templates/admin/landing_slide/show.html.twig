@@ -17,19 +17,19 @@
                     <table class="table table-bordered dataTable">
                         <tbody>
                         <tr>
-                            <th>{{ "app.admin.crud.id"|trans }}</th>
+                            <th>{{ "app.admin.crud.id"|trans|caseupper }}</th>
                             <td>{{ landing_slide.id }}</td>
                         </tr>
                         <tr>
-                            <th>{{ "app.admin.crud.textcontent"|trans }}</th>
+                            <th>{{ "app.admin.crud.textcontent"|trans|caseupper }}</th>
                             <td>{{ landing_slide.textcontent }}</td>
                         </tr>
                         <tr>
-                            <th>{{ "app.admin.crud.tags"|trans }}</th>
+                            <th>{{ "app.admin.crud.tags"|trans|caseupper }}</th>
                             <td>{{ landing_slide.tags }}</td>
                         </tr>
                         <tr>
-                            <th>{{ "app.admin.crud.image"|trans }}</th>
+                            <th>{{ "app.admin.crud.image"|trans|caseupper }}</th>
                             <td>{{ landing_slide.image }}</td>
                         </tr>
                         </tbody>
@@ -45,5 +45,4 @@
     </div>
 
 {% endblock %}
-
 

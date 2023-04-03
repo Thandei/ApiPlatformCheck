@@ -16,15 +16,15 @@
                         <table class="table table-bordered">
                             <tbody>
                             <tr>
-                                <th>{{ "app.admin.crud.id"|trans|upper }}</th>
+                                <th>{{ "app.admin.crud.id"|trans|caseupper }}</th>
                                 <td>{{ genu.id }}</td>
                             </tr>
                             <tr>
-                                <th>{{ "app.admin.crud.name"|trans }}</th>
+                                <th>{{ "app.admin.crud.name"|trans|caseupper }}</th>
                                 <td>{{ genu.name }}</td>
                             </tr>
                             <tr>
-                                <th>{{ "app.admin.crud.attributes"|trans }}</th>
+                                <th>{{ "app.admin.crud.attributes"|trans|caseupper }}</th>
 
                                 <td>
                                     {% for attr in genu.attr %}

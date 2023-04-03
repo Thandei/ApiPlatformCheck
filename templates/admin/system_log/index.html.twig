@@ -17,10 +17,10 @@
                         <table class="table table-bordered datatable">
                             <thead>
                             <tr>
-                                <th class="text-center" >{{ "app.admin.crud.priority"|trans|upper }}</th>
-                                <th data-orderable="false">{{ "app.admin.crud.content"|trans|upper }}</th>
-                                <th data-orderable="false" class="text-center">{{ "app.admin.crud.createdat"|trans|upper }}</th>
-                                <th data-orderable="false" class="text-center">{{ "app.admin.crud.actions"|trans|upper }}</th>
+                                <th class="text-center" >{{ "app.admin.crud.priority"|trans|caseupper }}</th>
+                                <th data-orderable="false">{{ "app.admin.crud.content"|trans|caseupper }}</th>
+                                <th data-orderable="false" class="text-center">{{ "app.admin.crud.createdat"|trans|caseupper }}</th>
+                                <th data-orderable="false" class="text-center">{{ "app.admin.crud.actions"|trans|caseupper }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -40,7 +40,7 @@
 
                                     <td>
                                         {% if system_log.content|length > 50 %}
-                                            {{ system_log.content|slice(0,50) }}<a href="{{ path('app_admin_system_log_show', {'id': system_log.id}) }}}}">{{ "app.admin.crud.showmore"|trans|lower }}</a>
+                                            {{ system_log.content|slice(0,50) }}<a href="{{ path('app_admin_system_log_show', {'id': system_log.id}) }}}}"> {{ "app.admin.crud.showmore"|trans|caselower }}</a>
                                         {% else %}
                                             {{ system_log.content }}
                                         {% endif %}
@@ -78,7 +78,6 @@
     </div>
 
 {% endblock %}
-
 
 
 
