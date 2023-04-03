@@ -182,9 +182,12 @@ twig:
       appLogo: 'build/media/logo.svg'
       developerTitle: "Reformsoft Teknoloji A.Ş."
       developerURL: "https://www.reformsoft.net/"
+      copyrightText: '&copy; Copyright MeeHou.'
       defaultDatetimeFormat: "d.m.Y H:i"
       defaultDateFormat: "d.m.Y"
       defaultTimeFormat: "H:i"
+      adminEmail: "admin@meehou.app"
+
 
     admin:
       charset: "utf-8"
@@ -234,3 +237,16 @@ twig:
         year: 2023
         month: 7
         day: 1
+      social_media:
+        - name: "Facebook"
+          url: '#'
+          svg: 'build/media/social-logos/facebook.svg'
+        - name: "Twitter"
+          url: '#'
+          svg: 'build/media/social-logos/twitter.svg'
+        - name: "Instagram"
+          url: '#'
+          svg: 'build/media/social-logos/instagram.svg'
+
+
+

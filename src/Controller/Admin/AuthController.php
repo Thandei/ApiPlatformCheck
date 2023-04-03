@@ -212,7 +212,7 @@ class AuthController extends AdminBaseController
                 ->from(new Address('noreply@meehou.app', 'MeeHou'))
                 ->to($user->getEmail())
                 ->subject('Your password reset request')
-                ->htmlTemplate('admin/auth/reset_password/email.html.twig')
+                ->htmlTemplate('email/reset_password.html.twig')
                 ->context([
                     'resetToken' => $resetToken,
                 ]);

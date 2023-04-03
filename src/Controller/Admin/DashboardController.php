@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Repository\UserRepository;
+use App\Service\MailerService;
 use Facebook\Facebook;
 use Symfony\Bridge\Twig\Mime\NotificationEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,8 +19,10 @@ use Symfony\Flex\Configurator\ContainerConfigurator;
 class DashboardController extends AdminBaseController
 {
     #[Route('/dashboard', name: 'dashboard')]
-    public function index(): Response
+    public function index(MailerService $mailerService): Response
     {
+
+
         return $this->render('admin/dashboard/index.html.twig');
     }
 }

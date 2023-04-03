@@ -165,6 +165,47 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
     // === SYSTEM LOG FIXTURES CONFIGURATION == //
     const SYSTEM_LOG_COUNT = 100;
 
+    // === SERVICE FIXTURES CONFIGURATION == //
+    const SERVICES = [
+        [
+            "name" => "app.database.service.health",
+            "description" => "app.database.service.health.description"
+        ],
+        [
+            "name" => "app.database.service.food",
+            "description" => "app.database.service.food.description"
+        ],
+        [
+            "name" => "app.database.service.transport",
+            "description" => "app.database.service.transport.description"
+        ],
+        [
+            "name" => "app.database.service.residence",
+            "description" => "app.database.service.residence.description"
+        ],
+        [
+            "name" => "app.database.service.walk",
+            "description" => "app.database.service.walk.description"
+        ],
+        [
+            "name" => "app.database.service.shopping",
+            "description" => "app.database.service.shopping.description"
+        ],
+        [
+            "name" => "app.database.service.social",
+            "description" => "app.database.service.social.description"
+        ],
+        [
+            "name" => "app.database.service.match",
+            "description" => "app.database.service.match.description"
+        ],
+        [
+            "name" => "app.database.service.beauty",
+            "description" => "app.database.service.beauty.description"
+        ]
+    ];
+
+
     // === GLOBAL CONFIGURATION == //
     const BOOL_RAND_NULLABLE = [NULL, TRUE, FALSE];
     const DATABASE_TRANSLATION_PREFIX = DatabaseTranslationController::TRANSLATION_PREFIX;
