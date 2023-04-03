@@ -28,9 +28,10 @@ class DashboardController extends AdminBaseController
         $mailerService->setSubject("DENEME");
         $mailerService->setAction('#', 'Hemen Tıklaa!!!');
         $mailerService->setPriority(MailerService::PRIORITY_HIGH);
-        $sendResult = $mailerService->send('test', ["resetToken" => "deee"]);
+        // $sendResult = $mailerService->send('test', ["resetToken" => "deee"]);
 
-        exit(var_dump($sendResult));
+        //exit(var_dump($sendResult));
         return $this->render('admin/dashboard/index.html.twig');
     }
+
 }
