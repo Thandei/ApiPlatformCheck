@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Message\EmailNotification;
 use App\Repository\UserRepository;
 use App\Service\MailerService;
 use Facebook\Facebook;
@@ -19,9 +20,10 @@ use Symfony\Flex\Configurator\ContainerConfigurator;
 class DashboardController extends AdminBaseController
 {
     #[Route('/dashboard', name: 'dashboard')]
-    public function index(MailerService $mailerService): Response
+    public function index(): Response
     {
 
+        $myEmail = new EmailNotification("sinansahinwm@gmail.com", "Deneme Konu", 'test', ["sdgsdg" => "sdgsdgsdg"], MailerService::PRIORITY_HIGH);
 
         // $mailerService->setFrom("noreply@meehou.app");
         // $mailerService->setTo("sinansahinwm@gmail.com");

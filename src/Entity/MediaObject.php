@@ -18,7 +18,6 @@ use ApiPlatform\OpenApi\Model;
 
 #[Vich\Uploadable]
 #[ApiResource(
-    types: ['https://schema.org/MediaObject'],
     operations: [
         new Get(),
         new Post(
@@ -40,16 +39,16 @@ use ApiPlatform\OpenApi\Model;
                     ])
                 )
             ),
-            validationContext: ['groups' => ['Default', 'media_object_create']],
+            validationContext: ['groups' => ['postMediaObject']],
             deserialize: false,
         )
     ],
-    normalizationContext: ['groups' => ['media_object:read']],
+    normalizationContext: ['groups' => ['normalizeMediaObject']],
 )]
 #[ORM\Entity(repositoryClass: MediaObjectRepository::class)]
 class MediaObject
 {
-    #[Groups(['media_object:read'])]
+    #[Groups(['normalizeMediaObject'])]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -59,11 +58,11 @@ class MediaObject
     private ?string $filepath = null;
 
     #[Vich\UploadableField(mapping: "media_object", fileNameProperty: "filepath")]
-    #[Assert\NotNull(groups: ['media_object_create'])]
+    #[Assert\NotNull(groups: ['postMediaObject'])]
     public ?File $file = null;
 
-    #[ApiProperty(types: ['https://schema.org/contentUrl'])]
-    #[Groups(['media_object:read'])]
+    #[ApiProperty]
+    #[Groups(['normalizeMediaObject'])]
     public ?string $contentUrl = null;
 
     #[ORM\ManyToOne(inversedBy: 'mediaObjects')]
