@@ -3,27 +3,22 @@
 namespace App\Controller\Admin;
 
 use App\Message\EmailNotification;
-use App\Repository\UserRepository;
 use App\Service\MailerService;
-use Facebook\Facebook;
-use Symfony\Bridge\Twig\Mime\NotificationEmail;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mailer\Transport\TransportInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\DelayStamp;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Cache\ItemInterface;
-use Symfony\Flex\Configurator\ContainerConfigurator;
 
 #[Route('/admin', name: 'app_admin_')]
 class DashboardController extends AdminBaseController
 {
     #[Route('/dashboard', name: 'dashboard')]
-    public function index(): Response
+    public function index(MessageBusInterface $messageBus): Response
     {
 
+
         $myEmail = new EmailNotification("sinansahinwm@gmail.com", "Deneme Konu", 'test', ["sdgsdg" => "sdgsdgsdg"], MailerService::PRIORITY_HIGH);
+        $messageBus->dispatch($myEmail, [new DelayStamp(500)]);
 
         // $mailerService->setFrom("noreply@meehou.app");
         // $mailerService->setTo("sinansahinwm@gmail.com");
