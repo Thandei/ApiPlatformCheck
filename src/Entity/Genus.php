@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Context;
 
 
-#[ApiResource]
 #[ORM\Entity(repositoryClass: GenusRepository::class)]
 class Genus
 {

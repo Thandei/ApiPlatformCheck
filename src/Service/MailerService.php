@@ -12,6 +12,7 @@ class MailerService
 {
 
     public const DEFAULT_MAILER_SENDER = 'noreply@meehou.app';
+    public const DEFAULT_MAILER_SENDER_NAME = 'MeeHou';
     public const PRIORITY_HIGHEST = 1;
     public const PRIORITY_HIGH = 2;
     public const PRIORITY_NORMAL = 3;
@@ -21,7 +22,7 @@ class MailerService
 
     private ?string $subject = NULL;
     private null|string|Address $to = NULL;
-    private null|string|Address $from = self::DEFAULT_MAILER_SENDER;
+    private null|string|Address $from = NULL;
     private null|int $priority = NULL;
 
     /**
@@ -116,6 +117,7 @@ class MailerService
 
     public function __construct(private TransportInterface $transport)
     {
+        $this->setFrom(new Address(self::DEFAULT_MAILER_SENDER, self::DEFAULT_MAILER_SENDER_NAME));
     }
 
     public function setAction(string $actionURL, string $actionText)

@@ -12,7 +12,9 @@
     <title>{% block title %}{% endblock %}</title>
 
     <style>
-        body { background-color: #f3f3f3; }
+        body {
+            background-color: #f3f3f3;
+        }
     </style>
 
 </head>
@@ -24,18 +26,13 @@
         {% block body %}{% endblock %}
     </div>
     <!--end content-wrapper-->
-    <!--
     <footer>
         <div class="social-icons animate">
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-youtube"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-            <a href="#"><i class="fa fa-pinterest"></i></a>
-            <a href="#"><i class="fa fa-google-plus"></i></a>
+            {% for s in misc.social_media %}
+                <a target="_blank" href="{{ s.url }}"><i class="{{ s.icon }}"></i></a>
+            {% endfor %}
         </div>
     </footer>
-    -->
 </div>
 <!--end page-wrapper-->
 

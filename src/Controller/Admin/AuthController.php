@@ -205,7 +205,6 @@ class AuthController extends AdminBaseController
         }
 
 
-
         try {
 
             $email = (new TemplatedEmail())
@@ -218,10 +217,7 @@ class AuthController extends AdminBaseController
                 ]);
 
             $transportInterface->send($email);
-        } catch (Exception|TransportException $exception) {
-            exit("eeeexcepte" . $exception->getMessage());
-        } catch (TransportExceptionInterface $e) {
-            exit("transport exception");
+        } catch (Exception|TransportException|TransportExceptionInterface $exception) {
         }
 
 

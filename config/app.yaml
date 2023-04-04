@@ -180,6 +180,7 @@ twig:
       appBaseURL: "https://meehou.app"
       appApiBaseURL: "https://meehou.app/api"
       appLogo: 'build/media/logo.svg'
+      appLogoPNG: 'build/media/logo.png'
       developerTitle: "Reformsoft Teknoloji A.Ş."
       developerURL: "https://www.reformsoft.net/"
       copyrightText: '&copy; Copyright MeeHou.'
@@ -240,13 +241,16 @@ twig:
       social_media:
         - name: "Facebook"
           url: '#'
-          svg: 'build/media/social-logos/facebook.svg'
+          svg: 'build/media/social-logos/PNG/Color/Facebook.png'
+          icon: 'fa fa-facebook'
         - name: "Twitter"
           url: '#'
-          svg: 'build/media/social-logos/twitter.svg'
+          svg: 'build/media/social-logos/PNG/Color/Twitter.png'
+          icon: 'fa fa-twitter'
         - name: "Instagram"
           url: '#'
-          svg: 'build/media/social-logos/instagram.svg'
+          svg: 'build/media/social-logos/PNG/Color/Instagram.png'
+          icon: 'fa fa-instagram'
 
 
 

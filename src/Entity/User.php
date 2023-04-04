@@ -10,6 +10,8 @@ use ApiPlatform\Metadata\Post;
 use App\ApiResource\Hook\DTNorma;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -52,6 +54,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?Locale $defaultlocale = null;
+
+    #[ORM\OneToMany(mappedBy: 'uploadedby', targetEntity: MediaObject::class)]
+    private Collection $mediaObjects;
+
+    public function __construct()
+    {
+        $this->mediaObjects = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -197,6 +207,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDefaultlocale(?Locale $defaultlocale): self
     {
         $this->defaultlocale = $defaultlocale;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MediaObject>
+     */
+    public function getMediaObjects(): Collection
+    {
+        return $this->mediaObjects;
+    }
+
+    public function addMediaObject(MediaObject $mediaObject): self
+    {
+        if (!$this->mediaObjects->contains($mediaObject)) {
+            $this->mediaObjects->add($mediaObject);
+            $mediaObject->setUploadedby($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMediaObject(MediaObject $mediaObject): self
+    {
+        if ($this->mediaObjects->removeElement($mediaObject)) {
+            // set the owning side to null (unless already changed)
+            if ($mediaObject->getUploadedby() === $this) {
+                $mediaObject->setUploadedby(null);
+            }
+        }
 
         return $this;
     }

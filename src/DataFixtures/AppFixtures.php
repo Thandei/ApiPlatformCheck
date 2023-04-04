@@ -205,6 +205,25 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
         ]
     ];
 
+    // === APP POLICY FIXTURES CONFIGURATION == //
+    const POLICIES = [
+        [
+            "keyname" => "privacy",
+            "name" => "app.database.policy.privacy",
+            "content" => "app.database.policy.privacy.content",
+        ],
+        [
+            "keyname" => "cookie",
+            "name" => "app.database.policy.cookie",
+            "content" => "app.database.policy.cookie.content",
+        ],
+        [
+            "keyname" => "data",
+            "name" => "app.database.policy.data",
+            "content" => "app.database.policy.data.content",
+        ]
+    ];
+
 
     // === GLOBAL CONFIGURATION == //
     const BOOL_RAND_NULLABLE = [NULL, TRUE, FALSE];
