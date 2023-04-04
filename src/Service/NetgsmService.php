@@ -60,9 +60,7 @@ class NetgsmService
                 if (strlen($sendResponse) > 3) {
                     return intval(str_replace("00 ", "", $sendResponse));
                 }
-
             }
-
         }
 
 
