@@ -8,12 +8,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
+
     normalizationContext: ['groups' => ['readPet']],
     denormalizationContext: ['groups' => ['writePet']],
+    paginationItemsPerPage: 5
 )]
 #[ORM\Entity(repositoryClass: PetRepository::class)]
+
 class Pet
 {
     #[Groups(['readPet', 'readUser'])]
@@ -26,7 +30,7 @@ class Pet
     #[ORM\JoinColumn(nullable: false)]
     private ?User $owner = null;
 
-    #[Groups(['readPet', 'readUser'])]
+    #[ Assert\NotBlank, Groups(['readPet', 'readUser'])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 

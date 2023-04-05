@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Odm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use App\ApiResource\Normalizer\TranslationNormalizer;
 use App\Repository\GenusRepository;
@@ -16,6 +18,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
     normalizationContext: ['groups' => ['readGenus']],
     denormalizationContext: ['groups' => ['writeGenus']],
 )]
+#[ApiFilter(SearchFilter::class, properties: ['user' => 'exact'])]
 #[ORM\Entity(repositoryClass: GenusRepository::class)]
 class Genus
 {

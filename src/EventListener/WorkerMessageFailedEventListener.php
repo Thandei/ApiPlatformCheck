@@ -9,8 +9,11 @@ use Symfony\Component\Messenger\Event\WorkerMessageFailedEvent;
 class WorkerMessageFailedEventListener
 {
 
-    public function __construct(private SystemLoggerService $systemLogService)
+    private $systemLogService;
+
+    public function __construct(SystemLoggerService $systemLogService)
     {
+        $this->systemLogService = $systemLogService;
     }
 
     public function onMessageFailed(WorkerMessageFailedEvent $event)

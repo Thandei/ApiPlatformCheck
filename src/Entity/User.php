@@ -1,4 +1,7 @@
 <?php namespace App\Entity;
+use ApiPlatform\Doctrine\Odm\Filter\DateFilter;
+use ApiPlatform\Doctrine\Odm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
@@ -11,8 +14,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
     normalizationContext: ['groups' => ['readUser']],
-    denormalizationContext: ['groups' => ['writeUser']]
+    denormalizationContext: ['groups' => ['writeUser']],
+    paginationItemsPerPage: 20
 )]
+#[ApiFilter(DateFilter::class, properties: ['dateProperty'])]
+#[ApiFilter(SearchFilter::class, properties: ['id' => 'exact', 'email' => 'exact', 'accountname' => 'partial'])]
 #[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
