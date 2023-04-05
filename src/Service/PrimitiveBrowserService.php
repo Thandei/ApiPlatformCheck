@@ -1,4 +1,4 @@
-<?php namespace App\Services;
+<?php namespace App\Service;
 
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;

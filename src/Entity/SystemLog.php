@@ -32,6 +32,9 @@ class SystemLog
     #[ORM\Column(nullable: true)]
     private ?int $relateduserid = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $trace = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -99,6 +102,18 @@ class SystemLog
     public function setRelateduserid(?int $relateduserid): self
     {
         $this->relateduserid = $relateduserid;
+
+        return $this;
+    }
+
+    public function getTrace(): ?string
+    {
+        return $this->trace;
+    }
+
+    public function setTrace(?string $trace): self
+    {
+        $this->trace = $trace;
 
         return $this;
     }
