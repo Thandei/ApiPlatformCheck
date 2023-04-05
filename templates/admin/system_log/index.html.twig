@@ -20,6 +20,7 @@
                                 <th class="text-center" >{{ "app.admin.crud.priority"|trans|caseupper }}</th>
                                 <th data-orderable="false">{{ "app.admin.crud.content"|trans|caseupper }}</th>
                                 <th data-orderable="false" class="text-center">{{ "app.admin.crud.createdat"|trans|caseupper }}</th>
+                                <th data-orderable="false" class="text-center">{{ "app.admin.crud.causedby"|trans|caseupper }}</th>
                                 <th data-orderable="false" class="text-center">{{ "app.admin.crud.actions"|trans|caseupper }}</th>
                             </tr>
                             </thead>
@@ -46,6 +47,31 @@
                                         {% endif %}
                                     </td>
                                     <td class="text-center">{{ system_log.createdAt ? system_log.createdAt|date(shared.defaultDatetimeFormat) : '' }}</td>
+                                    <td class="text-center">
+                                        {% if system_log.trace is not same as(null) %}
+                                            <!-- Modal -->
+                                            <button type="button" class="btn btn-icon btn-link-danger" data-bs-toggle="modal" data-bs-target="#{{ system_log.id }}Modal">
+                                                <i class="ti ti-alert-triangle"></i>
+                                            </button>
+                                            <div class="modal fade" id="{{ system_log.id }}Modal" tabindex="-1" aria-labelledby="{{ system_log.id }}ModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Throwable Trace</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            {{ system_log.trace|raw }}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Modal -->
+                                        {% endif %}
+                                    </td>
                                     <td class="text-center">
                                         <ul class="list-inline me-auto mb-0">
                                             <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" aria-label="{{ "app.admin.crud.show"|trans }}" data-bs-original-title="{{ "app.admin.crud.show"|trans }}">

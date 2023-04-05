@@ -17,8 +17,8 @@ class DashboardController extends AdminBaseController
     {
 
 
-        $myEmail = new EmailNotification("sinansahinwm@gmail.com", "Deneme Konu", 'test', ["sdgsdg" => "sdgsdgsdg"], MailerService::PRIORITY_HIGH);
-        $messageBus->dispatch($myEmail, [new DelayStamp(500)]);
+        // $myEmail = new EmailNotification("sinansahinwm@gmail.com", "Deneme Konu", 'test', ["sdgsdg" => "sdgsdgsdg"], MailerService::PRIORITY_HIGH);
+        // $messageBus->dispatch($myEmail, [new DelayStamp(500)]);
 
         // $mailerService->setFrom("noreply@meehou.app");
         // $mailerService->setTo("sinansahinwm@gmail.com");
