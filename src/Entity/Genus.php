@@ -25,9 +25,13 @@ class Genus
     #[ORM\ManyToMany(targetEntity: GenusAttribute::class, inversedBy: 'genera')]
     private Collection $attr;
 
+    #[ORM\OneToMany(mappedBy: 'genus', targetEntity: Pet::class)]
+    private Collection $pets;
+
     public function __construct()
     {
         $this->attr = new ArrayCollection();
+        $this->pets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -74,5 +78,35 @@ class Genus
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection<int, Pet>
+     */
+    public function getPets(): Collection
+    {
+        return $this->pets;
+    }
+
+    public function addPet(Pet $pet): self
+    {
+        if (!$this->pets->contains($pet)) {
+            $this->pets->add($pet);
+            $pet->setGenus($this);
+        }
+
+        return $this;
+    }
+
+    public function removePet(Pet $pet): self
+    {
+        if ($this->pets->removeElement($pet)) {
+            // set the owning side to null (unless already changed)
+            if ($pet->getGenus() === $this) {
+                $pet->setGenus(null);
+            }
+        }
+
+        return $this;
     }
 }

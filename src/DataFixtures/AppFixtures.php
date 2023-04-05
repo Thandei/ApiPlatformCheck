@@ -224,6 +224,8 @@ class AppFixtures extends Fixture implements OrderedFixtureInterface
         ]
     ];
 
+    // === PET FIXTURES CONFIGURATION == //
+    const PETS_PER_USER = 5;
 
     // === GLOBAL CONFIGURATION == //
     const BOOL_RAND_NULLABLE = [NULL, TRUE, FALSE];

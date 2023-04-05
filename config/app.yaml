@@ -230,9 +230,12 @@ twig:
         - name: "Front-End"
           icon: "ti ti-brand-figma"
           items:
-            - name: "Slider İtems"
+            - name: "Slider Items"
               path: "app_admin_landing_slide_index"
-
+            - name: "Services"
+              path: "app_admin_service_index"
+            - name: "App Policies"
+              path: "app_admin_policy_index"
     misc:
       coming_soon:
         year: 2023

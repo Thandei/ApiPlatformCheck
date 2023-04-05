@@ -58,9 +58,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'uploadedby', targetEntity: MediaObject::class)]
     private Collection $mediaObjects;
 
+    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Pet::class)]
+    private Collection $pets;
+
     public function __construct()
     {
         $this->mediaObjects = new ArrayCollection();
+        $this->pets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -235,6 +239,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($mediaObject->getUploadedby() === $this) {
                 $mediaObject->setUploadedby(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Pet>
+     */
+    public function getPets(): Collection
+    {
+        return $this->pets;
+    }
+
+    public function addPet(Pet $pet): self
+    {
+        if (!$this->pets->contains($pet)) {
+            $this->pets->add($pet);
+            $pet->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removePet(Pet $pet): self
+    {
+        if ($this->pets->removeElement($pet)) {
+            // set the owning side to null (unless already changed)
+            if ($pet->getOwner() === $this) {
+                $pet->setOwner(null);
             }
         }
 
