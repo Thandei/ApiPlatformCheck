@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GenusAttributeValueRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: GenusAttributeValueRepository::class)]
@@ -17,9 +19,13 @@ class GenusAttributeValue
     #[ORM\JoinColumn(nullable: false)]
     private ?Pet $pet = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?GenusAttribute $attribute = null;
+    #[ORM\ManyToMany(targetEntity: GenusAttribute::class, inversedBy: 'genusAttributeValues')]
+    private Collection $ownerattribute;
+
+    public function __construct()
+    {
+        $this->ownerattribute = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -38,14 +44,26 @@ class GenusAttributeValue
         return $this;
     }
 
-    public function getAttribute(): ?GenusAttribute
+    /**
+     * @return Collection<int, GenusAttribute>
+     */
+    public function getOwnerattribute(): Collection
     {
-        return $this->attribute;
+        return $this->ownerattribute;
     }
 
-    public function setAttribute(GenusAttribute $attribute): self
+    public function addOwnerattribute(GenusAttribute $ownerattribute): self
     {
-        $this->attribute = $attribute;
+        if (!$this->ownerattribute->contains($ownerattribute)) {
+            $this->ownerattribute->add($ownerattribute);
+        }
+
+        return $this;
+    }
+
+    public function removeOwnerattribute(GenusAttribute $ownerattribute): self
+    {
+        $this->ownerattribute->removeElement($ownerattribute);
 
         return $this;
     }

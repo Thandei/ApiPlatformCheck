@@ -27,7 +27,7 @@ class GenusAttributeValueFixtures extends AppFixtures implements OrderedFixtureI
 
             foreach ($genusAttributes as $index => $genusAttribute) {
                 $myAttrVal = new GenusAttributeValue();
-                $myAttrVal->setAttribute($genusAttribute);
+                $myAttrVal->addOwnerattribute($genusAttribute);
                 $myAttrVal->setPet($pet);
                 $manager->persist($myAttrVal);
             }

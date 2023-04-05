@@ -7,11 +7,16 @@ use App\Repository\PetRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ApiResource(
+    normalizationContext: ['groups' => ['readPet']],
+    denormalizationContext: ['groups' => ['writePet']],
+)]
 #[ORM\Entity(repositoryClass: PetRepository::class)]
-#[ApiResource]
 class Pet
 {
+    #[Groups(['readPet', 'readUser'])]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -21,13 +26,14 @@ class Pet
     #[ORM\JoinColumn(nullable: false)]
     private ?User $owner = null;
 
+    #[Groups(['readPet', 'readUser'])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[Groups(['readPet', 'readUser'])]
     #[ORM\ManyToOne(inversedBy: 'pets')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Genus $genus = null;
-
     #[ORM\OneToMany(mappedBy: 'pet', targetEntity: GenusAttributeValue::class)]
     private Collection $genusAttributeValues;
 
@@ -106,4 +112,5 @@ class Pet
 
         return $this;
     }
+
 }

@@ -24,9 +24,13 @@ class GenusAttribute
     #[ORM\ManyToMany(targetEntity: Genus::class, mappedBy: 'attr')]
     private Collection $genera;
 
+    #[ORM\ManyToMany(targetEntity: GenusAttributeValue::class, mappedBy: 'ownerattribute')]
+    private Collection $genusAttributeValues;
+
     public function __construct()
     {
         $this->genera = new ArrayCollection();
+        $this->genusAttributeValues = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,5 +85,32 @@ class GenusAttribute
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection<int, GenusAttributeValue>
+     */
+    public function getGenusAttributeValues(): Collection
+    {
+        return $this->genusAttributeValues;
+    }
+
+    public function addGenusAttributeValue(GenusAttributeValue $genusAttributeValue): self
+    {
+        if (!$this->genusAttributeValues->contains($genusAttributeValue)) {
+            $this->genusAttributeValues->add($genusAttributeValue);
+            $genusAttributeValue->addOwnerattribute($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGenusAttributeValue(GenusAttributeValue $genusAttributeValue): self
+    {
+        if ($this->genusAttributeValues->removeElement($genusAttributeValue)) {
+            $genusAttributeValue->removeOwnerattribute($this);
+        }
+
+        return $this;
     }
 }

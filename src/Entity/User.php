@@ -1,13 +1,5 @@
-<?php
-
-namespace App\Entity;
-
-use ApiPlatform\Metadata\ApiProperty;
+<?php namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Post;
-use App\ApiResource\Hook\DTNorma;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,16 +7,23 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ApiResource(
+    normalizationContext: ['groups' => ['readUser']],
+    denormalizationContext: ['groups' => ['writeUser']]
+)]
 #[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    #[Groups(['readUser'])]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups(['readUser'])]
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
@@ -37,27 +36,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[Groups(['readUser'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $accountname = null;
 
+    #[Groups(['readUser'])]
     #[ORM\Column(length: 255, unique: true, nullable: true)]
     private ?string $nickname = null;
 
     #[ORM\Column]
     private ?DateTimeImmutable $created_at = null;
 
+    #[Groups(['readUser'])]
     #[ORM\Column(nullable: true)]
     private ?bool $approvalbadge = null;
 
+    #[Groups(['readUser'])]
     #[ORM\Column(nullable: true)]
     private ?bool $hasbusiness = null;
 
+    #[Groups(['readUser'])]
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?Locale $defaultlocale = null;
 
     #[ORM\OneToMany(mappedBy: 'uploadedby', targetEntity: MediaObject::class)]
     private Collection $mediaObjects;
 
+    #[Groups(['readUser'])]
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Pet::class)]
     private Collection $pets;
 
