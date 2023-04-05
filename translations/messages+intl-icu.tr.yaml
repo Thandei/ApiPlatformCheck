@@ -1,6 +1,6 @@
-#-------------------#
-#ADMIN-CRUD KEYWORDS#
-#-------------------#
+# ------------------------- #
+# -- ADMIN-CRUD KEYWORDS -- #
+# ------------------------- #
 app.admin.crud.edit: "Düzenle"
 app.admin.crud.systemlog: "Sistem Kaydı"
 app.admin.crud.backtolist: "Listeye Geri Dön"
@@ -54,9 +54,9 @@ app.admin.crud.service: "Hizmet"
 app.admin.crud.app.policy: "Uygulama Politikası"
 app.admin.crud.keyname: "Anahtar Kelime"
 
-#-------------------------#
-#DATABASE-LOCALE KEYWORDS#
-#-----------------------#
+# ------------------------------ #
+# -- DATABASE-LOCALE KEYWORDS -- #
+# ------------------------------ #
 app.database.locales.english: "İngilizce"
 app.database.locales.turkish: "Türkçe"
 app.database.locales.chinese: "Çince"
@@ -66,10 +66,9 @@ app.database.locales.french: "Fransızca"
 app.database.locales.russian: "Rusça"
 app.database.locales.portuguese: "Portekizce"
 
-#-------------------#
-#ADMIN-AUTH KEYWORDS#
-#-------------------#
-
+# ------------------------- #
+# -- ADMIN-AUTH KEYWORDS -- #
+# ------------------------- #
 app.admin.auth.reset.password: "Şifre"
 app.admin.auth.reset.reset: "Yenileme"
 app.admin.auth.reset.email: "E-Posta"
@@ -92,10 +91,9 @@ app.admin.auth.reset.rememberme: "Beni Hatırla"
 app.admin.auth.reset.forgotpassword: "Şifrenizi mi Unuttunuz"
 app.admin.auth.reset.login: "Giriş Yap"
 
-#-------------------------#
-#ADMIN-DASHBOARD KEYWORDS#
-#-----------------------#
-
+# ------------------------------ #
+# -- ADMIN-DASHBOARD KEYWORDS -- #
+# ------------------------------ #
 app.admin.dashboard: "Yönetici Paneli"
 app.admin.dashboard.pageviews: "Sayfa Görüntülenmesi"
 app.admin.dashboard.registered: "Kayıtlı"
@@ -103,19 +101,17 @@ app.admin.dashboard.users: "Kullanıcılar"
 app.admin.dashboard.businesses: "İşletmeler"
 app.admin.dashboard.networktraffic: "Ağ Trafiği"
 
-#-----------------------------#
-#ADMIN-DOCUMENTATION KEYWORDS#
-#---------------------------#
-
+# ---------------------------------- #
+# -- ADMIN-DOCUMENTATION KEYWORDS -- #
+# ---------------------------------- #
 app.admin.documentation: "Dokümantasyon"
 app.admin.documentation.go: "Git"
 app.admin.documentation.api: "API"
 app.admin.documentation.nocontent: "Bu dosya için eklenmiş içerik bulunmamakta. Lütfen github hesabınızı kontrol edin"
 
-#---------------#
-#EMAIL KEYWORDS#
-#-------------#
-
+# -------------------- #
+# -- EMAIL KEYWORDS -- #
+# -------------------- #
 app.email.activate.account: "Hesabı Etkinleştir"
 app.email.service: "E-Mail Hizmeti"
 app.email.automated.message: "Bu E-Maile Cevap Vermeyiniz"
@@ -126,15 +122,12 @@ app.email.resetpassword: "Şifrenizi sıfırlamak için şu bağlantıya tıklay
 app.email.expire: "Bu bağlantı şu süreden sonra geçersiz olacaktır:"
 app.email.cheers: "Hoşçakal"
 
-#----------------#
-#PUBLIC KEYWORDS#
-#--------------#
-
+# --------------------- #
+# -- PUBLIC KEYWORDS -- #
+# --------------------- #
 app.public.hello: "Meehou'ya Merhaba De"
 app.public.get.ready: "Hazırlan"
 app.public.awesome: "Yakında Harika Bir Şey Göreceksin"
-
-
 
 
 

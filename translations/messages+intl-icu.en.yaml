@@ -1,7 +1,6 @@
-#-------------------#
-#ADMIN-CRUD KEYWORDS#
-#-------------------#
-
+# ------------------------- #
+# -- ADMIN-CRUD KEYWORDS -- #
+# ------------------------- #
 app.admin.crud.systemlogs: 'System Logs'
 app.admin.crud.systemlog: 'System Log'
 app.admin.crud.index: "Index"
@@ -52,10 +51,9 @@ app.admin.crud.service: "Service"
 app.admin.crud.app.policy: "App Policy"
 app.admin.crud.keyname: "Keyname"
 
-#-------------------------#
-#DATABASE-LOCALE KEYWORDS#
-#-----------------------#
-
+# ------------------------------ #
+# -- DATABASE-LOCALE KEYWORDS -- #
+# ------------------------------ #
 app.database.locales.english: "English"
 app.database.locales.turkish: "Turkish"
 app.database.locales.chinese: "Chinese"
@@ -65,10 +63,9 @@ app.database.locales.french: "French"
 app.database.locales.russian: "Russian"
 app.database.locales.portuguese: "Portuguese"
 
-#-------------------#
-#ADMIN-AUTH KEYWORDS#
-#-------------------#
-
+# ------------------------- #
+# -- ADMIN-AUTH KEYWORDS -- #
+# ------------------------- #
 app.admin.auth.reset.password: "Password"
 app.admin.auth.reset.reset: "Reset"
 app.admin.auth.reset.email: "Email"
@@ -91,10 +88,9 @@ app.admin.auth.reset.rememberme: "Remember Me"
 app.admin.auth.reset.forgotpassword: "Forgot Password"
 app.admin.reset.login: "Login"
 
-#-------------------------#
-#ADMIN-DASHBOARD KEYWORDS#
-#-----------------------#
-
+# ------------------------------ #
+# -- ADMIN-DASHBOARD KEYWORDS -- #
+# ------------------------------ #
 app.admin.dashboard: "Dashboard"
 app.admin.dashboard.pageviews: "Page Views"
 app.admin.dashboard.registered: "Registered"
@@ -102,19 +98,17 @@ app.admin.dashboard.users: "Users"
 app.admin.dashboard.businesses: "Businesses"
 app.admin.dashboard.networktraffic: "Network Traffic"
 
-#-----------------------------#
-#ADMIN-DOCUMENTATION KEYWORDS#
-#---------------------------#
-
+# ---------------------------------- #
+# -- ADMIN-DOCUMENTATION KEYWORDS -- #
+# ---------------------------------- #
 app.admin.documentation: "Documentation"
 app.admin.documentation.go: "Go"
 app.admin.documentation.api: "API"
 app.admin.documentation.nocontent: " No content has been added for this file. Please check your github account"
 
-#---------------#
-#EMAIL KEYWORDS#
-#-------------#
-
+# -------------------- #
+# -- EMAIL KEYWORDS -- #
+# -------------------- #
 app.email.activate.account: "Activate Account"
 app.email.service: "E-Mail Service"
 app.email.automated.message: "Do not reply to this automated message"
@@ -125,18 +119,9 @@ app.email.resetpassword: "To reset your password, please visit the following lin
 app.email.expire: "This link will expire in"
 app.email.cheers: "Cheers"
 
-#----------------#
-#PUBLIC KEYWORDS#
-#--------------#
-
+# --------------------- #
+# -- PUBLIC KEYWORDS -- #
+# --------------------- #
 app.public.hello: "Say hello to MeeHou"
 app.public.get.ready: "Get Ready"
 app.public.awesome: "Something Awesome is Coming Soon"
-
-
-
-
-
-
-
-
