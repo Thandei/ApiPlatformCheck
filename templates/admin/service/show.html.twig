@@ -1,0 +1,43 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ "app.admin.crud.service"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.service"|trans }} {{ "app.admin.crud.details"|trans }}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        {{ "app.admin.crud.service"|trans }} {{ "app.admin.crud.details"|trans }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>{{ "app.admin.crud.id"|trans|caseupper }}</th>
+                            <td>{{ service.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ "app.admin.crud.name"|trans|caseupper }}</th>
+                            <td>{{ service.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ "app.admin.crud.description"|trans|caseupper }}</th>
+                            <td>{{ service.description }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a class="btn btn-secondary" href="{{ path('app_admin_service_index') }}">{{ "app.admin.crud.backtolist"|trans }}</a>
+
+                    <a class="btn btn-primary" href="{{ path('app_admin_service_edit', {'id': service.id}) }}">{{ "app.admin.crud.edit"|trans }}</a>
+
+                    {{ include('admin/service/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

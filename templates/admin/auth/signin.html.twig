@@ -1,6 +1,6 @@
 {% extends 'admin/auth/base.html.twig' %}
 
-{% block title %}Administration Signin{% endblock %}
+{% block title %}{{ "app.admin.auth.reset.administration"|trans }} {{ "app.admin.auth.reset.signin"|trans }}{% endblock %}
 
 {% block body %}
 
@@ -15,17 +15,17 @@
                     </a>
                 </div>
 
-                <h4 class="text-center f-w-500 mb-3 mt-3">Login with your email</h4>
+                <h4 class="text-center f-w-500 mb-3 mt-3">{{ "app.admin.auth.reset.loginwithemail"|trans }}</h4>
 
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
 
-            {% if app.user %}
-                <div class="mb-3">
-                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_admin_auth_signout') }}">Logout</a>
-                </div>
-            {% endif %}
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_admin_auth_signout') }}">{{ "app.admin.auth.reset.logout"|trans }}</a>
+                    </div>
+                {% endif %}
 
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
 
@@ -39,13 +39,13 @@
                 <div class="d-flex mt-1 justify-content-between align-items-center">
                     <div class="form-check">
                         <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="">
-                        <label class="form-check-label text-muted" for="customCheckc1">Remember me?</label>
+                        <label class="form-check-label text-muted" for="customCheckc1">{{ "app.admin.auth.reset.rememberme"|trans }}?</label>
                     </div>
-                    <h6 class="text-secondary f-w-400 mb-0"><a class="text-secondary f-w-400 mb-0" href="{{ path('app_admin_auth_reset_password_request') }}">Forgot Password?</a></h6>
+                    <h6 class="text-secondary f-w-400 mb-0"><a class="text-secondary f-w-400 mb-0" href="{{ path('app_admin_auth_reset_password_request') }}">{{ "app.admin.auth.reset.forgotpassword"|trans }}?</a></h6>
                 </div>
 
                 <div class="d-grid mt-4">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">{{ "app.admin.auth.reset.login"|trans }}</button>
                 </div>
 
                 {% include 'admin/auth/_or.html.twig' %}

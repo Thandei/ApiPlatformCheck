@@ -1,12 +1,12 @@
 {% extends 'admin/auth/base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}{{ "app.admin.auth.reset.resetyourpassword"|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Reset your password</h1>
+    <h1>{{ "app.admin.auth.reset.resetyourpassword"|trans }}</h1>
 
     {{ form_start(resetForm) }}
-        {{ form_row(resetForm.plainPassword) }}
-        <button class="btn btn-primary">Reset password</button>
+    {{ form_row(resetForm.plainPassword) }}
+    <button class="btn btn-primary">{{ "app.admin.auth.reset.resetyourpassword"|trans }}</button>
     {{ form_end(resetForm) }}
 {% endblock %}

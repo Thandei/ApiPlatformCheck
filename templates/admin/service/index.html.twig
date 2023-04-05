@@ -1,0 +1,68 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ "app.admin.crud.service"|trans }} {{ "app.admin.crud.index"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.service"|trans }} {{ "app.admin.crud.index"|trans }}{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        {{ "app.admin.crud.service"|trans }} {{ "app.admin.crud.index"|trans }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive dt-responsive">
+                        <table class="table table-bordered datatable">
+                            <thead>
+                            <tr>
+                                <th>{{ "app.admin.crud.id"|trans|caseupper }}</th>
+                                <th data-orderable="false">{{ "app.admin.crud.name"|trans|caseupper }}</th>
+                                <th data-orderable="false">{{ "app.admin.crud.description"|trans|caseupper }}</th>
+                                <th class="text-center" data-orderable="false">{{ "app.admin.crud.actions"|trans|caseupper }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for service in services %}
+                                <tr>
+                                    <td>{{ service.id }}</td>
+                                    <td>{{ service.name }}</td>
+                                    <td>{{ service.description }}</td>
+                                    <td class="text-center">
+                                        <ul class="list-inline me-auto mb-0">
+                                            <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" aria-label="View" data-bs-original-title="View">
+                                                <a href="{{ path('app_admin_service_show', {'id': service.id}) }}" class="avtar avtar-xs btn-link-success btn-pc-default">
+                                                    <i class="ti ti-eye f-18"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" aria-label="Edit" data-bs-original-title="Edit">
+                                                <a href="{{ path('app_admin_service_edit', {'id': service.id}) }}" class="avtar avtar-xs btn-link-success btn-pc-default">
+                                                    <i class="ti ti-edit-circle f-18"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">{{ "app.admin.crud.norecords"|trans }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <a class="btn btn-primary" href="{{ path('app_admin_service_new') }}">{{ "app.admin.crud.createnew"|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+

@@ -1,16 +1,16 @@
 <div class="saprator my-3">
-    <span>OR</span>
+    <span> {{ "app.admin.auth.reset.or"|trans|caseupper }}</span>
 </div>
 
 <div class="text-center">
     <div class="d-grid my-3">
         <a href="{{ path('app_admin_auth_redirect_google') }}" type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
             <img src="{{ asset('build/theme/ablepro/images/authentication/google.svg') }}" alt="{{ shared.appTitle }} Logo">
-            <span> Sign In with Google</span>
+            <span> {{ "app.admin.auth.reset.signinwithgoogle"|trans }}</span>
         </a>
         <a href="{{ path('app_admin_auth_redirect_facebook') }}" class="btn mt-2 btn-light-primary bg-light text-muted">
             <img src="{{ asset('build/theme/ablepro/images/authentication/facebook.svg') }}" alt="{{ shared.appTitle }} Logo"> <span>
-                            Sign In with Facebook</span>
+                            {{ "app.admin.auth.reset.signinwithfacebook"|trans }}</span>
         </a>
     </div>
 </div>

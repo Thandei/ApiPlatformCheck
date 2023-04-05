@@ -1,7 +1,7 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Dashboard{% endblock %}
-{% block bodyTitle %}Dashboard{% endblock %}
+{% block title %}{{ "app.admin.dashboard"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.dashboard"|trans }}{% endblock %}
 
 
 {% block body %}
@@ -13,7 +13,7 @@
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h3 class="mb-1">0</h3>
-                            <p class="text-muted mb-0">Page Views</p>
+                            <p class="text-muted mb-0">{{ "app.admin.dashboard.pageviews"|trans }}</p>
                         </div>
                         <div class="col-4 text-end">
                             <i class="ti ti-device-analytics text-secondary f-36"></i>
@@ -28,7 +28,7 @@
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h3 class="mb-1">0</h3>
-                            <p class="text-muted mb-0">Registered Users</p>
+                            <p class="text-muted mb-0">{{ "app.admin.dashboard.registered"|trans }} {{ "app.admin.dashboard.users"|trans }}</p>
                         </div>
                         <div class="col-4 text-end">
                             <i class="ti ti-user-plus text-danger f-36"></i>
@@ -43,7 +43,7 @@
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h3 class="mb-1">0</h3>
-                            <p class="text-muted mb-0">Registered Businesses</p>
+                            <p class="text-muted mb-0">{{ "app.admin.dashboard.registered"|trans }} {{ "app.admin.dashboard.businesses"|trans }}</p>
                         </div>
                         <div class="col-4 text-end">
                             <i class="ti ti-building-skyscraper text-success f-36"></i>
@@ -58,7 +58,7 @@
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h3 class="mb-1">0</h3>
-                            <p class="text-muted mb-0">Network Traffic</p>
+                            <p class="text-muted mb-0">{{ "app.admin.dashboard.networktraffic"|trans }}</p>
                         </div>
                         <div class="col-4 text-end">
                             <i class="ti ti-activity text-primary f-36"></i>

@@ -1,11 +1,14 @@
 {% extends 'admin/auth/base.html.twig' %}
 
-{% block title %}Password Reset Email Sent{% endblock %}
+{% block title %}{{ "app.admin.auth.reset.password"|trans }} {{ "app.admin.auth.reset.reset"|trans }} {{ "app.admin.auth.reset.emailsent"|trans }}{% endblock %}
 
 {% block body %}
     <p>
-        If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
-        This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+        {{ "app.admin.auth.reset.ifaccountmatch"|trans }}
+        {{ "app.admin.auth.reset.expire"|trans }} {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
     </p>
-    <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_admin_auth_reset_password_request') }}">try again</a>.</p>
+    <p>
+        {{ "app.admin.auth.reset.ifdontreceive"|trans }}
+        <a href="{{ path('app_admin_auth_reset_password_request') }}">{{ "app.admin.auth.reset.tryagain"|trans }}</a>.
+    </p>
 {% endblock %}

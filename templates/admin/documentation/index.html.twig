@@ -1,7 +1,7 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Documentation{% endblock %}
-{% block bodyTitle %}Documentation{% endblock %}
+{% block title %}{{ "app.admin.documentation"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.documentation"|trans }}{% endblock %}
 
 
 {% block body %}
@@ -13,32 +13,32 @@
                     <i class="ti ti-home"></i> Main Directory
                 </a>
                 {% for d in documentation %}
-                <a class="list-group-item list-group-item-action {% if loop.first %}active{% endif %}"
-                   id="list-{{ d.sha }}-list"
-                   {% if d.type is same as("file") %}data-bs-toggle="tab"{% endif %}
-                   {% if d.type is same as("file") %}href="#list-{{ d.sha }}"{% endif %}
-                   {% if d.type is same as("dir") %}href="?docpath={{ d.name }}"{% endif %}
-                   {% if d.type is same as("file") %}role="tab"{% endif %}
-                   aria-controls="list-{{ d.sha }}">
-                    <div class="d-flex justify-content-between bg-sec">
+                    <a class="list-group-item list-group-item-action {% if loop.first %}active{% endif %}"
+                       id="list-{{ d.sha }}-list"
+                       {% if d.type is same as("file") %}data-bs-toggle="tab"{% endif %}
+                            {% if d.type is same as("file") %}href="#list-{{ d.sha }}"{% endif %}
+                            {% if d.type is same as("dir") %}href="?docpath={{ d.name }}"{% endif %}
+                            {% if d.type is same as("file") %}role="tab"{% endif %}
+                       aria-controls="list-{{ d.sha }}">
+                        <div class="d-flex justify-content-between bg-sec">
                         <span>
                             {{ d.name }}
                         </span>
-                        <span>
+                            <span>
                             {% if d.type is same as("file") %}
                                 <i class="ti ti-file-text"></i>
                             {% endif %}
-                            {% if d.type is same as("dir") %}
-                                <i class="ti ti-folders"></i>
-                            {% endif %}
+                                {% if d.type is same as("dir") %}
+                                    <i class="ti ti-folders"></i>
+                                {% endif %}
                         </span>
-                    </div>
-                </a>
+                        </div>
+                    </a>
                 {% endfor %}
             </div>
 
             <div class="d-flex justify-content-center mt-3">
-                <a href="{{ shared.appApiBaseURL }}" class="btn btn-primary d-flex align-items-center justify-content-center">Go API Documentation</a>
+                <a href="{{ shared.appApiBaseURL }}" class="btn btn-primary d-flex align-items-center justify-content-center">{{ "app.admin.documentation.go"|trans }} {{ "app.admin.documentation.api"|trans|caseupper }} {{ "app.admin.documentation"|trans }}</a>
             </div>
 
         </div>
@@ -46,17 +46,17 @@
             <div class="tab-content" id="nav-tabContent">
                 {% for d in documentation %}
                     {% if d.type is same as("file") %}
-                    <div class="tab-pane fade show {% if loop.first %}active{% endif %}" id="list-{{ d.sha }}" role="tabpanel" aria-labelledby="list-{{ d.sha }}-list">
+                        <div class="tab-pane fade show {% if loop.first %}active{% endif %}" id="list-{{ d.sha }}" role="tabpanel" aria-labelledby="list-{{ d.sha }}-list">
                             {% if d.content is same as(null) %}
                                 <div class="alert alert-warning d-flex align-items-center" role="alert">
                                     <i class="ti ti-git-pull-request"></i>
-                                    <div> No content has been added for this file. Please check your github account. </div>
+                                    <div> {{ "app.admin.documentation.nocontent"|trans }}. </div>
                                 </div>
                             {% endif %}
-                        {% apply markdown_to_html %}
-                            {{ d.content|raw }}
-                        {% endapply %}
-                    </div>
+                            {% apply markdown_to_html %}
+                                {{ d.content|raw }}
+                            {% endapply %}
+                        </div>
                     {% endif %}
                 {% endfor %}
             </div>

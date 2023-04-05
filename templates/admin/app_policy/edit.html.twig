@@ -1,0 +1,28 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ "app.admin.crud.edit"|trans }} {{ "app.admin.crud.app.policy"|trans }}{% endblock %}
+{% block bodyTitle %}{{ "app.admin.crud.edit"|trans }} {{ "app.admin.crud.app.policy"|trans }}{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        {{ "app.admin.crud.edit"|trans }} {{ "app.admin.crud.app.policy"|trans }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {{ include('admin/app_policy/_form.html.twig', {'button_label': 'app.admin.crud.update'|trans })}}
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a class="btn btn-secondary" href="{{ path('app_admin_policy_index') }}">{{ "app.admin.crud.backtolist"|trans }}</a>
+
+                    {{include('admin/app_policy/_delete_form.html.twig')}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

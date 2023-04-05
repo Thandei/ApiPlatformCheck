@@ -1,7 +1,7 @@
 {% extends 'admin/auth/base.html.twig' %}
 
-{% block bodyTitle %}Reset your password{% endblock %}
-{% block title %}Reset your password{% endblock %}
+{% block bodyTitle %}{{ "app.admin.auth.reset.resetyourpassword"|trans }} {% endblock %}
+{% block title %}{{ "app.admin.auth.reset.resetyourpassword"|trans }}{% endblock %}
 
 {% block body %}
 
@@ -14,7 +14,7 @@
                 </a>
             </div>
 
-            <h4 class="text-center f-w-500 mb-3 mt-3">Login with your email</h4>
+            <h4 class="text-center f-w-500 mb-3 mt-3"> {{ "app.admin.auth.reset.loginwithemail"|trans }}</h4>
 
 
             {% for flash_error in app.flashes('reset_password_error') %}
@@ -25,13 +25,12 @@
             {{ form_row(requestForm.email) }}
             <div>
                 <small>
-                    Enter your email address and we will send you a
-                    link to reset your password.
+                    {{ "app.admin.auth.reset.enterandsend"|trans }}
                 </small>
             </div>
 
             <div class="d-grid mt-4">
-                <button type="submit" class="btn btn-primary">Send Reset Email</button>
+                <button type="submit" class="btn btn-primary">{{ "app.admin.auth.reset.send"|trans }} {{ "app.admin.auth.reset.reset"|trans }} {{ "app.admin.auth.reset.email"|trans }}</button>
             </div>
 
 
@@ -41,7 +40,5 @@
 
         </div>
     </div>
-
-
 
 {% endblock %}
