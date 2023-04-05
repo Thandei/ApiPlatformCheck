@@ -2,11 +2,8 @@
 
 namespace App\Controller\Admin;
 
-use App\Message\EmailNotification;
-use App\Service\MailerService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Messenger\Stamp\DelayStamp;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin', name: 'app_admin_')]

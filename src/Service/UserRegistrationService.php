@@ -1,8 +1,12 @@
 <?php namespace App\Service;
 
+use App\Config\MessageBusDelays;
 use App\Entity\User;
+use App\Message\EmailNotification;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\DelayStamp;
 use Symfony\Component\String\UnicodeString;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -11,7 +15,7 @@ class UserRegistrationService
 
     const CREATE_NICK_TRY_COUNT = 100;
 
-    public function __construct(private UserRepository $userRepository, private ValidatorInterface $validator)
+    public function __construct(private UserRepository $userRepository, private ValidatorInterface $validator, private MessageBusInterface $messageBus)
     {
     }
 
@@ -46,7 +50,7 @@ class UserRegistrationService
         }
 
         // Register User
-        $this->userRepository->save($myUser, TRUE);
+        $this->createUser($myUser);
 
         // Return Registered User
         return $myUser;
@@ -84,7 +88,7 @@ class UserRegistrationService
         }
 
         // Register User
-        $this->userRepository->save($myUser, TRUE);
+        $this->createUser($myUser);
 
         // Return Registered User
         return $myUser;
@@ -144,6 +148,21 @@ class UserRegistrationService
 
         return $nickname;
 
+    }
+
+    public function createUser(User $myUser): User|false
+    {
+
+        $this->userRepository->save($myUser, TRUE);
+        $this->notifyWhenRegistration($myUser);
+        return $myUser;
+
+    }
+
+    public function notifyWhenRegistration(User $myUser): void
+    {
+        $myEmail = new EmailNotification($myUser->getEmail(), "Welcome!", 'welcome', ["user" => $myUser]);
+        $this->messageBus->dispatch($myEmail, [new DelayStamp(MessageBusDelays::EMAIL_WHEN_USER_REGISTERED_DELAY_TIME_MS)]);
     }
 
 }

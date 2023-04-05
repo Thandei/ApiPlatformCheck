@@ -1,0 +1,6 @@
+{% extends 'email/base.html.twig' %}
+
+{% block body %}
+    <p>Hi, {{ user.accountname }}</p>
+    <p>WELCOME TO {{ shared.appTitle }}</p>
+{% endblock %}
