@@ -1,26 +1,10 @@
-# MeeHou Social Network Project
+# Api Platform Test Repo
 
-Follow the steps below in order to run the project.
-1. Clone project from Github. 
-2. Run the following codes on the home directory.
+Topics covered up to now
 
-`composer install`
+-Search filter attribute (EXACT, PARTIAL)
+-Normalization-denormalization contexts overviewed
+-Embedded relations covered for (toMany,toOne)
 
-`npm install`
-
-`npm run watch`
-
-## Creating JWT Certificates 
-
-After completing steps above, you need to create jwt certificates. For this, run the command below;
-
-`php bin/console lexik:jwt:generate-keypair`
-
-
-If you are working in a test environment;
-run "php bin/console doctrine:fixtures:load"
-command.
-
-[MeeHou](https://www.meehou.app)
 
 
